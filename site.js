@@ -79,7 +79,6 @@ function buildPlayerStats(rows) {
     item.total += 1;
   });
   return [...map.values()].sort(function(a, b) {
-    if (b.total !== a.total) return b.total - a.total;
     if (b.first !== a.first) return b.first - a.first;
     if (b.second !== a.second) return b.second - a.second;
     if (b.third !== a.third) return b.third - a.third;
@@ -101,8 +100,12 @@ function buildContestStats(rows) {
     item.total += 1;
   });
   return [...map.values()].sort(function(a, b) {
-    if (b.total !== a.total) return b.total - a.total;
-    if (b.first !== a.first) return b.first - a.first;
+    var yearA = parseInt(a.name, 10) || 0;
+    var yearB = parseInt(b.name, 10) || 0;
+    if (yearB !== yearA) return yearB - yearA;
+    var isPriA = a.name.indexOf("??") >= 0 ? 0 : 1;
+    var isPriB = b.name.indexOf("??") >= 0 ? 0 : 1;
+    if (isPriA !== isPriB) return isPriA - isPriB;
     return a.name.localeCompare(b.name, "zh-CN");
   });
 }
@@ -146,9 +149,9 @@ function buildSchoolStats(rows, teamRows) {
     var teamLevel = String(row.level || "both");
     map.forEach(function(item, key) {
       if (key.indexOf(school + "__") === 0 && (teamLevel === "both" || item.level === teamLevel)) {
-        item.teamFirst = Number(row.teamFirst || 0);
-        item.teamSecond = Number(row.teamSecond || 0);
-        item.teamThird = Number(row.teamThird || 0);
+        item.teamFirst += Number(row.teamFirst || 0);
+        item.teamSecond += Number(row.teamSecond || 0);
+        item.teamThird += Number(row.teamThird || 0);
       }
     });
     var found = false;
