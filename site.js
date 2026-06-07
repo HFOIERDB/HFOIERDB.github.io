@@ -547,32 +547,18 @@ function renderContestDetail(rows, teamRows) {
       });
     }
 
-    // Group schools that participated in this contest
-    var schoolMap = new Map();
-    list.forEach(function(row) {
-      var s = String(row.school || "");
-      if (!s) return;
-      if (!schoolMap.has(s)) {
-        schoolMap.set(s, { school: s, teamFirst: 0, teamSecond: 0, teamThird: 0, pos: 999 });
-      }
-    });
-
-    // Merge team awards from filtered team rows
+    // Build school list directly from filtered team rows (PDF data)
     var schoolList = [];
-    schoolMap.forEach(function(s) {
-      var n = normalize(s.school);
-      filteredTeams.forEach(function(tr) {
-        if (normalize(String(tr.school || "")) === n) {
-          s.teamFirst = Number(tr.teamFirst || 0);
-          s.teamSecond = Number(tr.teamSecond || 0);
-          s.teamThird = Number(tr.teamThird || 0);
-          s.pos = Number(tr.pos || 999);
-        }
+    filteredTeams.forEach(function(tr) {
+      var s = String(tr.school || "");
+      if (!s) return;
+      schoolList.push({
+        school: s,
+        teamFirst: Number(tr.teamFirst || 0),
+        teamSecond: Number(tr.teamSecond || 0),
+        teamThird: Number(tr.teamThird || 0),
+        pos: Number(tr.pos || 999)
       });
-      // Only include schools that have at least one team award
-      if (s.teamFirst > 0 || s.teamSecond > 0 || s.teamThird > 0) {
-        schoolList.push(s);
-      }
     });
 
     schoolList.sort(function(a, b) {
