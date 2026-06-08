@@ -808,5 +808,275 @@
     "teamSecond": 0,
     "teamThird": 1,
     "pos": 30
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "合肥市第四十五中学",
+    "level": "middle",
+    "teamFirst": 1,
+    "teamSecond": 0,
+    "teamThird": 0,
+    "pos": 1
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "合肥市五十中学东校教育集团西园校区",
+    "level": "middle",
+    "teamFirst": 1,
+    "teamSecond": 0,
+    "teamThird": 0,
+    "pos": 2
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市六安路小学翠微分校",
+    "level": "primary",
+    "teamFirst": 1,
+    "teamSecond": 0,
+    "teamThird": 0,
+    "pos": 3
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市屯溪路小学",
+    "level": "primary",
+    "teamFirst": 1,
+    "teamSecond": 0,
+    "teamThird": 0,
+    "pos": 4
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市稻香村小学",
+    "level": "primary",
+    "teamFirst": 1,
+    "teamSecond": 0,
+    "teamThird": 0,
+    "pos": 5
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市安居苑小学",
+    "level": "primary",
+    "teamFirst": 1,
+    "teamSecond": 0,
+    "teamThird": 0,
+    "pos": 6
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "合肥市第四十二中学",
+    "level": "middle",
+    "teamFirst": 0,
+    "teamSecond": 1,
+    "teamThird": 0,
+    "pos": 7
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "合肥一六八玫瑰园学校",
+    "level": "middle",
+    "teamFirst": 0,
+    "teamSecond": 1,
+    "teamThird": 0,
+    "pos": 8
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "合肥市第四十六中学",
+    "level": "middle",
+    "teamFirst": 0,
+    "teamSecond": 1,
+    "teamThird": 0,
+    "pos": 9
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "合肥市第四十八中学",
+    "level": "middle",
+    "teamFirst": 0,
+    "teamSecond": 1,
+    "teamThird": 0,
+    "pos": 10
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市师范附属小学",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 1,
+    "teamThird": 0,
+    "pos": 11
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市六安路小学",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 1,
+    "teamThird": 0,
+    "pos": 12
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市西园新村小学北校",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 1,
+    "teamThird": 0,
+    "pos": 13
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市和平小学",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 1,
+    "teamThird": 0,
+    "pos": 14
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市蜀山小学",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 1,
+    "teamThird": 0,
+    "pos": 15
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "中国科学技术大学附属中学",
+    "level": "middle",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 16
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "合肥市第三十八中学",
+    "level": "middle",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 17
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "合肥市五十中学天鹅湖教育集团天鹅湖校区",
+    "level": "middle",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 18
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "合肥市五十中学西校",
+    "level": "middle",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 19
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "合肥市行知学校",
+    "level": "middle",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 20
+  },
+  {
+    "contest": "2022年合肥市赛初中组",
+    "school": "中国科大附中高新中学",
+    "level": "middle",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 21
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市翠庭园小学",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 22
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥一六八玫瑰园学校",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 23
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市习友路小学",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 24
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市师范附属第四小学",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 25
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市滁州路小学",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 26
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市南国花园小学",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 27
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市南门小学",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 28
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市潜山路学校",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 29
+  },
+  {
+    "contest": "2022年合肥市赛小学组",
+    "school": "合肥市蚌埠路第二小学",
+    "level": "primary",
+    "teamFirst": 0,
+    "teamSecond": 0,
+    "teamThird": 1,
+    "pos": 30
   }
 ]
