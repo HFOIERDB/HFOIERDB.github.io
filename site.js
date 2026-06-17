@@ -98,8 +98,6 @@ function buildPlayerStats(rows, merges) {
   var map = new Map();
   rows.forEach(function(row) {
     var school = String(row.school || "");
-    // Skip CCF competitions - only count 合肥市赛 awards
-    if (row.contest && row.contest.indexOf('年合肥市赛') < 0) return;
     var keySchool = school;
     if (merges && merges.length) {
       merges.forEach(function(m) {
@@ -117,8 +115,11 @@ function buildPlayerStats(rows, merges) {
       map.set(key, { name: String(row.name || ""), school: keySchool, first: 0, second: 0, third: 0, total: 0, rating: 0 });
     }
     const item = map.get(key);
+    // Compute rating from ALL records including CCF
     const rlv = getRatingLevel(row);
     if (rlv > item.rating) item.rating = rlv;
+    // Skip CCF competitions from award counting
+    if (row.contest && row.contest.indexOf('年合肥市赛') < 0) return;
     const lv = getAwardLevel(row.award);
     if (lv === 1) item.first += 1;
     if (lv === 2) item.second += 1;
