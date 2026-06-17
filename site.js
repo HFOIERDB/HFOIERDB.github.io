@@ -281,7 +281,7 @@ function renderHome(rows, teamRows, announcements, merges) {
 }
 
 // ===== Players Page =====
-function renderPlayers(rows, merges) {
+function renderPlayers(rows, merges, pinyin) {
   var input = document.getElementById("playerSearchInput");
   var summary = document.getElementById("playersSummary");
   var tbody = document.getElementById("playersBody");
@@ -811,28 +811,39 @@ async function loadPlayerProfiles() {
 }
 
 async function loadPlayerMerges() {
+  var h = [{name:"黄乐逸",schools:{middle:"合肥一六八玫瑰园学校"},merged_schools:["合肥一六八玫瑰园学校西校区"]},{name:"吴一鸣",schools:{primary:"合肥市安庆路第三小学",middle:"合肥市第四十五中学"}}];
   try {
-    const response = await fetch("./data/player_merges.json?v=" + Date.now());
-    if (!response.ok) return [];
-    const data = await response.json();
-    return Array.isArray(data) ? data : [];
-  } catch {
-    return [];
-  }
+    const r = await fetch("./data/player_merges.json?v=" + Date.now());
+    if (!r.ok) return h;
+    const d = await r.json();
+    return Array.isArray(d) && d.length ? d : h;
+  } catch { return h; }
 }
+
+async function loadPinyin() {
+  var h = {"黄乐逸":{"full":"huang le yi","short":"hly"},"吴一鸣":{"full":"wu yi ming","short":"wym"}};
+  try {
+    const r = await fetch("./data/pinyin.json?v=" + Date.now());
+    if (!r.ok) return h;
+    const d = await r.json();
+    return (typeof d === "object" && !Array.isArray(d)) ? Object.assign({}, h, d) : h;
+  } catch { return h; }
+}
+
 async function init() {
   setActiveNav();
   try {
     var rows, teamRows, profiles;
-    var data = await Promise.all([loadResults(), loadSchoolTeams(), loadAnnouncements(), loadPlayerProfiles(), loadPlayerMerges()]);
+    var data = await Promise.all([loadResults(), loadSchoolTeams(), loadAnnouncements(), loadPlayerProfiles(), loadPlayerMerges(), loadPinyin()]);
     rows = data[0];
     teamRows = data[1];
     var announcements = data[2];
         profiles = data[3];
     var merges = data[4];
+    var pinyin = data[5];
     var page = document.body.dataset.page;
-    if (page === "home") renderHome(rows, teamRows, announcements);
-    if (page === "players") renderPlayers(rows);
+    if (page === "home") renderHome(rows, teamRows, announcements, merges);
+    if (page === "players") renderPlayers(rows, merges, pinyin);
     if (page === "schools") renderSchools(rows, teamRows);
     if (page === "contests") renderContests(rows);
     if (page === "contest-detail") renderContestDetail(rows, teamRows); if (page === "player-detail") renderPlayerDetail(rows, profiles); if (page === "school-detail") renderSchoolDetail(rows, teamRows);
