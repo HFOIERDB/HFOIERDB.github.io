@@ -617,6 +617,19 @@ function renderContestDetail(rows, teamRows) {
   });
 
   // ===== Render Players Tab =====
+  // Pre-compute max rating for each player from all records
+  var maxRatingForName = {};
+  list.forEach(function(p) {
+    if (maxRatingForName[p.name] !== undefined) return;
+    var mr = 0;
+    rows.forEach(function(r) {
+      if (n(r.name) === n(p.name)) {
+        var rlv = getRatingLevel(r);
+        if (rlv > mr) mr = rlv;
+      }
+    });
+    maxRatingForName[p.name] = mr;
+  });
   function renderPlayers() {
     if (!list.length) {
       renderEmpty(tbody, 5, "暂无排名记录");
@@ -625,7 +638,7 @@ function renderContestDetail(rows, teamRows) {
     }
 
   tbody.innerHTML = list.map(function(row) {
-      var rl2 = getRatingLevel(row);
+      var rl2 = maxRatingForName[row.name] || 0;
       var rlCls = rl2 >= 4 ? " rl-" + rl2 : "";
       return '<tr><td>' + escapeHtml(row.rank) + '</td><td>' + '<a class="table-link' + rlCls + '" href="./hfoi-player-detail?name=' + encodeURIComponent(row.name) + '&school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.name) + '</a></td><td>' + '<a class="table-link" href="./hfoi-school-detail?school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.school) + '</a></td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.year) + '</td></tr>';
     }).join("");
