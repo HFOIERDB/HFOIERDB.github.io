@@ -33433,5 +33433,32 @@
     "year": 2026,
     "rank": 3,
     "award": "铜牌"
+  },
+  {
+    "id": "r3715",
+    "name": "黄乐逸",
+    "school": "合肥一六八中学",
+    "contest": "WC2026",
+    "year": 2026,
+    "rank": 1,
+    "award": "银牌"
+  },
+  {
+    "id": "r3716",
+    "name": "许文昊",
+    "school": "中国科学技术大学附属中学",
+    "contest": "WC2026",
+    "year": 2026,
+    "rank": 2,
+    "award": "铜牌"
+  },
+  {
+    "id": "r3717",
+    "name": "程竹",
+    "school": "合肥一六八中学",
+    "contest": "WC2026",
+    "year": 2026,
+    "rank": 3,
+    "award": "铜牌"
   }
 ]
