@@ -587,7 +587,15 @@ function renderContestDetail(rows, teamRows) {
       summary.textContent = "共 0 条记录";
       return;
     }
-    tbody.innerHTML = list.map(function(row) {
+    // Show player rating (after merge)
+  var ratingEl = document.getElementById("playerDetailRating");
+  if (ratingEl) {
+    var maxRating = 0;
+    list.forEach(function(r) { var rlv = getRatingLevel(r); if (rlv > maxRating) maxRating = rlv; });
+    ratingEl.textContent = maxRating > 0 ? maxRating + " 级" : "-";
+  }
+
+  tbody.innerHTML = list.map(function(row) {
       return '<tr><td>' + escapeHtml(row.rank) + '</td><td>' + '<a class="table-link" href="./hfoi-player-detail?name=' + encodeURIComponent(row.name) + '&school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.name) + '</a></td><td>' + '<a class="table-link" href="./hfoi-school-detail?school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.school) + '</a></td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.year) + '</td></tr>';
     }).join("");
     summary.textContent = "共 " + list.length + " 条记录";
@@ -698,14 +706,6 @@ function renderPlayerDetail(rows, profiles, merges) {
 
     title.textContent = list[0].name;
 
-  // Show player rating
-  var ratingEl = document.getElementById("playerDetailRating");
-  if (ratingEl) {
-    var maxRating = 0;
-    list.forEach(function(r) { var rlv = getRatingLevel(r); if (rlv > maxRating) maxRating = rlv; });
-    ratingEl.textContent = maxRating > 0 ? maxRating + " 级" : "-";
-  }
-
   // Show player profile if available
   var profilePanel = document.getElementById("playerProfilePanel");
   if (profilePanel && profiles && profiles.length) {
@@ -748,6 +748,14 @@ function renderPlayerDetail(rows, profiles, merges) {
       }
     });
     list.sort(function(a, b) { if ((b.year||0)!==(a.year||0)) return (b.year||0)-(a.year||0); return Number(a.rank||99999)-Number(b.rank||99999); });
+  }
+
+  // Show player rating (after merge)
+  var ratingEl = document.getElementById("playerDetailRating");
+  if (ratingEl) {
+    var maxRating = 0;
+    list.forEach(function(r) { var rlv = getRatingLevel(r); if (rlv > maxRating) maxRating = rlv; });
+    ratingEl.textContent = maxRating > 0 ? maxRating + " 级" : "-";
   }
 
   tbody.innerHTML = list.map(function(row) {
