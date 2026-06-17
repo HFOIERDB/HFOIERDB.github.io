@@ -573,7 +573,7 @@ function renderContests(rows) {
   applyFilter();
 }
 // ===== Contest Detail Page =====
-function renderContestDetail(rows, teamRows) {
+function renderContestDetail(rows, teamRows, merges) {
   var title = document.getElementById("detailTitle");
   var tabGroup = document.getElementById("contestDetailTabGroup");
   var playerPanel = document.getElementById("contestPlayersPanel");
@@ -622,11 +622,29 @@ function renderContestDetail(rows, teamRows) {
   var maxRatingForName = {};
   list.forEach(function(p) {
     if (maxRatingForName[p.name + "__" + p.school] !== undefined) return;
+    var cs2 = p.school;
+    if (merges) { merges.forEach(function(m) {
+      if (m.name === p.name) {
+        var ms = []; if (m.schools) { if (m.schools.high) ms.push(m.schools.high); if (m.schools.middle) ms.push(m.schools.middle); if (m.schools.primary) ms.push(m.schools.primary); }
+        if (m.merged_schools) ms = ms.concat(m.merged_schools);
+        if (ms.indexOf(p.school) >= 0) { cs2 = m.schools["high"] || m.schools["middle"] || m.schools["primary"] || p.school; }
+      }
+    }); }
     var mr = 0;
     rows.forEach(function(r) {
       if (normalize(r.name) === normalize(p.name)) {
-        var rlv = getRatingLevel(r);
-        if (rlv > mr) mr = rlv;
+        var rcs = r.school;
+        if (merges) { merges.forEach(function(m) {
+          if (m.name === r.name) {
+            var ms2 = []; if (m.schools) { if (m.schools.high) ms2.push(m.schools.high); if (m.schools.middle) ms2.push(m.schools.middle); if (m.schools.primary) ms2.push(m.schools.primary); }
+            if (m.merged_schools) ms2 = ms2.concat(m.merged_schools);
+            if (ms2.indexOf(r.school) >= 0) { rcs = m.schools["high"] || m.schools["middle"] || m.schools["primary"] || r.school; }
+          }
+        }); }
+        if (normalize(rcs) === normalize(cs2)) {
+          var rlv = getRatingLevel(r);
+          if (rlv > mr) mr = rlv;
+        }
       }
     });
     maxRatingForName[p.name + "__" + p.school] = mr;
@@ -963,7 +981,7 @@ async function init() {
     if (page === "players") renderPlayers(rows, merges, pinyin);
     if (page === "schools") renderSchools(rows, teamRows);
     if (page === "contests") renderContests(rows);
-    if (page === "contest-detail") renderContestDetail(rows, teamRows); if (page === "player-detail") renderPlayerDetail(rows, profiles, merges); if (page === "school-detail") renderSchoolDetail(rows, teamRows);
+    if (page === "contest-detail") renderContestDetail(rows, teamRows, merges); if (page === "player-detail") renderPlayerDetail(rows, profiles, merges); if (page === "school-detail") renderSchoolDetail(rows, teamRows);
   } catch (error) {
     console.error(error);
     document.querySelectorAll("tbody").forEach(function(tbody) { renderEmpty(tbody, 10, "数据加载失败"); });
