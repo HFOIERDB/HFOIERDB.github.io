@@ -410,7 +410,15 @@ function renderPlayers(rows, merges, pinyin) {
       }
       return false;
     }) : levelRows;
-    paint(buildPlayerStats(searchRows.length ? searchRows : levelRows, merges, currentLevel), 1);
+    var _sr = buildPlayerStats(searchRows.length ? searchRows : levelRows, merges, currentLevel);
+    if (rows.length > levelRows.length) {
+      var _ar = buildPlayerStats(rows, merges, currentLevel);
+      _sr.forEach(function(_s) {
+        var _f = _ar.find(function(_a) { return _a.name === _s.name && _a.school === _s.school; });
+        if (_f !== undefined) _s.rating = _f.rating;
+      });
+    }
+    paint(_sr, 1);
   }
 
   if (tabGroup) {
