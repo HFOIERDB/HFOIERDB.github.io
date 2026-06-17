@@ -365,7 +365,7 @@ function renderPlayers(rows, merges, pinyin) {
     }
     tbody.innerHTML = pageItems.map(function(row, idx) {
       var rank = start + idx + 1;
-      return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link\" href=\"./hfoi-player-detail?name=" + encodeURIComponent(row.name) + "&school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.name) + "</a></td><td>" + escapeHtml(row.school) + "</td><td>" + String(row.rating || 0) + "</td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td></tr>";
+      return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link\" href=\"./hfoi-player-detail?name=" + encodeURIComponent(row.name) + "&school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.name) + "</a></td><td>" + escapeHtml(row.school) + "</td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td><td>" + String(row.rating || 0) + "</td></tr>";
     }).join("");
     summary.textContent = "第 " + page + " / " + totalPages + " 页 | 共 " + list.length + " 名选手";
     if (pagination) {
