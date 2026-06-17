@@ -99,7 +99,7 @@ async function loadAnnouncements() {
   }
 }
 
-function buildPlayerStats(rows, merges) {
+function buildPlayerStats(rows, merges, level) {
   var map = new Map();
   rows.forEach(function(row) {
     var school = String(row.school || "");
@@ -111,7 +111,8 @@ function buildPlayerStats(rows, merges) {
         if (m.merged_schools) allMs = allMs.concat(m.merged_schools);
         if (!m.schools && m.canonical_school) allMs.push(m.canonical_school);
         if (row.name === m.name && allMs.indexOf(school) >= 0) {
-          keySchool = (m.schools && (m.schools["high"] || m.schools["middle"] || m.schools["primary"])) || m.canonical_school || school;
+          var pref = level === "primary" ? ["primary","middle","high"] : level === "middle" ? ["middle","high","primary"] : ["high","middle","primary"];
+          keySchool = (m.schools && (m.schools[pref[0]] || m.schools[pref[1]] || m.schools[pref[2]])) || m.canonical_school || school;
         }
       });
     }
@@ -398,7 +399,7 @@ function renderPlayers(rows, merges, pinyin) {
       }
       return false;
     }) : levelRows;
-    paint(buildPlayerStats(searchRows.length ? searchRows : levelRows, merges), 1);
+    paint(buildPlayerStats(searchRows.length ? searchRows : levelRows, merges, currentLevel), 1);
   }
 
   if (tabGroup) {
@@ -414,7 +415,7 @@ function renderPlayers(rows, merges, pinyin) {
   }
 
   input.addEventListener("input", function() { refresh(); });
-  paint(buildPlayerStats(currentRows, merges), 1);
+  paint(buildPlayerStats(currentRows, merges, currentLevel), 1);
 }
 // ===== Schools Page =====
 function renderSchools(rows, teamRows) {
