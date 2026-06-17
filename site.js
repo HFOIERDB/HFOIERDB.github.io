@@ -45,9 +45,6 @@ function getRatingLevel(row) {
   return 0;
 }
 
-def getRatingLevel(row):
-  return 0
-
 
 function contestNameOf(row) {
   return String(row?.contest ?? row?.contestName ?? row?.match ?? "").trim();
