@@ -649,7 +649,7 @@ function renderPlayerDetail(rows, profiles, merges) {
     return;
   }
 
-    title.textContent = list[0].name + (list[0].school ? " - " + list[0].school : "");
+    title.textContent = list[0].name;
 
   // Show player profile if available
   var profilePanel = document.getElementById("playerProfilePanel");
@@ -846,7 +846,7 @@ async function init() {
     if (page === "players") renderPlayers(rows, merges, pinyin);
     if (page === "schools") renderSchools(rows, teamRows);
     if (page === "contests") renderContests(rows);
-    if (page === "contest-detail") renderContestDetail(rows, teamRows); if (page === "player-detail") renderPlayerDetail(rows, profiles); if (page === "school-detail") renderSchoolDetail(rows, teamRows);
+    if (page === "contest-detail") renderContestDetail(rows, teamRows); if (page === "player-detail") renderPlayerDetail(rows, profiles, merges); if (page === "school-detail") renderSchoolDetail(rows, teamRows);
   } catch (error) {
     console.error(error);
     document.querySelectorAll("tbody").forEach(function(tbody) { renderEmpty(tbody, 10, "数据加载失败"); });
