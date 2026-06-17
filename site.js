@@ -1,4 +1,4 @@
-﻿function normalize(value) {
+function normalize(value) {
   return String(value || "").trim().toLowerCase();
 }
 
@@ -33,7 +33,7 @@ function getRatingLevel(row) {
     if (/铜牌/.test(award)) return 8;
   }
   if (isNOIP) {
-    if (rank <= 20) return 7;
+    if (rank <= 20 && /一等奖/.test(award)) return 7;
     if (/一等奖/.test(award)) return 6;
     if (/二等奖/.test(award)) return 5;
     if (/三等奖/.test(award)) return 4;
