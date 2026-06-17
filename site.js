@@ -623,7 +623,7 @@ function renderContestDetail(rows, teamRows) {
     if (maxRatingForName[p.name] !== undefined) return;
     var mr = 0;
     rows.forEach(function(r) {
-      if (n(r.name) === n(p.name)) {
+      if (normalize(r.name) === normalize(p.name)) {
         var rlv = getRatingLevel(r);
         if (rlv > mr) mr = rlv;
       }
