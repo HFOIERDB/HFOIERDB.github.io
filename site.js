@@ -161,6 +161,10 @@ function buildContestStats(rows) {
     item.total += 1;
   });
   return [...map.values()].sort(function(a, b) {
+    var ccf = {WC2026:0,"NOI 2025 安徽省选":1,"APIO 2026 中国区":2,"NOIP 2025":3};
+    var oa = ccf[a.name] !== undefined ? ccf[a.name] : -1;
+    var ob = ccf[b.name] !== undefined ? ccf[b.name] : -1;
+    if (oa !== ob) return oa - ob;
     var ma = a.name.match(/\d{4}/);
     var mb = b.name.match(/\d{4}/);
     var yearA = parseInt(ma ? ma[0] : "0", 10) || 0;
