@@ -124,6 +124,7 @@ function buildPlayerStats(rows, merges) {
     item.total += 1;
   });
   return [...map.values()].sort(function(a, b) {
+    if ((b.rating || 0) !== (a.rating || 0)) return (b.rating || 0) - (a.rating || 0);
     if (b.first !== a.first) return b.first - a.first;
     if (b.second !== a.second) return b.second - a.second;
     if (b.third !== a.third) return b.third - a.third;
@@ -338,14 +339,6 @@ function renderPlayers(rows, merges, pinyin) {
 
   function paint(list, page) {
     var keyword = normalize(input.value);
-    var filterActive = keyword || currentLevel !== "all";
-
-    if (!filterActive) {
-      summary.textContent = "";
-      if (tableWrap) tableWrap.style.display = "none";
-      if (pagination) pagination.style.display = "none";
-      return;
-    }
 
     if (tableWrap) tableWrap.style.display = "";
     if (pagination) pagination.style.display = "";
@@ -709,7 +702,7 @@ function renderPlayerDetail(rows, profiles, merges) {
   if (ratingEl) {
     var maxRating = 0;
     list.forEach(function(r) { var rlv = getRatingLevel(r); if (rlv > maxRating) maxRating = rlv; });
-    ratingEl.textContent = maxRating > 0 ? maxRating + "级" : "-";
+    ratingEl.textContent = maxRating > 0 ? maxRating + " 级" : "-";
   }
 
   // Show player profile if available
