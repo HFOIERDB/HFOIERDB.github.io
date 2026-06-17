@@ -614,6 +614,10 @@ function renderContestDetail(rows, teamRows, merges) {
 
   list.sort(function(a, b) {
     if ((b.year || 0) !== (a.year || 0)) return (b.year || 0) - (a.year || 0);
+    var ccf = {"WC2026":0,"NOI2026安徽省选（前 25 的合肥选手）":1,"APIO 2026 中国区":2,"NOIP 2025":3,"CSP-S 2025":4};
+    var oa = ccf[a.contest] !== undefined ? ccf[a.contest] : 999;
+    var ob = ccf[b.contest] !== undefined ? ccf[b.contest] : 999;
+    if (oa !== ob) return oa - ob;
     return Number(a.rank || 99999) - Number(b.rank || 99999);
   });
 
@@ -790,6 +794,10 @@ function renderPlayerDetail(rows, profiles, merges) {
 
   list.sort(function(a, b) {
     if ((b.year || 0) !== (a.year || 0)) return (b.year || 0) - (a.year || 0);
+    var ccf = {"WC2026":0,"NOI2026安徽省选（前 25 的合肥选手）":1,"APIO 2026 中国区":2,"NOIP 2025":3,"CSP-S 2025":4};
+    var oa = ccf[a.contest] !== undefined ? ccf[a.contest] : 999;
+    var ob = ccf[b.contest] !== undefined ? ccf[b.contest] : 999;
+    if (oa !== ob) return oa - ob;
     return Number(a.rank || 99999) - Number(b.rank || 99999);
   });
 
