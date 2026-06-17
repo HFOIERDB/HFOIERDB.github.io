@@ -366,7 +366,7 @@ function renderPlayers(rows, merges, pinyin) {
     }
     tbody.innerHTML = pageItems.map(function(row, idx) {
       var rank = start + idx + 1;
-      var rl1 = row.rating >= 4 ? " rl-" + row.rating : "";
+      var rl1 = row.rating >= 4 ? " rl-" + row.rating : " rl-default";
       return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link" + rl1 + "\" href=\"./hfoi-player-detail?name=" + encodeURIComponent(row.name) + "&school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.name) + "</a></td><td>" + escapeHtml(row.school) + "</td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td><td>" + String(row.rating || 0) + "</td></tr>";
     }).join("");
     summary.textContent = "第 " + page + " / " + totalPages + " 页 | 共 " + list.length + " 名选手";
@@ -595,13 +595,6 @@ function renderContestDetail(rows, teamRows) {
       summary.textContent = "共 0 条记录";
       return;
     }
-    // Show player rating (after merge)
-  var ratingEl = document.getElementById("playerDetailRating");
-  if (ratingEl) {
-    var maxRating = 0;
-    list.forEach(function(r) { var rlv = getRatingLevel(r); if (rlv > maxRating) maxRating = rlv; });
-    ratingEl.textContent = maxRating > 0 ? maxRating + " 级" : "-";
-  }
 
   tbody.innerHTML = list.map(function(row) {
       var rl2 = getRatingLevel(row);
@@ -766,6 +759,7 @@ function renderPlayerDetail(rows, profiles, merges) {
     var maxRating = 0;
     list.forEach(function(r) { var rlv = getRatingLevel(r); if (rlv > maxRating) maxRating = rlv; });
     ratingEl.textContent = maxRating > 0 ? maxRating + " 级" : "-";
+    if (title) title.className = maxRating >= 4 ? "rl-" + maxRating : "rl-default";
   }
 
   tbody.innerHTML = list.map(function(row) {
