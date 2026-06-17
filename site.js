@@ -577,6 +577,9 @@ function renderContestDetail(rows, teamRows) {
   if (!contestName && uniqueContests.length === 1) contestName = uniqueContests[0];
 
   title.textContent = contestName ? "比赛详情: " + contestName : "比赛详情";
+  var isCCF = contestName.indexOf("年合肥市赛") < 0;
+  var schoolTabBtn = tabGroup && tabGroup.querySelector('[data-tab="schools"]');
+  if (isCCF && schoolTabBtn) { schoolTabBtn.style.display = "none"; if (schoolPanel) schoolPanel.style.display = "none"; }
 
   if (!contestName) {
     renderEmpty(tbody, 5, "Missing contest name");
