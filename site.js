@@ -27,10 +27,17 @@ function getRatingLevel(row) {
   var isMiddle = contest.indexOf("初中组") >= 0;
   var isAPIO = contest.indexOf("APIO") >= 0;
   var isWC = contest.indexOf("WC") >= 0 || /冬季/.test(contest);
+  var isCSP = contest.indexOf("CSP") >= 0;
   var isNOIP = contest.indexOf("NOIP") >= 0;
   if (isAPIO || isWC) {
     if (/银牌/.test(award)) return 9;
     if (/铜牌/.test(award)) return 8;
+  }
+  if (isCSP) {
+    if (rank <= 20) return 6;
+    if (/一等奖/.test(award)) return 5;
+    if (/二等奖/.test(award)) return 4;
+    if (/三等奖/.test(award)) return 3;
   }
   if (isNOIP) {
     if (rank <= 20 && /一等奖/.test(award)) return 7;
@@ -161,7 +168,7 @@ function buildContestStats(rows) {
     item.total += 1;
   });
   return [...map.values()].sort(function(a, b) {
-    var ccf = {WC2026:2,"NOI2026安徽省选（前 25 的合肥选手）":1,"APIO 2026 中国区":0,"NOIP 2025":3};
+    var ccf = {WC2026:2,"NOI2026安徽省选（前 25 的合肥选手）":1,"APIO 2026 中国区":0,"NOIP 2025":3,"CSP 2025":4};
     var oa = ccf[a.name] !== undefined ? ccf[a.name] : -1;
     var ob = ccf[b.name] !== undefined ? ccf[b.name] : -1;
     if (oa !== ob) return oa - ob;
