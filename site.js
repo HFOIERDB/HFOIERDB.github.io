@@ -154,12 +154,11 @@ function buildContestStats(rows) {
     item.total += 1;
   });
   return [...map.values()].sort(function(a, b) {
-    var yearA = parseInt(a.name, 10) || 0;
-    var yearB = parseInt(b.name, 10) || 0;
+    var ma = a.name.match(/\d{4}/);
+    var mb = b.name.match(/\d{4}/);
+    var yearA = parseInt(ma ? ma[0] : "0", 10) || 0;
+    var yearB = parseInt(mb ? mb[0] : "0", 10) || 0;
     if (yearB !== yearA) return yearB - yearA;
-    var isPriA = a.name.indexOf("??") >= 0 ? 0 : 1;
-    var isPriB = b.name.indexOf("??") >= 0 ? 0 : 1;
-    if (isPriA !== isPriB) return isPriA - isPriB;
     return a.name.localeCompare(b.name, "zh-CN");
   });
 }
