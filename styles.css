@@ -663,3 +663,11 @@ input::placeholder {
   font-size: 0.9rem;
   font-family: monospace;
 }
+/* Rating colors for player names */
+.table-link.rl-4 { color: #888; }
+.table-link.rl-5 { color: #28a745; }
+.table-link.rl-6 { color: #17a2b8; }
+.table-link.rl-7 { color: #007bff; }
+.table-link.rl-8 { color: #6f42c1; }
+.table-link.rl-9 { color: #c9a200; }
+.table-link.rl-10 { color: #dc3545; }
