@@ -27,9 +27,14 @@ function getRatingLevel(row) {
   var isMiddle = contest.indexOf("初中组") >= 0;
   var isAPIO = contest.indexOf("APIO") >= 0;
   var isWC = contest.indexOf("WC") >= 0 || /冬季/.test(contest);
+  var isNOIP = contest.indexOf("NOIP") >= 0;
   if (isAPIO || isWC) {
     if (/银牌/.test(award)) return 9;
     if (/铜牌/.test(award)) return 8;
+  }
+  if (isNOIP) {
+    if (rank <= 20) return 7;
+    if (/一等奖/.test(award)) return 6;
   }
   if (isPrimary) {
     if (rank <= 20) return 4;
