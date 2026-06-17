@@ -1,16 +1,18 @@
 [
   {
     "name": "黄乐逸",
-    "canonical_school": "合肥一六八玫瑰园学校",
+    "schools": {
+      "middle": "合肥一六八玫瑰园学校"
+    },
     "merged_schools": [
       "合肥一六八玫瑰园学校西校区"
     ]
   },
   {
     "name": "吴一鸣",
-    "canonical_school": "合肥市第四十五中学",
-    "merged_schools": [
-      "合肥市安庆路第三小学"
-    ]
+    "schools": {
+      "primary": "合肥市安庆路第三小学",
+      "middle": "合肥市第四十五中学"
+    }
   }
 ]

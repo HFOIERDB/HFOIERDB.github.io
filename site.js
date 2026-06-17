@@ -64,12 +64,25 @@ async function loadAnnouncements() {
   }
 }
 
-function buildPlayerStats(rows) {
-  const map = new Map();
-  rows.forEach((row) => {
-    const key = (row.name || "") + "__" + (row.school || "");
+function buildPlayerStats(rows, merges) {
+  var map = new Map();
+  rows.forEach(function(row) {
+    var school = String(row.school || "");
+    var keySchool = school;
+    if (merges && merges.length) {
+      merges.forEach(function(m) {
+        var allMs = [];
+        if (m.schools) { if (m.schools.high) allMs.push(m.schools.high); if (m.schools.middle) allMs.push(m.schools.middle); if (m.schools.primary) allMs.push(m.schools.primary); }
+        if (m.merged_schools) allMs = allMs.concat(m.merged_schools);
+        if (!m.schools && m.canonical_school) allMs.push(m.canonical_school);
+        if (row.name === m.name && allMs.indexOf(school) >= 0) {
+          keySchool = (m.schools && (m.schools["high"] || m.schools["middle"] || m.schools["primary"])) || m.canonical_school || school;
+        }
+      });
+    }
+    var key = (row.name || "") + "__" + keySchool;
     if (!map.has(key)) {
-      map.set(key, { name: String(row.name || ""), school: String(row.school || ""), first: 0, second: 0, third: 0, total: 0 });
+      map.set(key, { name: String(row.name || ""), school: keySchool, first: 0, second: 0, third: 0, total: 0 });
     }
     const item = map.get(key);
     const lv = getAwardLevel(row.award);
@@ -207,12 +220,12 @@ function renderCalendar() {
 }
 
 // ===== Homepage =====
-function renderHome(rows, teamRows, announcements) {
+function renderHome(rows, teamRows, announcements, merges) {
   var summary = document.getElementById("homeSummary");
   var rankBody = document.getElementById("homeSchoolRankBody");
   if (!rankBody) return;
 
-  var players = buildPlayerStats(rows);
+  var players = buildPlayerStats(rows, merges);
   var contests = buildContestStats(rows);
   var schools = buildSchoolStats(rows, teamRows);
 
@@ -268,7 +281,7 @@ function renderHome(rows, teamRows, announcements) {
 }
 
 // ===== Players Page =====
-function renderPlayers(rows) {
+function renderPlayers(rows, merges) {
   var input = document.getElementById("playerSearchInput");
   var summary = document.getElementById("playersSummary");
   var tbody = document.getElementById("playersBody");
@@ -347,7 +360,7 @@ function renderPlayers(rows) {
     var searchRows = keyword ? levelRows.filter(function(r) {
       return normalize(r.name + " " + r.school).indexOf(keyword) !== -1;
     }) : levelRows;
-    paint(buildPlayerStats(searchRows.length ? searchRows : levelRows), 1);
+    paint(buildPlayerStats(searchRows.length ? searchRows : levelRows, merges), 1);
   }
 
   if (tabGroup) {
@@ -363,7 +376,7 @@ function renderPlayers(rows) {
   }
 
   input.addEventListener("input", function() { refresh(); });
-  paint(buildPlayerStats(currentRows), 1);
+  paint(buildPlayerStats(currentRows, merges), 1);
 }
 // ===== Schools Page =====
 function renderSchools(rows, teamRows) {
@@ -607,7 +620,7 @@ function renderContestDetail(rows, teamRows) {
   switchTab("players");
 }
 // ===== Player Detail =====
-function renderPlayerDetail(rows, profiles) {
+function renderPlayerDetail(rows, profiles, merges) {
   var title = document.getElementById("playerDetailTitle");
   var summary = document.getElementById("playerDetailSummary");
   var tbody = document.getElementById("playerDetailBody");
@@ -618,7 +631,7 @@ function renderPlayerDetail(rows, profiles) {
   var school = String(params.get("school") || "").trim();
 
   if (!name) {
-    renderEmpty(tbody, 3, "Missing player name");
+    renderEmpty(tbody, 4, "Missing player name");
     summary.textContent = "请从选手列表进入";
     return;
   }
@@ -631,7 +644,7 @@ function renderPlayerDetail(rows, profiles) {
   });
 
   if (!list.length) {
-    renderEmpty(tbody, 3, "暂无该选手记录");
+    renderEmpty(tbody, 4, "暂无该选手记录");
     summary.textContent = "共 0 条记录";
     return;
   }
@@ -661,10 +674,30 @@ function renderPlayerDetail(rows, profiles) {
     return Number(a.rank || 99999) - Number(b.rank || 99999);
   });
 
+  // Apply merge: include records from merged schools
+  if (merges && merges.length) {
+    merges.forEach(function(m) {
+      if (n(m.name) === n(name)) {
+        var allMs = [];
+        if (m.schools) { if (m.schools.high) allMs.push(m.schools.high); if (m.schools.middle) allMs.push(m.schools.middle); if (m.schools.primary) allMs.push(m.schools.primary); }
+        if (m.merged_schools) allMs = allMs.concat(m.merged_schools);
+        if (!m.schools && m.canonical_school) allMs.push(m.canonical_school);
+        allMs.forEach(function(ms) {
+          rows.forEach(function(row) {
+            if (n(row.name) === n(name) && n(String(row.school || "")) === n(ms)) {
+              if (!list.some(function(l) { return l.id === row.id; })) { list.push(row); }
+            }
+          });
+        });
+      }
+    });
+    list.sort(function(a, b) { return Number(a.rank || 99999) - Number(b.rank || 99999); });
+  }
+
   tbody.innerHTML = list.map(function(row) {
     var cname = contestNameOf(row);
     var contestLink = '<a class="table-link" href="./hfoi-contest-detail?name=' + encodeURIComponent(cname) + '">' + escapeHtml(cname) + '</a>';
-    return '<tr><td>' + contestLink + '</td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.rank) + '</td></tr>';
+    return '<tr><td>' + contestLink + '</td><td>' + escapeHtml(row.school) + '</td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.rank) + '</td></tr>';
   }).join("");
   summary.textContent = "共 " + list.length + " 条记录";
 }
@@ -779,7 +812,7 @@ async function loadPlayerProfiles() {
 
 async function loadPlayerMerges() {
   try {
-    const response = await fetch("./data/player_merges.json");
+    const response = await fetch("./data/player_merges.json?v=" + Date.now());
     if (!response.ok) return [];
     const data = await response.json();
     return Array.isArray(data) ? data : [];
@@ -795,8 +828,9 @@ async function init() {
     rows = data[0];
     teamRows = data[1];
     var announcements = data[2];
-    profiles = data[3];
-        // Apply player merges (same person across different schools)\n    if (merges && merges.length) {\n      rows.forEach(function(row) {\n        var rowName = String(row.name || "");\n        var rowSchool = String(row.school || "");\n        merges.forEach(function(m) {\n          if (rowName === m.name && m.merged_schools.indexOf(rowSchool) >= 0) {\n            row.school = m.canonical_school;\n          }\n        });\n      });\n    }\n    var page = document.body.dataset.page;
+        profiles = data[3];
+    var merges = data[4];
+    var page = document.body.dataset.page;
     if (page === "home") renderHome(rows, teamRows, announcements);
     if (page === "players") renderPlayers(rows);
     if (page === "schools") renderSchools(rows, teamRows);
