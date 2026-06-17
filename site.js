@@ -202,6 +202,7 @@ function buildSchoolStats(rows, teamRows) {
     var school = String(row.school || "");
     if (!school) return;
     var c = String(row.contest || "").trim();
+    if (c && c.indexOf("年合肥市赛") < 0) return;
     var level = c.indexOf("小学") >= 0 ? "primary" : c.indexOf("初中") >= 0 ? "middle" : getSchoolLevel(school);
     var key = school + "__" + level;
     if (!map.has(key)) {

@@ -682,3 +682,5 @@ input::placeholder {
 .rl-8 { color: #aa00aa; }
 .rl-9 { color: #ff8c00; }
 .rl-10 { color: #ff0000; }
+
+.footer small { font-weight: 700; color: #222; font-size: 1.1rem; }
