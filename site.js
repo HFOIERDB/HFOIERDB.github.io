@@ -14,8 +14,8 @@ function escapeHtml(value) {
 function getAwardLevel(award) {
   const text = normalize(award);
   if (/一等奖|一等|gold|first|金奖/.test(text)) return 1;
-  if (/二等奖|二等|silver|second|银奖/.test(text)) return 2;
-  if (/三等奖|三等|bronze|third|铜奖/.test(text)) return 3;
+  if (/二等奖|二等|silver|second|银奖|银牌/.test(text)) return 2;
+  if (/三等奖|三等|bronze|third|铜奖|铜牌/.test(text)) return 3;
   return 0;
 }
 
@@ -464,20 +464,25 @@ function renderContests(rows) {
   var input = document.getElementById("contestSearchInput");
   var summary = document.getElementById("contestsSummary");
   var tbody = document.getElementById("contestsBody");
+  var tabType = document.getElementById("contestTabType");
   if (!input || !summary || !tbody) return;
 
   var all = buildContestStats(rows);
+  var currentType = "hefei";
 
   function paint(list) {
-    if (!list.length) {
-      renderEmpty(tbody, 6, "No matched contests");
+    var filtered = list.filter(function(c) {
+      return currentType === "hefei" ? c.name.indexOf("年合肥市赛") >= 0 : c.name.indexOf("年合肥市赛") < 0;
+    });
+    if (!filtered.length) {
+      renderEmpty(tbody, 6, "暂无比赛数据");
       summary.textContent = "Total 0 contests";
       return;
     }
-    tbody.innerHTML = list.map(function(row, idx) {
-      return '<tr><td>' + (idx + 1) + '</td><td><a class="table-link contest-link" data-contest-name="' + escapeHtml(row.name) + '" href="./hfoi-contest-detail?name=' + encodeURIComponent(row.name) + '">' + escapeHtml(row.name) + '</a></td><td>' + row.first + '</td><td>' + row.second + '</td><td>' + row.third + '</td><td>' + row.total + '</td></tr>';
+    tbody.innerHTML = filtered.map(function(row, idx) {
+      return "<tr><td>" + (idx + 1) + "</td><td><a class=\"table-link contest-link\" data-contest-name=\"" + escapeHtml(row.name) + "\" href=\"./hfoi-contest-detail?name=" + encodeURIComponent(row.name) + "\">" + escapeHtml(row.name) + "</a></td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td></tr>";
     }).join("");
-    summary.textContent = "Total " + list.length + " contests";
+    summary.textContent = "Total " + filtered.length + " contests";
 
     document.querySelectorAll(".contest-link").forEach(function(a) {
       a.addEventListener("click", function() {
@@ -487,16 +492,26 @@ function renderContests(rows) {
     });
   }
 
+  if (tabType) {
+    tabType.querySelectorAll(".tab-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        tabType.querySelectorAll(".tab-btn").forEach(function(b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        currentType = btn.getAttribute("data-type");
+        applyFilter();
+      });
+    });
+  }
+
   function applyFilter() {
     var keyword = normalize(input.value);
-    if (!keyword) return paint(all);
-    paint(all.filter(function(row) { return normalize(row.name).indexOf(keyword) !== -1; }));
+    var base = currentType === "hefei" ? all.filter(function(c) { return c.name.indexOf("年合肥市赛") >= 0; }) : all.filter(function(c) { return c.name.indexOf("年合肥市赛") < 0; });
+    paint(keyword ? base.filter(function(row) { return normalize(row.name).indexOf(keyword) !== -1; }) : base);
   }
 
   input.addEventListener("input", applyFilter);
-  paint(all);
+  applyFilter();
 }
-
 // ===== Contest Detail Page =====
 function renderContestDetail(rows, teamRows) {
   var title = document.getElementById("detailTitle");

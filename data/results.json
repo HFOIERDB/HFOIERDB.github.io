@@ -33406,5 +33406,32 @@
     "year": 2021,
     "rank": 314,
     "award": "三等奖"
+  },
+  {
+    "id": "r3712",
+    "name": "王凤池",
+    "school": "中国科学技术大学附属中学",
+    "contest": "APIO 2026 中国区",
+    "year": 2026,
+    "rank": 1,
+    "award": "银牌"
+  },
+  {
+    "id": "r3713",
+    "name": "程竹",
+    "school": "合肥一六八中学",
+    "contest": "APIO 2026 中国区",
+    "year": 2026,
+    "rank": 2,
+    "award": "铜牌"
+  },
+  {
+    "id": "r3714",
+    "name": "黄乐逸",
+    "school": "合肥一六八中学",
+    "contest": "APIO 2026 中国区",
+    "year": 2026,
+    "rank": 3,
+    "award": "铜牌"
   }
 ]
