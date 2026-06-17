@@ -754,6 +754,12 @@ function renderPlayerDetail(rows, profiles, merges) {
         if (m.schools) { if (m.schools.high) allMs.push(m.schools.high); if (m.schools.middle) allMs.push(m.schools.middle); if (m.schools.primary) allMs.push(m.schools.primary); }
         if (m.merged_schools) allMs = allMs.concat(m.merged_schools);
         if (!m.schools && m.canonical_school) allMs.push(m.canonical_school);
+        // Only apply merge rule that matches the current entry's school
+        if (school) {
+          var matched = false;
+          for (var mi = 0; mi < allMs.length; mi++) { if (n(allMs[mi]) === n(school)) { matched = true; break; } }
+          if (!matched) return;
+        }
         allMs.forEach(function(ms) {
           rows.forEach(function(row) {
             if (n(row.name) === n(name) && n(String(row.school || "")) === n(ms)) {
