@@ -33892,5 +33892,86 @@
     "year": 2025,
     "rank": 48,
     "award": "二等奖"
+  },
+  {
+    "id": "r3766",
+    "name": "黄乐逸",
+    "school": "合肥一六八中学",
+    "contest": "NOI 2025 安徽省选",
+    "year": 2025,
+    "rank": 1,
+    "award": "A队"
+  },
+  {
+    "id": "r3767",
+    "name": "程竹",
+    "school": "合肥一六八中学",
+    "contest": "NOI 2025 安徽省选",
+    "year": 2025,
+    "rank": 2,
+    "award": "B队"
+  },
+  {
+    "id": "r3768",
+    "name": "方志宇",
+    "school": "合肥市第三十八中学",
+    "contest": "NOI 2025 安徽省选",
+    "year": 2025,
+    "rank": 3,
+    "award": ""
+  },
+  {
+    "id": "r3769",
+    "name": "邹孟桥",
+    "school": "合肥市第一中学",
+    "contest": "NOI 2025 安徽省选",
+    "year": 2025,
+    "rank": 4,
+    "award": ""
+  },
+  {
+    "id": "r3770",
+    "name": "包涵宇",
+    "school": "合肥市第一中学",
+    "contest": "NOI 2025 安徽省选",
+    "year": 2025,
+    "rank": 5,
+    "award": ""
+  },
+  {
+    "id": "r3771",
+    "name": "许文昊",
+    "school": "中国科学技术大学附属中学",
+    "contest": "NOI 2025 安徽省选",
+    "year": 2025,
+    "rank": 6,
+    "award": ""
+  },
+  {
+    "id": "r3772",
+    "name": "廖一帆",
+    "school": "合肥一六八中学",
+    "contest": "NOI 2025 安徽省选",
+    "year": 2025,
+    "rank": 7,
+    "award": ""
+  },
+  {
+    "id": "r3773",
+    "name": "陈俊霖",
+    "school": "合肥市第一中学",
+    "contest": "NOI 2025 安徽省选",
+    "year": 2025,
+    "rank": 8,
+    "award": ""
+  },
+  {
+    "id": "r3774",
+    "name": "郭思辰",
+    "school": "中国科学技术大学附属中学",
+    "contest": "NOI 2025 安徽省选",
+    "year": 2025,
+    "rank": 9,
+    "award": ""
   }
 ]

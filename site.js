@@ -38,6 +38,12 @@ function getRatingLevel(row) {
     if (/二等奖/.test(award)) return 5;
     if (/三等奖/.test(award)) return 4;
   }
+  var isProv = contest.indexOf("省选") >= 0;
+  if (isProv) {
+    if (/A队/.test(award)) return 9;
+    if (/B队/.test(award)) return 8;
+    return 7;
+  }
   if (isPrimary) {
     if (rank <= 20) return 4;
     if (/一等奖/.test(award)) return 3;
