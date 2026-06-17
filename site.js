@@ -19,6 +19,36 @@ function getAwardLevel(award) {
   return 0;
 }
 
+function getRatingLevel(row) {
+  var contest = String(row.contest || "");
+  var award = String(row.award || "");
+  var rank = Number(row.rank || 99999);
+  var isPrimary = contest.indexOf("小学组") >= 0;
+  var isMiddle = contest.indexOf("初中组") >= 0;
+  var isAPIO = contest.indexOf("APIO") >= 0;
+  if (isAPIO) {
+    if (/银牌/.test(award)) return 9;
+    if (/铜牌/.test(award)) return 8;
+  }
+  if (isPrimary) {
+    if (rank <= 20) return 4;
+    if (/一等奖/.test(award)) return 3;
+    if (/二等奖/.test(award)) return 2;
+    if (/三等奖/.test(award)) return 1;
+  }
+  if (isMiddle) {
+    if (rank <= 20) return 5;
+    if (/一等奖/.test(award)) return 4;
+    if (/二等奖/.test(award)) return 3;
+    if (/三等奖/.test(award)) return 2;
+  }
+  return 0;
+}
+
+def getRatingLevel(row):
+  return 0
+
+
 function contestNameOf(row) {
   return String(row?.contest ?? row?.contestName ?? row?.match ?? "").trim();
 }
@@ -84,9 +114,11 @@ function buildPlayerStats(rows, merges) {
     }
     var key = (row.name || "") + "__" + keySchool;
     if (!map.has(key)) {
-      map.set(key, { name: String(row.name || ""), school: keySchool, first: 0, second: 0, third: 0, total: 0 });
+      map.set(key, { name: String(row.name || ""), school: keySchool, first: 0, second: 0, third: 0, total: 0, rating: 0 });
     }
     const item = map.get(key);
+    const rlv = getRatingLevel(row);
+    if (rlv > item.rating) item.rating = rlv;
     const lv = getAwardLevel(row.award);
     if (lv === 1) item.first += 1;
     if (lv === 2) item.second += 1;
@@ -335,7 +367,7 @@ function renderPlayers(rows, merges, pinyin) {
     }
     tbody.innerHTML = pageItems.map(function(row, idx) {
       var rank = start + idx + 1;
-      return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link\" href=\"./hfoi-player-detail?name=" + encodeURIComponent(row.name) + "&school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.name) + "</a></td><td>" + escapeHtml(row.school) + "</td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td></tr>";
+      return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link\" href=\"./hfoi-player-detail?name=" + encodeURIComponent(row.name) + "&school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.name) + "</a></td><td>" + escapeHtml(row.school) + "</td><td>" + String(row.rating || 0) + "</td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td></tr>";
     }).join("");
     summary.textContent = "第 " + page + " / " + totalPages + " 页 | 共 " + list.length + " 名选手";
     if (pagination) {
@@ -673,6 +705,14 @@ function renderPlayerDetail(rows, profiles, merges) {
   }
 
     title.textContent = list[0].name;
+
+  // Show player rating
+  var ratingEl = document.getElementById("playerDetailRating");
+  if (ratingEl) {
+    var maxRating = 0;
+    list.forEach(function(r) { var rlv = getRatingLevel(r); if (rlv > maxRating) maxRating = rlv; });
+    ratingEl.textContent = maxRating > 0 ? maxRating + "级" : "-";
+  }
 
   // Show player profile if available
   var profilePanel = document.getElementById("playerProfilePanel");
