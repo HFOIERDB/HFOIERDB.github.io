@@ -358,7 +358,13 @@ function renderPlayers(rows, merges, pinyin) {
     currentRows = filterByLevel(currentLevel, rows);
     var levelRows = currentRows;
     var searchRows = keyword ? levelRows.filter(function(r) {
-      return normalize(r.name + " " + r.school).indexOf(keyword) !== -1;
+      var normalMatch = normalize(r.name + " " + r.school).indexOf(keyword) !== -1;
+      if (normalMatch) return true;
+      if (pinyin && pinyin[r.name]) {
+        var py = pinyin[r.name];
+        if (normalize(py.full).indexOf(keyword) >= 0 || normalize(py.short).indexOf(keyword) >= 0) return true;
+      }
+      return false;
     }) : levelRows;
     paint(buildPlayerStats(searchRows.length ? searchRows : levelRows, merges), 1);
   }
@@ -671,6 +677,7 @@ function renderPlayerDetail(rows, profiles, merges) {
   }
 
   list.sort(function(a, b) {
+    if ((b.year || 0) !== (a.year || 0)) return (b.year || 0) - (a.year || 0);
     return Number(a.rank || 99999) - Number(b.rank || 99999);
   });
 
@@ -691,7 +698,7 @@ function renderPlayerDetail(rows, profiles, merges) {
         });
       }
     });
-    list.sort(function(a, b) { return Number(a.rank || 99999) - Number(b.rank || 99999); });
+    list.sort(function(a, b) { if ((b.year||0)!==(a.year||0)) return (b.year||0)-(a.year||0); return Number(a.rank||99999)-Number(b.rank||99999); });
   }
 
   tbody.innerHTML = list.map(function(row) {
