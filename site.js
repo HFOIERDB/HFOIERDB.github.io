@@ -851,6 +851,7 @@ function renderSchoolDetail(rows, teamRows) {
   list.forEach(function(row) {
     var cname = contestNameOf(row);
     if (!cname) return;
+    if (cname.indexOf("年合肥市赛") < 0) return;
     if (!contestMap.has(cname)) {
       contestMap.set(cname, { contest: cname, teamFirst: 0, teamSecond: 0, teamThird: 0, first: 0, second: 0, third: 0 });
     }
