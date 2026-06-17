@@ -621,7 +621,7 @@ function renderContestDetail(rows, teamRows) {
   // Pre-compute max rating for each player from all records
   var maxRatingForName = {};
   list.forEach(function(p) {
-    if (maxRatingForName[p.name] !== undefined) return;
+    if (maxRatingForName[p.name + "__" + p.school] !== undefined) return;
     var mr = 0;
     rows.forEach(function(r) {
       if (normalize(r.name) === normalize(p.name)) {
@@ -629,7 +629,7 @@ function renderContestDetail(rows, teamRows) {
         if (rlv > mr) mr = rlv;
       }
     });
-    maxRatingForName[p.name] = mr;
+    maxRatingForName[p.name + "__" + p.school] = mr;
   });
   function renderPlayers() {
     if (!list.length) {
@@ -639,7 +639,7 @@ function renderContestDetail(rows, teamRows) {
     }
 
   tbody.innerHTML = list.map(function(row) {
-      var rl2 = maxRatingForName[row.name] || 0;
+      var rl2 = maxRatingForName[row.name + "__" + row.school] || 0;
       var rlCls = rl2 >= 4 ? " rl-" + rl2 : "";
       return '<tr><td>' + escapeHtml(row.rank) + '</td><td>' + '<a class="table-link' + rlCls + '" href="./hfoi-player-detail?name=' + encodeURIComponent(row.name) + '&school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.name) + '</a></td><td>' + '<a class="table-link" href="./hfoi-school-detail?school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.school) + '</a></td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.year) + '</td></tr>';
     }).join("");
