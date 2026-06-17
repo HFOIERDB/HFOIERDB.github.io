@@ -68,6 +68,8 @@ function buildPlayerStats(rows, merges) {
   var map = new Map();
   rows.forEach(function(row) {
     var school = String(row.school || "");
+    // Skip CCF competitions - only count 合肥市赛 awards
+    if (row.contest && row.contest.indexOf('年合肥市赛') < 0) return;
     var keySchool = school;
     if (merges && merges.length) {
       merges.forEach(function(m) {
