@@ -161,7 +161,7 @@ function buildContestStats(rows) {
     item.total += 1;
   });
   return [...map.values()].sort(function(a, b) {
-    var ccf = {WC2026:0,"NOI2026安徽省选（前 25 的合肥选手）":1,"APIO 2026 中国区":2,"NOIP 2025":3};
+    var ccf = {WC2026:2,"NOI2026安徽省选（前 25 的合肥选手）":1,"APIO 2026 中国区":0,"NOIP 2025":3};
     var oa = ccf[a.name] !== undefined ? ccf[a.name] : -1;
     var ob = ccf[b.name] !== undefined ? ccf[b.name] : -1;
     if (oa !== ob) return oa - ob;
