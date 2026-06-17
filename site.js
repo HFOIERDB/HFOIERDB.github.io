@@ -776,16 +776,27 @@ async function loadPlayerProfiles() {
     return [];
   }
 }
+
+async function loadPlayerMerges() {
+  try {
+    const response = await fetch("./data/player_merges.json");
+    if (!response.ok) return [];
+    const data = await response.json();
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
+}
 async function init() {
   setActiveNav();
   try {
     var rows, teamRows, profiles;
-    var data = await Promise.all([loadResults(), loadSchoolTeams(), loadAnnouncements(), loadPlayerProfiles()]);
+    var data = await Promise.all([loadResults(), loadSchoolTeams(), loadAnnouncements(), loadPlayerProfiles(), loadPlayerMerges()]);
     rows = data[0];
     teamRows = data[1];
     var announcements = data[2];
     profiles = data[3];
-    var page = document.body.dataset.page;
+        // Apply player merges (same person across different schools)\n    if (merges && merges.length) {\n      rows.forEach(function(row) {\n        var rowName = String(row.name || "");\n        var rowSchool = String(row.school || "");\n        merges.forEach(function(m) {\n          if (rowName === m.name && m.merged_schools.indexOf(rowSchool) >= 0) {\n            row.school = m.canonical_school;\n          }\n        });\n      });\n    }\n    var page = document.body.dataset.page;
     if (page === "home") renderHome(rows, teamRows, announcements);
     if (page === "players") renderPlayers(rows);
     if (page === "schools") renderSchools(rows, teamRows);
