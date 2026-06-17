@@ -35,6 +35,8 @@ function getRatingLevel(row) {
   if (isNOIP) {
     if (rank <= 20) return 7;
     if (/一等奖/.test(award)) return 6;
+    if (/二等奖/.test(award)) return 5;
+    if (/三等奖/.test(award)) return 4;
   }
   if (isPrimary) {
     if (rank <= 20) return 4;
