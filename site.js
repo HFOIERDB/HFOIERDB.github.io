@@ -658,7 +658,7 @@ function renderContestDetail(rows, teamRows, merges) {
 
   tbody.innerHTML = list.map(function(row) {
       var rl2 = maxRatingForName[row.name + "__" + row.school] || 0;
-      var rlCls = rl2 >= 4 ? " rl-" + rl2 : "";
+      var rlCls = rl2 >= 4 ? " rl-" + rl2 : " rl-default";
       return '<tr><td>' + escapeHtml(row.rank) + '</td><td>' + '<a class="table-link' + rlCls + '" href="./hfoi-player-detail?name=' + encodeURIComponent(row.name) + '&school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.name) + '</a></td><td>' + '<a class="table-link" href="./hfoi-school-detail?school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.school) + '</a></td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.year) + '</td></tr>';
     }).join("");
     summary.textContent = "共 " + list.length + " 条记录";
