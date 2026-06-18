@@ -684,3 +684,6 @@ input::placeholder {
 .rl-10 { color: #ff0000; }
 
 .footer small { font-weight: 700; color: #888; font-size: 0.85rem; }
+
+/* Achievement tags */
+.achievement-tag { display: inline-block; padding: 3px 10px; margin: 2px 4px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; background: #f0f0f0; color: #333; }
