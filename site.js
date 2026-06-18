@@ -749,7 +749,7 @@ function renderContestDetail(rows, teamRows, merges) {
   switchTab("players");
 }
 // ===== Player Detail =====
-function renderPlayerDetail(rows, profiles, merges) {
+function renderPlayerDetail(rows, profiles, merges, achievements) {
   var title = document.getElementById("playerDetailTitle");
   var summary = document.getElementById("playerDetailSummary");
   var tbody = document.getElementById("playerDetailBody");
@@ -985,6 +985,14 @@ async function loadPinyin() {
   } catch { return h; }
 }
 
+async function loadPlayerAchievements() {
+  try {
+    const r = await fetch("./data/player_achievements.json?v=" + Date.now());
+    if (!r.ok) return {};
+    return await r.json();
+  } catch { return {}; }
+}
+
 async function init() {
   setActiveNav();
   try {
@@ -996,12 +1004,13 @@ async function init() {
         profiles = data[3];
     var merges = data[4];
     var pinyin = data[5];
+    var achievements = await loadPlayerAchievements();
     var page = document.body.dataset.page;
     if (page === "home") renderHome(rows, teamRows, announcements, merges);
     if (page === "players") renderPlayers(rows, merges, pinyin);
     if (page === "schools") renderSchools(rows, teamRows);
     if (page === "contests") renderContests(rows);
-    if (page === "contest-detail") renderContestDetail(rows, teamRows, merges); if (page === "player-detail") renderPlayerDetail(rows, profiles, merges); if (page === "school-detail") renderSchoolDetail(rows, teamRows);
+    if (page === "contest-detail") renderContestDetail(rows, teamRows, merges); if (page === "player-detail") renderPlayerDetail(rows, profiles, merges, achievements); if (page === "school-detail") renderSchoolDetail(rows, teamRows);
   } catch (error) {
     console.error(error);
     document.querySelectorAll("tbody").forEach(function(tbody) { renderEmpty(tbody, 10, "数据加载失败"); });
