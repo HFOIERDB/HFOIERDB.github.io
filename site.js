@@ -830,7 +830,13 @@ function renderPlayerDetail(rows, profiles, merges) {
         });
       }
     });
-    list.sort(function(a, b) { if ((b.year||0)!==(a.year||0)) return (b.year||0)-(a.year||0); return Number(a.rank||99999)-Number(b.rank||99999); });
+    list.sort(function(a, b) {
+      if ((b.year || 0) !== (a.year || 0)) return (b.year || 0) - (a.year || 0);
+      var oa = getContestPriority(a.contest);
+      var ob = getContestPriority(b.contest);
+      if (oa !== ob) return oa - ob;
+      return Number(a.rank || 99999) - Number(b.rank || 99999);
+    });
   }
 
   // Show player rating (after merge)
