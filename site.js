@@ -991,7 +991,7 @@ async function loadPlayerProfiles() {
 async function loadPlayerMerges() {
   var h = [{name:"黄乐逸",schools:{middle:"合肥一六八玫瑰园学校"},merged_schools:["合肥一六八玫瑰园学校西校区"]},{name:"吴一鸣",schools:{primary:"合肥市安庆路第三小学",middle:"合肥市第四十五中学"}}];
   try {
-    const r = await fetch("./data/player_merges.json?v=" + Date.now());
+    const r = await fetch("./data/player_merges.json?v=" + 1749177600000);
     if (!r.ok) return h;
     const d = await r.json();
     return Array.isArray(d) && d.length ? d : h;
@@ -1001,7 +1001,7 @@ async function loadPlayerMerges() {
 async function loadPinyin() {
   var h = {"黄乐逸":{"full":"huang le yi","short":"hly"},"吴一鸣":{"full":"wu yi ming","short":"wym"}};
   try {
-    const r = await fetch("./data/pinyin.json?v=" + Date.now());
+    const r = await fetch("./data/pinyin.json?v=" + 1749177600000);
     if (!r.ok) return h;
     const d = await r.json();
     return (typeof d === "object" && !Array.isArray(d)) ? Object.assign({}, h, d) : h;
@@ -1010,7 +1010,7 @@ async function loadPinyin() {
 
 async function loadPlayerAchievements() {
   try {
-    const r = await fetch("./data/player_achievements.json?v=" + Date.now());
+    const r = await fetch("./data/player_achievements.json?v=" + 1749177600000);
     if (!r.ok) return {};
     return await r.json();
   } catch { return {}; }
