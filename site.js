@@ -799,6 +799,29 @@ function renderPlayerDetail(rows, profiles, merges, achievements) {
     profilePanel.style.display = found ? "" : "none";
   }
 
+  // Tab switching
+  var tabGroup2 = document.getElementById("playerDetailTabGroup");
+  var recordsPanel = document.getElementById("playerRecordsPanel");
+  var achPanel2 = document.getElementById("playerAchievementPanel");
+  if (tabGroup2) {
+    tabGroup2.querySelectorAll(".tab-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        tabGroup2.querySelectorAll(".tab-btn").forEach(function(b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        var tab = btn.getAttribute("data-tab");
+        if (recordsPanel) recordsPanel.style.display = tab === "records" ? "" : "none";
+        if (achPanel2) achPanel2.style.display = tab === "achievements" ? "" : "none";
+        if (tab === "achievements" && achPanel2 && achievements) {
+          var body2 = document.getElementById("playerAchievementBody");
+          if (body2) {
+            var playerAch = achievements[name] || [];
+            body2.innerHTML = playerAch.length ? '<div class="achievement-grid">' + playerAch.map(function(x) { return '<div class="achievement-card">' + escapeHtml(x) + '</div>'; }).join("") + '</div>' : "<p>暂无成就</p>";
+          }
+        }
+      });
+    });
+  }
+
   list.sort(function(a, b) {
     if ((b.year || 0) !== (a.year || 0)) return (b.year || 0) - (a.year || 0);
     var oa = getContestPriority(a.contest);
