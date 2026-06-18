@@ -71,8 +71,8 @@ function getContestPriority(contest) {
   if (contest.indexOf("APIO") >= 0) return 0;
   if (contest.indexOf("省选") >= 0) return 1;
   if (contest.indexOf("WC") >= 0) return 2;
-  if (contest.indexOf("CSP") >= 0) return 3;
-  if (contest.indexOf("NOIP") >= 0) return 4;
+  if (contest.indexOf("NOIP") >= 0) return 3;
+  if (contest.indexOf("CSP") >= 0) return 4;
   return 999;
 }
 
