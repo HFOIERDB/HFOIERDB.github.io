@@ -33,12 +33,19 @@ function getRatingLevel(row) {
     if (/银牌/.test(award)) return 9;
     if (/铜牌/.test(award)) return 8;
   }
-  if (isCSP) {
-    if (rank <= 20) return 6;
-    if (/一等奖/.test(award)) return 5;
-    if (/二等奖/.test(award)) return 4;
-    if (/三等奖/.test(award)) return 3;
-  }
+   if (isCSP) {
+      if (contest.indexOf("CSP-J") >= 0) {
+        if (rank <= 20) return 5;
+        if (/一等奖/.test(award)) return 4;
+        if (/二等奖/.test(award)) return 3;
+        if (/三等奖/.test(award)) return 2;
+      } else {
+        if (rank <= 20) return 6;
+        if (/一等奖/.test(award)) return 5;
+        if (/二等奖/.test(award)) return 4;
+        if (/三等奖/.test(award)) return 3;
+      }
+   }
   if (isNOIP) {
     if (rank <= 20 && /一等奖/.test(award)) return 7;
     if (/一等奖/.test(award)) return 6;
@@ -67,16 +74,20 @@ function getRatingLevel(row) {
 }
 
 
-function getContestPriority(contest) {
-  if (contest.indexOf("APIO") >= 0) return 0;
-  if (contest.indexOf("省选") >= 0) return 1;
-  if (contest.indexOf("WC") >= 0) return 2;
-  if (contest.indexOf("NOIP") >= 0) return 3;
-  if (contest.indexOf("CSP") >= 0) return 4;
-  return 999;
-}
+var contestPriorityRules = null;
 
-function contestNameOf(row) {
+function getContestPriority(contest) {
+  if (contestPriorityRules) {
+    for (var i = 0; i < contestPriorityRules.length; i++) {
+      if (contest.indexOf(contestPriorityRules[i].pattern) >= 0) {
+        return contestPriorityRules[i].priority;
+      }
+    }
+  }
+  return 999;
+ }
+ 
+ function contestNameOf(row) {
   return String(row?.contest ?? row?.contestName ?? row?.match ?? "").trim();
 }
 
@@ -1007,6 +1018,13 @@ async function loadPinyin() {
     return (typeof d === "object" && !Array.isArray(d)) ? Object.assign({}, h, d) : h;
   } catch { return h; }
 }
+ 
+async function loadContestPriority() {
+  try {
+    const r = await fetch("./data/contest_priority.json");
+    if (r.ok) contestPriorityRules = await r.json();
+  } catch(e) {}
+}
 
 async function loadPlayerAchievements() {
   try {
@@ -1026,9 +1044,10 @@ async function init() {
     var announcements = data[2];
         profiles = data[3];
     var merges = data[4];
-    var pinyin = data[5];
-    var achievements = await loadPlayerAchievements();
-    var page = document.body.dataset.page;
+   var pinyin = data[5];
+   var achievements = await loadPlayerAchievements();
+    await loadContestPriority();
+   var page = document.body.dataset.page;
     if (page === "home") renderHome(rows, teamRows, announcements, merges);
     if (page === "players") renderPlayers(rows, merges, pinyin);
     if (page === "schools") renderSchools(rows, teamRows);

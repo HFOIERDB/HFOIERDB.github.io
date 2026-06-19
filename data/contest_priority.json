@@ -1,0 +1,30 @@
+[
+  {
+    "pattern": "APIO",
+    "priority": 0
+  },
+  {
+    "pattern": "省选",
+    "priority": 1
+  },
+  {
+    "pattern": "WC",
+    "priority": 2
+  },
+  {
+    "pattern": "NOIP",
+    "priority": 3
+  },
+  {
+    "pattern": "CSP-S",
+    "priority": 4
+  },
+  {
+    "pattern": "CSP-J",
+    "priority": 5
+  },
+  {
+    "pattern": "CSP",
+    "priority": 6
+  }
+]
