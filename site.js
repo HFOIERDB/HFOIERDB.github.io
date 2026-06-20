@@ -1187,3 +1187,17 @@ async function init() {
 }
 
 init();
+// Site visit counter
+try {
+  var _vc = parseInt(localStorage.getItem("hfoi_site_visits") || "0", 10) + 1;
+  localStorage.setItem("hfoi_site_visits", _vc);
+  var _vf = document.querySelector(".container.footer") || document.querySelector(".footer");
+  if (_vf && !_vf.querySelector(".visit-counter")) {
+    var _vd = document.createElement("div");
+    _vd.className = "visit-counter";
+    _vd.style.cssText = "font-size:0.75rem;color:hsl(var(--muted-foreground));margin-top:4px;text-align:center";
+    _vd.textContent = "本站累计访问 " + _vc + " 次";
+    _vf.appendChild(_vd);
+  }
+} catch(e) {}
+

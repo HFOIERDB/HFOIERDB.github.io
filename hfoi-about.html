@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HFOIERDB - 关于</title>
+  <link rel="stylesheet" href="./styles.css"/>
+  <style>
+    .about-hero{text-align:center;padding:3rem 1rem 2rem}
+    .about-hero h1{font-size:2rem;font-weight:800;margin:0 0 .5rem}
+    .about-hero p{color:hsl(var(--muted-foreground));max-width:640px;margin:0 auto;line-height:1.7}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:2rem 0}
+    .stat-card{background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:var(--radius);padding:1.2rem;text-align:center}
+    .stat-card .num{font-size:2rem;font-weight:800;color:hsl(var(--primary))}
+    .stat-card .label{font-size:.85rem;color:hsl(var(--muted-foreground));margin-top:.3rem}
+    .about-section{margin:2rem 0}
+    .about-section h2{font-size:1.2rem;font-weight:700;margin:0 0 .8rem}
+    .about-section ul{padding-left:1.2rem;color:hsl(var(--muted-foreground));line-height:1.8}
+    .about-section li{margin:.3rem 0}
+    .visit-info{text-align:center;padding:1rem;font-size:.85rem;color:hsl(var(--muted-foreground))}
+  </style>
+</head>
+<body data-page="about">
+<header class="site-header"><div class="container nav-wrap"><a class="brand" href="./index.html">HFOI</a><nav class="nav">
+  <a data-nav="home" href="./index.html">首页</a>
+  <a data-nav="players" href="./hfoi-players.html">选手</a>
+  <a data-nav="schools" href="./hfoi-schools.html">学校</a>
+  <a data-nav="contests" href="./hfoi-contests.html">比赛</a>
+  <a data-nav="about" href="./hfoi-about.html">关于</a>
+</nav></div></header>
+<main class="container page">
+<div class="about-hero">
+  <h1>HFOIerDB</h1>
+  <p>合肥市信息学竞赛数据库 — 汇聚合肥市赛（小学组、初中组）与 CCF 系列信息学奥赛（CSP-J/S、NOIP、NOI、APIO、WC）的获奖记录，数据来源于合肥市教育局公示文件与中国计算机学会（CCF）公示文件。</p>
+</div>
+<div class="panel"><div class="stats-grid" id="statsGrid">
+  <div class="stat-card"><span class="num" id="sEntries">—</span><span class="label">比赛记录</span></div>
+  <div class="stat-card"><span class="num" id="sPlayers">—</span><span class="label">参赛选手</span></div>
+  <div class="stat-card"><span class="num" id="sSchools">—</span><span class="label">学校</span></div>
+  <div class="stat-card"><span class="num" id="sContests">—</span><span class="label">比赛场次</span></div>
+  <div class="stat-card"><span class="num" id="sYears">—</span><span class="label">跨越年份</span></div>
+  <div class="stat-card"><span class="num" id="sMerges">—</span><span class="label">合并规则</span></div>
+</div></div>
+<div class="about-section panel"><h2>📋 数据来源</h2><ul>
+  <li><strong>合肥市赛</strong> — 合肥市教育局公示文件/li>
+  <li><strong>CSP-J/S</strong> — 中国计算机学会（CCF）公示文件</li>
+  <li><strong>NOIP</strong> — CCF 公示文件</li>
+  <li><strong>NOI / 省选 / 夏令营</strong> — CCF 公示文件及安徽省组织单位通知</li>
+  <li><strong>APIO / WC</strong> — CCF 公示文件</li>
+</ul></div>
+<div class="about-section panel"><h2>✨ 功能特性</h2><ul>
+  <li>选手搜索 — 按姓名、学校、拼音检索</li>
+  <li>选手详情 — 比赛记录、评级、评分（每场贡献与总分）</li>
+  <li>学校排名 — 按团体奖和个人奖数量排序</li>
+  <li>比赛纵览 — 查看每场比赛的获奖分布</li>
+</ul></div>
+<div class="panel visit-info" id="visitInfo"><div>加载中⋯</div></div>
+</main>
+<div class="container footer"><small>Made with 💖 by 北大侯老师信息学团队</small></div>
+<script src="./site.js?v=20260621k" defer></script>
+<script>
+(async function(){
+  try{
+    const r=await fetch("./data/results.json");
+    const d=await r.json();
+    const m=await(await fetch("./data/player_merges.json")).json();
+    const ns=new Set,ss=new Set,cs=new Set,ys=new Set;
+    d.forEach(function(e){ns.add(e.name+"__"+e.school);ss.add(e.school);cs.add(e.contest);if(e.year)ys.add(e.year);});
+    document.getElementById("sEntries").textContent=d.length;
+    document.getElementById("sPlayers").textContent=ns.size;
+    document.getElementById("sSchools").textContent=ss.size;
+    document.getElementById("sContests").textContent=cs.size;
+    document.getElementById("sYears").textContent=ys.size;
+    document.getElementById("sMerges").textContent=m.length;
+    var v=localStorage.getItem("hfoi_site_visits")||0;
+    var f=localStorage.getItem("hfoi_first");
+    if(!f){f=new Date().toISOString().slice(0,10);localStorage.setItem("hfoi_first",f);}
+    v=parseInt(v)+1;localStorage.setItem("hfoi_visits",v);
+    document.getElementById("visitInfo").innerHTML='<div>本站累计访问 <strong>'+v+'</strong> 次</div><div style="margin-top:4px">首次访问 '+f+'</div>';
+  }catch(e){
+    document.getElementById("statsGrid").innerHTML='<div class="stat-card" style="grid-column:1/-1;color:hsl(var(--muted-foreground))">加载统计中⋯</div>';
+  }
+})();
+</script>
+</body></html>
