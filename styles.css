@@ -693,3 +693,6 @@ input::placeholder {
 .achievement-card:hover { background: #eee; transform: translateY(-2px); box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.2s; }
 /* Achievement panel consistency */
 #playerAchievementPanel h2 { margin: 0 0 10px; font-size: 1rem; }
+/* Sort indicators */
+th.sort-asc::after { content: " ▲"; font-size: 0.7em; }
+th.sort-desc::after { content: " ▼"; font-size: 0.7em; }

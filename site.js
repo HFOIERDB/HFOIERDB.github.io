@@ -43,8 +43,9 @@ function getRatingLevel(row, allRows) {
   var isCSP = contest.indexOf("CSP") >= 0;
   var isNOIP = contest.indexOf("NOIP") >= 0;
   if (isAPIO || isWC) {
-    if (/银牌/.test(award)) return 9;
-    if (/铜牌/.test(award)) return 8;
+    if (/金牌/.test(award)) return 9;
+    if (/银牌/.test(award)) return 8;
+    if (/铜牌/.test(award)) return 7;
   }
   if (isNOI) {
     if (/金牌/.test(award)) return 10;
@@ -198,7 +199,7 @@ function buildPlayerStats(rows, merges, level) {
       var rk = Number(row.rank || 0);
       var tp = contestCounts[String(row.contest || '').trim()] || 0;
       if (rk > 0 && tp > 0) {
-        var sc = Math.round(100 / (rk / tp) * w);
+        var sc = Math.round(100 * (2 - Math.sqrt(rk / tp)) * w);
         item.score = (item.score || 0) + sc;
         if (sc > (item.maxScore || 0)) item.maxScore = sc;
       }
@@ -419,7 +420,7 @@ function renderPlayers(rows, merges, pinyin) {
   var currentLevel = "all";
   var currentRows = rows;
   var currentList = [];
-  var sortField = null;
+  var sortField = "rating";
   var sortDir = -1;
   var sortFieldMap = {"一等奖":"first","二等奖":"second","三等奖":"third","总计":"total","评级":"rating","评分":"score"};
 
@@ -532,8 +533,19 @@ function renderPlayers(rows, merges, pinyin) {
         th.addEventListener("click", function() {
           if (sortField === field) sortDir = -sortDir;
           else { sortField = field; sortDir = -1; }
+          thead.querySelectorAll("th").forEach(function(t) { t.classList.remove("sort-asc", "sort-desc"); });
+          th.classList.add(sortDir === 1 ? "sort-asc" : "sort-desc");
           refresh();
         });
+      }
+    });
+  }
+  
+  // Set initial sort indicator
+  if (thead && sortField) {
+    thead.querySelectorAll("th").forEach(function(th) {
+      if (sortFieldMap[th.textContent.trim()] === sortField) {
+        th.classList.add("sort-desc");
       }
     });
   }
@@ -754,9 +766,9 @@ function renderContestDetail(rows, teamRows, merges) {
       return;
     }
 
-  var scoreEl = document.getElementById("playerDetailScore");
+ var scoreEl = document.getElementById("playerDetailScore");
+  var contestTotals = {};
   if (scoreEl) {
-    var contestTotals = {};
     rows.forEach(function(r) {
       var cc = String(r.contest || "").trim();
       if (cc) { if (!contestTotals[cc]) contestTotals[cc] = 0; contestTotals[cc]++; }
@@ -769,14 +781,14 @@ function renderContestDetail(rows, teamRows, merges) {
         var rk = Number(r.rank || 0);
         var tp = contestTotals[String(r.contest || "").trim()] || 0;
         if (rk > 0 && tp > 0) {
-          var sc = Math.round(100 / (rk / tp) * w);
+          var sc = Math.round(100 * (2 - Math.sqrt(rk / tp)) * w);
           totalScore += sc;
           if (sc > maxScore) maxScore = sc;
         }
       }
     });
     if (totalScore > 0) {
-      scoreEl.textContent = "评分: " + totalScore + " (最高单场: " + maxScore + ")";
+        scoreEl.textContent = "评分: " + totalScore + " (最高单场: " + maxScore + ")";
     }
   }
 
@@ -987,7 +999,20 @@ function renderPlayerDetail(rows, profiles, merges, achievements) {
   tbody.innerHTML = list.map(function(row) {
     var cname = contestNameOf(row);
     var contestLink = '<a class="table-link" href="./hfoi-contest-detail?name=' + encodeURIComponent(cname) + '">' + escapeHtml(cname) + '</a>';
-    return '<tr><td>' + contestLink + '</td><td>' + escapeHtml(row.school) + '</td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.rank) + '</td></tr>';
+    
+    var sc = 0;
+    var w = getContestWeight(cname);
+    if (w > 0) {
+      var rk = Number(row.rank || 0);
+      var tp = 0;
+      for (var ri = 0; ri < rows.length; ri++) {
+        if (String(rows[ri].contest || "").trim() === cname) tp++;
+      }
+      if (rk > 0 && tp > 0) {
+        sc = Math.round(100 * (2 - Math.sqrt(rk / tp)) * w);
+      }
+    }
+    return '<tr><td>' + contestLink + '</td><td>' + escapeHtml(row.school) + '</td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.rank) + '</td><td>' + sc + '</td></tr>';
   }).join("");
   summary.textContent = "共 " + list.length + " 条记录";
 }
