@@ -54,5 +54,33 @@
   {
     "pattern": "NOI 2024（含夏令营）",
     "priority": 113
+  },
+  {
+    "pattern": "APIO 2024",
+    "priority": 114
+  },
+  {
+    "pattern": "NOI 2024 安徽省选（前 25 的合肥选手）",
+    "priority": 115
+  },
+  {
+    "pattern": "WC2024",
+    "priority": 116
+  },
+  {
+    "pattern": "NOIP 2023",
+    "priority": 117
+  },
+  {
+    "pattern": "CSP-S 2023",
+    "priority": 118
+  },
+  {
+    "pattern": "CSP-J 2023",
+    "priority": 119
+  },
+  {
+    "pattern": "NOI 2023（含夏令营）",
+    "priority": 120
   }
 ]

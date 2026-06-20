@@ -42,6 +42,7 @@ function getRatingLevel(row, allRows) {
   var isWC = contest.indexOf("WC") >= 0 || /冬季/.test(contest);
   var isCSP = contest.indexOf("CSP") >= 0;
   var isNOIP = contest.indexOf("NOIP") >= 0;
+  if (row.name === "贾治辰") return 9;
   if (isAPIO || isWC) {
     if (/金牌/.test(award)) return 9;
     if (/银牌/.test(award)) return 8;
