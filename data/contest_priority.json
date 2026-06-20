@@ -50,5 +50,9 @@
   {
     "pattern": "CSP-J 2024",
     "priority": 112
+  },
+  {
+    "pattern": "NOI 2024（含夏令营）",
+    "priority": 113
   }
 ]
