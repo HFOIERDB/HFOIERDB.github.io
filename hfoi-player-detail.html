@@ -20,15 +20,19 @@
     </header>
 
     <main class="container page">
-     <section class="panel">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:0.5rem">
+    <section class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem">
           <div>
-            <h1 id="playerDetailTitle" style="display:inline;margin:0;font-size:1.2rem">选手详情</h1>
+            <h1 id="playerDetailTitle" style="display:inline;margin:0;font-size:1.2rem;vertical-align:middle">选手详情</h1>
             <span style="margin-left:0.5rem;color:hsl(var(--muted-foreground));font-size:0.85rem">比赛记录</span>
           </div>
-          <strong id="playerDetailRating" style="font-size:1.2rem">-</strong>
-        </div>
-     </section>
+          <div style="text-align:right">
+            <strong id="playerDetailRating" style="font-size:1.2rem">-</strong>
+            <div style="font-size:0.75rem;color:hsl(var(--muted-foreground));white-space:nowrap">(评级仅供参考)</div>
+            <div id="playerDetailScore" style="font-size:0.85rem;margin:2px 0"></div>
+          </div>
+       </div>
+    </section>
 
       <section class="panel" id="playerProfilePanel" style="display:none">
         <div class="profile-panel">
