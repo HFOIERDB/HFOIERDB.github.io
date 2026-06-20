@@ -489,13 +489,11 @@ function renderPlayers(rows, merges, pinyin) {
       return false;
     }) : levelRows;
     var _sr = buildPlayerStats(searchRows.length ? searchRows : levelRows, merges, currentLevel);
-    if (rows.length > levelRows.length) {
-      var _ar = buildPlayerStats(rows, merges, currentLevel);
-      _sr.forEach(function(_s) {
-        var _f = _ar.find(function(_a) { return _a.name === _s.name && _a.school === _s.school; });
-        if (_f !== undefined) _s.rating = _f.rating;
+    var _ar = buildPlayerStats(rows, merges, currentLevel);
+    _sr.forEach(function(_s) {
+      var _f = _ar.find(function(_a) { return _a.name === _s.name && _a.school === _s.school; });
+      if (_f !== undefined) { _s.rating = _f.rating; _s.score = _f.score; }
       });
-    }
     
     if (sortField && _sr && _sr.length) {
       _sr.sort(function(a, b) {
@@ -1012,7 +1010,7 @@ function renderPlayerDetail(rows, profiles, merges, achievements) {
         sc = Math.round(100 * (2 - Math.sqrt(rk / tp)) * w);
       }
     }
-    return '<tr><td>' + contestLink + '</td><td>' + escapeHtml(row.school) + '</td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.rank) + '</td><td>' + sc + '</td></tr>';
+    return '<tr><td>' + contestLink + '</td><td>' + escapeHtml(row.school) + '</td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.rank) + '</td><td>+' + sc + '</td></tr>';
   }).join("");
   summary.textContent = "共 " + list.length + " 条记录";
 }

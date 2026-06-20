@@ -34,5 +34,21 @@
   {
     "pattern": "NOI 2025 安徽省选（前 25 的合肥选手）",
     "priority": 108
+  },
+  {
+    "pattern": "WC2025",
+    "priority": 109
+  },
+  {
+    "pattern": "NOIP 2024",
+    "priority": 110
+  },
+  {
+    "pattern": "CSP-S 2024",
+    "priority": 111
+  },
+  {
+    "pattern": "CSP-J 2024",
+    "priority": 112
   }
 ]
