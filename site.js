@@ -21,7 +21,7 @@ function getAwardLevel(award) {
 
 function getContestWeight(contest) {
   if (contest.indexOf("省选") >= 0) return 0;
-  if (contest.indexOf("APIO") >= 0 || contest.indexOf("WC") >= 0) return 0.7;
+  if (contest.indexOf("APIO") >= 0 || contest.indexOf("WC") >= 0) return 0.8;
   if (contest.indexOf("NOIP") >= 0) return 0.6;
   if (contest.indexOf("NOI") >= 0) return 1.0;
   if (contest.indexOf("CSP-S") >= 0) return 0.5;
@@ -455,7 +455,7 @@ function renderPlayers(rows, merges, pinyin) {
     tbody.innerHTML = pageItems.map(function(row, idx) {
       var rank = start + idx + 1;
       var rl1 = row.rating >= 4 ? " rl-" + row.rating : " rl-default";
-      return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link" + rl1 + "\" href=\"./hfoi-player-detail?name=" + encodeURIComponent(row.name) + "&school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.name) + "</a></td><td>" + escapeHtml(row.school) + "</td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td><td>" + String(row.rating || 0) + "</td><td>" + (row.score||0) + "</td></tr>";
+      return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link" + rl1 + "\" href=\"./hfoi-player-detail?name=" + encodeURIComponent(row.name) + "&school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.name) + "</a></td><td>" + escapeHtml(row.school) + "</td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td><td>" + String(row.rating || 0) + "</td><td>" + (Math.max(0,row.score)||0) + "</td></tr>";
     }).join("");
     summary.textContent = "第 " + page + " / " + totalPages + " 页 | 共 " + list.length + " 名选手";
     if (pagination) {
