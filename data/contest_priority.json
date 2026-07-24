@@ -1,5 +1,9 @@
 [
   {
+    "pattern": "NOI 2026（含夏令营）",
+    "priority": 99
+  },
+  {
     "pattern": "APIO 2026 中国区",
     "priority": 100
   },
