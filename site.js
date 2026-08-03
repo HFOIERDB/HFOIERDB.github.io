@@ -251,6 +251,17 @@ function buildContestStats(rows) {
 
 function getSchoolLevel(school) {
   var s = normalize(school);
+  // 高中白名单:合肥一中(含长江路校区)、六中、八中、一六八中
+  var highSchools = [
+    "合肥市第一中学",
+    "合肥市第一中学长江路校区",
+    "合肥市第六中学",
+    "合肥市第八中学",
+    "合肥一六八中学"
+  ];
+  for (var hi = 0; hi < highSchools.length; hi++) {
+    if (s === normalize(highSchools[hi])) return "high";
+  }
   if (s.indexOf("中学") !== -1 || s.indexOf("初中") !== -1 || s.indexOf("中") !== -1 && (s.indexOf("一中") !== -1 || s.indexOf("二中") !== -1 || s.indexOf("三中") !== -1 || s.indexOf("四中") !== -1 || s.indexOf("五中") !== -1 || s.indexOf("六中") !== -1 || s.indexOf("七中") !== -1 || s.indexOf("八中") !== -1 || s.indexOf("九中") !== -1 || s.indexOf("十中") !== -1)) {
     return "middle";
   }
@@ -266,12 +277,32 @@ function getSchoolLevel(school) {
 
 function buildSchoolStats(rows, teamRows) {
   var map = new Map();
+  // 高中白名单(强制归 high,即该校学生在 results.json 里只有 CCF 比赛也能出现在高中 tab)
+  var highWhiteList = [
+    "合肥市第一中学", "合肥市第一中学长江路校区",
+    "合肥市第六中学", "合肥市第八中学", "合肥一六八中学"
+  ];
+  // 预先 seed 高中条目
+  highWhiteList.forEach(function(s) {
+    map.set(s + "__high", { school: s, level: "high", teamFirst: 0, teamSecond: 0, teamThird: 0, first: 0, second: 0, third: 0, total: 0 });
+  });
+
   rows.forEach(function(row) {
     var school = String(row.school || "");
     if (!school) return;
     var c = String(row.contest || "").trim();
     if (c && c.indexOf("年合肥市赛") < 0) return;
-    var level = c.indexOf("小学") >= 0 ? "primary" : c.indexOf("初中") >= 0 ? "middle" : getSchoolLevel(school);
+    // 高中白名单:这些校的记录全部归 high(即使 contest 是市赛初中组,历史上有初中部也算高中)
+    var isHigh = false;
+    for (var hi = 0; hi < highWhiteList.length; hi++) {
+      if (school === highWhiteList[hi]) { isHigh = true; break; }
+    }
+    var level;
+    if (isHigh) {
+      level = "high";
+    } else {
+      level = c.indexOf("小学") >= 0 ? "primary" : c.indexOf("初中") >= 0 ? "middle" : getSchoolLevel(school);
+    }
     var key = school + "__" + level;
     if (!map.has(key)) {
       map.set(key, { school: school, level: level, teamFirst: 0, teamSecond: 0, teamThird: 0, first: 0, second: 0, third: 0, total: 0 });
@@ -890,11 +921,8 @@ function renderPlayerDetail(rows, profiles, merges, achievements) {
   }
 
   var n = function(v) { return String(v || "").trim().toLowerCase(); };
-  var list = rows.filter(function(row) {
-    var matchName = n(row.name) === n(name);
-    if (school) return matchName && n(row.school).indexOf(n(school)) !== -1;
-    return matchName;
-  });
+  // 全局 records:按 name 过滤,不再按 strict school 过滤(避免升学后看不到其他校的战绩)
+  var list = rows.filter(function(row) { return n(row.name) === n(name); });
 
   if (!list.length) {
     renderEmpty(tbody, 4, "暂无该选手记录");
@@ -954,39 +982,7 @@ function renderPlayerDetail(rows, profiles, merges, achievements) {
     return Number(a.rank || 99999) - Number(b.rank || 99999);
   });
 
-  // Apply merge: include records from merged schools
-  if (merges && merges.length) {
-    merges.forEach(function(m) {
-      if (n(m.name) === n(name)) {
-        var allMs = [];
-        if (m.schools) { if (m.schools.high) allMs.push(m.schools.high); if (m.schools.middle) allMs.push(m.schools.middle); if (m.schools.primary) allMs.push(m.schools.primary); }
-        if (m.merged_schools) allMs = allMs.concat(m.merged_schools);
-        if (!m.schools && m.canonical_school) allMs.push(m.canonical_school);
-        // Only apply merge rule that matches the current entry's school
-        if (school) {
-          var matched = false;
-          for (var mi = 0; mi < allMs.length; mi++) { if (n(allMs[mi]) === n(school)) { matched = true; break; } }
-          if (!matched) return;
-        }
-        allMs.forEach(function(ms) {
-          rows.forEach(function(row) {
-            if (n(row.name) === n(name) && n(String(row.school || "")) === n(ms)) {
-              if (!list.some(function(l) { return l.id === row.id; })) { list.push(row); }
-            }
-          });
-        });
-      }
-    });
-    list.sort(function(a, b) {
-      if ((b.year || 0) !== (a.year || 0)) return (b.year || 0) - (a.year || 0);
-      var oa = getContestPriority(a.contest);
-      var ob = getContestPriority(b.contest);
-      if (oa !== ob) return oa - ob;
-      return Number(a.rank || 99999) - Number(b.rank || 99999);
-    });
-  }
-
-  // Show player rating (after merge)
+  // Show player rating (max over ALL records)
   var ratingEl = document.getElementById("playerDetailRating");
   if (ratingEl) {
     var maxRating = 0;
@@ -1083,7 +1079,10 @@ function renderSchoolDetail(rows, teamRows) {
 
   function paint() {
     var filtered = currentTab === "all" ? contestList : contestList.filter(function(item) {
-      return currentTab === "primary" ? item.contest.indexOf("小学") >= 0 : item.contest.indexOf("初中") >= 0;
+      if (currentTab === "primary") return item.contest.indexOf("小学") >= 0;
+      if (currentTab === "middle") return item.contest.indexOf("初中") >= 0;
+      if (currentTab === "high") return item.contest.indexOf("年合肥市赛") < 0;
+      return true;
     });
     if (!filtered.length) {
       renderEmpty(tbody, 7, "暂无比赛数据");
@@ -1110,6 +1109,208 @@ function renderSchoolDetail(rows, teamRows) {
   }
 
   paint();
+
+  // 折线图 + 选手列表
+  renderSchoolChart(list, rows);
+  renderSchoolPlayerList(list, rows);
+}
+
+// ===== School Detail: Award Trend Chart =====
+function classifyContestType(contest) {
+  var c = String(contest || "");
+  // 顺序很重要:长的/特殊的先匹配
+  if (c.indexOf("省选") >= 0) return "省选";
+  if (c.indexOf("市赛") >= 0 && c.indexOf("小学组") >= 0) return "市赛小学组";
+  if (c.indexOf("市赛") >= 0 && c.indexOf("初中组") >= 0) return "市赛初中组";
+  if (c.indexOf("CSP-S") >= 0) return "CSP-S";
+  if (c.indexOf("CSP-J") >= 0) return "CSP-J";
+  if (c.indexOf("NOI ") >= 0 && c.indexOf("NOIP") < 0) return "NOI";
+  if (c.indexOf("APIO") >= 0) return "APIO";
+  if (c.indexOf("WC") >= 0) return "WC";
+  if (c.indexOf("NOIP") >= 0) return "NOIP";
+  return null;
+}
+
+function buildSchoolChartData(list, allRows, type) {
+  // 全市每年该类比赛记录数(用来判断"是否已举办")
+  var globalByYear = {};
+  allRows.forEach(function(r) {
+    if (classifyContestType(r.contest) !== type) return;
+    var y = Number(r.year || 0);
+    if (!y) return;
+    globalByYear[y] = (globalByYear[y] || 0) + 1;
+  });
+
+  // 校内按年聚合
+  var byYear = {};
+  list.forEach(function(r) {
+    if (classifyContestType(r.contest) !== type) return;
+    var y = Number(r.year || 0);
+    if (!y) return;
+    if (!byYear[y]) byYear[y] = { first: 0, second: 0, third: 0 };
+    var lv = getAwardLevel(r.award);
+    if (lv === 1) byYear[y].first++;
+    else if (lv === 2) byYear[y].second++;
+    else if (lv === 3) byYear[y].third++;
+  });
+
+  // 某年全市无记录 → null(不画点,折线段断开,语义:"未举办")
+  var years = [2021, 2022, 2023, 2024, 2025, 2026];
+  function v(y, key) {
+    if (!globalByYear[y]) return null;
+    return (byYear[y] && byYear[y][key]) || 0;
+  }
+  return {
+    years: years,
+    series: [
+      { name: "一等奖", data: years.map(function(y) { return v(y, "first"); }), color: "#d4a017" },
+      { name: "二等奖", data: years.map(function(y) { return v(y, "second"); }), color: "#9ca3af" },
+      { name: "三等奖", data: years.map(function(y) { return v(y, "third"); }), color: "#a0522d" }
+    ]
+  };
+}
+
+function renderSchoolChart(list, allRows) {
+  var chartDom = document.getElementById("schoolChart");
+  var empty = document.getElementById("schoolChartEmpty");
+  var tabGroup = document.getElementById("schoolChartTabGroup");
+  if (!chartDom || !tabGroup) return;
+
+  var chart = null;
+  function tryInit() {
+    if (typeof echarts === "undefined") {
+      // 等一下 CDN 加载
+      setTimeout(tryInit, 100);
+      return;
+    }
+    chart = echarts.init(chartDom);
+    paintChart("市赛小学组");
+  }
+
+  function paintChart(type) {
+    var data = buildSchoolChartData(list, allRows, type);
+    if (!data.years.length) {
+      chart.clear();
+      if (empty) empty.style.display = "";
+      return;
+    }
+    if (empty) empty.style.display = "none";
+    chart.setOption({
+      tooltip: { trigger: "axis" },
+      legend: { data: data.series.map(function(s) { return s.name; }), top: 10 },
+      grid: { left: 50, right: 30, top: 50, bottom: 40 },
+      xAxis: { type: "category", data: data.years, boundaryGap: false },
+      yAxis: { type: "value", minInterval: 1, min: 0 },
+      series: data.series.map(function(s) {
+        return {
+          name: s.name,
+          type: "line",
+          smooth: false,
+          connectNulls: false,
+          symbol: "circle",
+          symbolSize: 9,
+          data: s.data,
+          itemStyle: { color: s.color, borderColor: "#fff", borderWidth: 2 },
+          lineStyle: { color: s.color, width: 3, shadowColor: s.color, shadowBlur: 6, shadowOffsetY: 2 },
+          emphasis: { focus: "series", lineStyle: { width: 4 } }
+        };
+      })
+    });
+  }
+
+  tabGroup.querySelectorAll(".tab-btn").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      tabGroup.querySelectorAll(".tab-btn").forEach(function(b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      paintChart(btn.getAttribute("data-type"));
+    });
+  });
+
+  // 窗口大小变化时重绘
+  window.addEventListener("resize", function() { if (chart) chart.resize(); });
+
+  tryInit();
+}
+
+// ===== School Detail: Player List =====
+function renderSchoolPlayerList(list, allRows) {
+  var tbody = document.getElementById("schoolPlayersBody");
+  var summary = document.getElementById("schoolPlayersSummary");
+  var pagination = document.getElementById("schoolPlayersPagination");
+  if (!tbody) return;
+
+  var PAGE_SIZE = 30;
+
+  // 选手列表只列出该校的(strict 范围),但评级用全局 allRows 算(跨校合并)
+  var globalByName = {};
+  allRows.forEach(function(r) {
+    var key = String(r.name || "");
+    if (!key) return;
+    if (!globalByName[key]) globalByName[key] = { maxRating: 0 };
+    var rl = getRatingLevel(r, allRows);
+    if (rl > globalByName[key].maxRating) globalByName[key].maxRating = rl;
+  });
+
+  var byName = {};
+  var currentSchool = String((list[0] && list[0].school) || "");
+  list.forEach(function(r) {
+    var key = String(r.name || "");
+    if (!key) return;
+    if (!byName[key]) {
+      byName[key] = { name: key, maxRating: (globalByName[key] && globalByName[key].maxRating) || 0 };
+    }
+  });
+
+  var players = Object.values(byName).sort(function(a, b) {
+    if (b.maxRating !== a.maxRating) return b.maxRating - a.maxRating;
+    return a.name.localeCompare(b.name, "zh-CN");
+  });
+
+  if (!players.length) {
+    renderEmpty(tbody, 3, "暂无选手记录");
+    if (summary) summary.textContent = "共 0 名选手";
+    if (pagination) pagination.innerHTML = "";
+    return;
+  }
+
+  function paint(page) {
+    if (!page || page < 1) page = 1;
+    var totalPages = Math.ceil(players.length / PAGE_SIZE) || 1;
+    if (page > totalPages) page = totalPages;
+    var start = (page - 1) * PAGE_SIZE;
+    var end = Math.min(start + PAGE_SIZE, players.length);
+    var pageItems = players.slice(start, end);
+
+    tbody.innerHTML = pageItems.map(function(p, idx) {
+      var rlCls = p.maxRating >= 4 ? " rl-" + p.maxRating : "rl-default";
+      var rlText = p.maxRating > 0 ? p.maxRating : "-";
+      return '<tr><td>' + (start + idx + 1) + '</td><td><a class="table-link ' + rlCls + '" href="./hfoi-player-detail?name=' + encodeURIComponent(p.name) + '&school=' + encodeURIComponent(currentSchool) + '">' + escapeHtml(p.name) + '</a></td><td>' + rlText + '</td></tr>';
+    }).join("");
+
+    if (summary) summary.textContent = "第 " + page + " / " + totalPages + " 页 | 共 " + players.length + " 名选手";
+
+    if (pagination) {
+      if (totalPages <= 1) { pagination.innerHTML = ""; return; }
+      var html = "";
+      if (page > 1) html += "<button class=\"page-btn\" data-page=\"" + (page - 1) + "\">上一页</button>";
+      for (var p = Math.max(1, page - 2); p <= Math.min(totalPages, page + 2); p++) {
+        html += "<button class=\"page-btn" + (p === page ? " active" : "") + "\" data-page=\"" + p + "\">" + p + "</button>";
+      }
+      if (page < totalPages) html += "<button class=\"page-btn\" data-page=\"" + (page + 1) + "\">下一页</button>";
+      pagination.innerHTML = html;
+      pagination.style.display = "";
+      pagination.querySelectorAll(".page-btn").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          var np = parseInt(this.getAttribute("data-page"));
+          paint(np);
+          // 滚到选手列表顶部
+          try { document.getElementById("schoolPlayersPagination").scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (e) {}
+        });
+      });
+    }
+  }
+
+  paint(1);
 }
 
 // ===== Init =====

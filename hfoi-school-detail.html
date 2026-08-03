@@ -28,6 +28,7 @@
           <button class="tab-btn active" data-tab="all">全部</button>
           <button class="tab-btn" data-tab="primary">小学</button>
           <button class="tab-btn" data-tab="middle">初中</button>
+          <button class="tab-btn" data-tab="high">高中</button>
         </div>
       </section>
 
@@ -50,12 +51,50 @@
           </table>
         </div>
       </section>
+
+      <section class="panel">
+        <div class="rank-header">
+          <h2>获奖信息</h2>
+          <div class="tab-group" id="schoolChartTabGroup">
+            <button class="tab-btn active" data-type="市赛小学组">市赛小学组</button>
+            <button class="tab-btn" data-type="市赛初中组">市赛初中组</button>
+            <button class="tab-btn" data-type="CSP-S">CSP-S</button>
+            <button class="tab-btn" data-type="CSP-J">CSP-J</button>
+            <button class="tab-btn" data-type="NOIP">NOIP</button>
+            <button class="tab-btn" data-type="NOI">NOI</button>
+            <button class="tab-btn" data-type="APIO">APIO</button>
+            <button class="tab-btn" data-type="WC">WC</button>
+            <button class="tab-btn" data-type="省选">省选</button>
+          </div>
+        </div>
+        <div id="schoolChart" class="school-chart"></div>
+        <div class="chart-empty" id="schoolChartEmpty" style="display:none">该学校暂无此类型比赛记录</div>
+      </section>
+
+      <section class="panel">
+        <h2>选手列表</h2>
+        <div class="summary" id="schoolPlayersSummary"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>姓名</th>
+                <th>评级</th>
+              </tr>
+            </thead>
+            <tbody id="schoolPlayersBody"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="schoolPlayersPagination" style="display:none"></div>
+      </section>
     </main>
 
     <footer class="container footer">
       <small>Made with 💖 by 北大侯老师信息学团队</small>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" defer></script>
     <script src="./site.js?v=20260711a" defer></script>
   </body>
 </html>

@@ -696,3 +696,30 @@ input::placeholder {
 /* Sort indicators */
 th.sort-asc::after { content: " ▲"; font-size: 0.7em; }
 th.sort-desc::after { content: " ▼"; font-size: 0.7em; }
+
+/* ===== School Detail: chart + player list ===== */
+.school-chart {
+  width: 100%;
+  height: 420px;
+  margin-top: 0.5rem;
+}
+.chart-empty {
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+  padding: 2rem 0;
+  font-size: 0.9rem;
+}
+.rank-header h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.rank-header .tab-group {
+  flex-wrap: wrap;
+  max-width: 100%;
+  justify-content: flex-end;
+}
+@media (max-width: 768px) {
+  .school-chart { height: 300px; }
+  .rank-header { flex-direction: column; align-items: flex-start; }
+  .rank-header .tab-group { justify-content: flex-start; }
+}
