@@ -697,6 +697,16 @@ input::placeholder {
 th.sort-asc::after { content: " ▲"; font-size: 0.7em; }
 th.sort-desc::after { content: " ▼"; font-size: 0.7em; }
 
+/* ===== School Detail: hide team-award columns on high tab ===== */
+#schoolDetailTable.hide-team-awards th:nth-child(2),
+#schoolDetailTable.hide-team-awards th:nth-child(3),
+#schoolDetailTable.hide-team-awards th:nth-child(4),
+#schoolDetailTable.hide-team-awards td:nth-child(2),
+#schoolDetailTable.hide-team-awards td:nth-child(3),
+#schoolDetailTable.hide-team-awards td:nth-child(4) {
+  display: none;
+}
+
 /* ===== School Detail: chart + player list ===== */
 .school-chart {
   width: 100%;

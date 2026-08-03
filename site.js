@@ -618,6 +618,24 @@ function renderSchools(rows, teamRows) {
   var tabGroup = document.getElementById("schoolTabGroupPage");
   if (!input || !summary || !tbody) return;
 
+  // 高中固定排序:合肥一中 → 一六八中 → 八中 → 一中长江路 → 六中
+  var HIGH_SCHOOL_ORDER = [
+    "合肥市第一中学",
+    "合肥一六八中学",
+    "合肥市第八中学",
+    "合肥市第一中学长江路校区",
+    "合肥市第六中学"
+  ];
+  var highOrderMap = {};
+  HIGH_SCHOOL_ORDER.forEach(function(s, i) { highOrderMap[s] = i; });
+  function sortHigh(list) {
+    return list.slice().sort(function(a, b) {
+      var ai = highOrderMap[a.school] !== undefined ? highOrderMap[a.school] : 999;
+      var bi = highOrderMap[b.school] !== undefined ? highOrderMap[b.school] : 999;
+      return ai - bi;
+    });
+  }
+
   var PAGE_SIZE = 30;
   var all = buildSchoolStats(rows, teamRows);
   var currentLevel = "primary";
@@ -661,7 +679,9 @@ function renderSchools(rows, teamRows) {
 
   function filterAndPaint(level) {
     currentLevel = level;
-    paint(all.filter(function(s) { return s.level === level; }), 1);
+    var list = all.filter(function(s) { return s.level === level; });
+    if (level === "high") list = sortHigh(list);
+    paint(list, 1);
   }
 
   if (tabGroup) {
@@ -678,7 +698,9 @@ function renderSchools(rows, teamRows) {
   function applyFilter() {
     var keyword = normalize(input.value);
     var base = all.filter(function(s) { return s.level === currentLevel; });
-    paint(keyword ? base.filter(function(row) { return normalize(row.school).indexOf(keyword) !== -1; }) : base, 1);
+    var filtered = keyword ? base.filter(function(row) { return normalize(row.school).indexOf(keyword) !== -1; }) : base;
+    if (currentLevel === "high") filtered = sortHigh(filtered);
+    paint(filtered, 1);
   }
 
   input.addEventListener("input", applyFilter);
@@ -1112,14 +1134,22 @@ function renderSchoolDetail(rows, teamRows) {
       if (currentTab === "high") return item.contest.indexOf("年合肥市赛") < 0;
       return true;
     });
+    // 高中 tab 不显示团体奖(3 列)
+    var table = document.getElementById("schoolDetailTable");
+    var hideTeam = currentTab === "high";
+    if (table) table.classList.toggle("hide-team-awards", hideTeam);
+    var colspan = hideTeam ? 4 : 7;
     if (!filtered.length) {
-      renderEmpty(tbody, 7, "暂无比赛数据");
+      renderEmpty(tbody, colspan, "暂无比赛数据");
       summary.textContent = "共 0 场比赛";
       return;
     }
     tbody.innerHTML = filtered.map(function(item) {
       var cname = item.contest;
       var contestLink = '<a class="table-link" href="./hfoi-contest-detail?name=' + encodeURIComponent(cname) + '">' + escapeHtml(cname) + '</a>';
+      if (hideTeam) {
+        return '<tr><td>' + contestLink + '</td><td>' + item.first + '</td><td>' + item.second + '</td><td>' + item.third + '</td></tr>';
+      }
       return '<tr><td>' + contestLink + '</td><td>' + item.teamFirst + '</td><td>' + item.teamSecond + '</td><td>' + item.teamThird + '</td><td>' + item.first + '</td><td>' + item.second + '</td><td>' + item.third + '</td></tr>';
     }).join("");
     summary.textContent = "共 " + filtered.length + " 场比赛";
