@@ -20,11 +20,21 @@ function getAwardLevel(award) {
 }
 
 // 把奖项归到"金/银/铜"3 档(NOI/APIO/WC 用金/银/铜,市赛/NOIP/CSP-S 用一/二/三等 → 类比金/银/铜)
-function getMedalLevel(award) {
+// 把奖项归到 3 档(gold/silver/bronze)。type 决定按"金/银/铜"还是"一/二/三等"识别:
+//   NOI / APIO / WC  -> 用金/银/铜正则
+//   其他(市赛/CSP/NOIP/省选) -> 用一/二/三等正则
+function getMedalLevel(award, type) {
   const text = normalize(award);
-  if (/金牌|金奖|gold|first|一等奖|一等/.test(text)) return "gold";
-  if (/银牌|银奖|silver|second|二等奖|二等/.test(text)) return "silver";
-  if (/铜牌|铜奖|bronze|third|三等奖|三等/.test(text)) return "bronze";
+  var useMedal = type === "NOI" || type === "APIO" || type === "WC";
+  if (useMedal) {
+    if (/金牌|金奖|gold/.test(text)) return "gold";
+    if (/银牌|银奖|silver/.test(text)) return "silver";
+    if (/铜牌|铜奖|bronze/.test(text)) return "bronze";
+  } else {
+    if (/一等奖|一等|first/.test(text)) return "gold";
+    if (/二等奖|二等|second/.test(text)) return "silver";
+    if (/三等奖|三等|third/.test(text)) return "bronze";
+  }
   return null;
 }
 
@@ -196,6 +206,43 @@ function applySchoolAliases(rows, aliases) {
     if (!r.school) return;
     var norm = normalize(r.school);
     if (normMap[norm]) r.school = normMap[norm];
+  });
+  return rows;
+}
+
+// 同名不同人消歧:按 (name, school) 对重写 name,避免不同学校的同名选手被合并
+// 数据格式:{ "<原名>": { "disambiguate_by_school": { "<学校>": "<新名>", ... } } }
+async function loadPlayerDisambiguates() {
+  try {
+    const response = await fetch("./data/player_disambiguate.json");
+    if (!response.ok) return {};
+    const data = await response.json();
+    return (data && typeof data === "object") ? data : {};
+  } catch {
+    return {};
+  }
+}
+
+function applyPlayerDisambiguates(rows, disambigs) {
+  if (!disambigs || !Object.keys(disambigs).length) return rows;
+  // 预构建 normName + normSchool 索引
+  var rulesByName = {};
+  Object.keys(disambigs).forEach(function(name) {
+    var rule = disambigs[name] && disambigs[name].disambiguate_by_school;
+    if (!rule) return;
+    var normName = normalize(name);
+    var normMap = {};
+    Object.keys(rule).forEach(function(school) {
+      normMap[normalize(school)] = rule[school];
+    });
+    rulesByName[normName] = normMap;
+  });
+  rows.forEach(function(r) {
+    if (!r.name || !r.school) return;
+    var nn = normalize(r.name);
+    var ns = normalize(r.school);
+    var schoolMap = rulesByName[nn];
+    if (schoolMap && schoolMap[ns]) r.name = schoolMap[ns];
   });
   return rows;
 }
@@ -1219,14 +1266,14 @@ function buildSchoolChartData(list, allRows, type) {
     globalByYear[y] = (globalByYear[y] || 0) + 1;
   });
 
-  // 校内按年聚合(按金/银/铜,而不是一/二/三等,避免 NOI 金/银/铜和市赛一二三等挤同一条线)
+  // 校内按年聚合。type 决定用"金/银/铜"还是"一/二/三等"识别奖项
   var byYear = {};
   list.forEach(function(r) {
     if (classifyContestType(r.contest) !== type) return;
     var y = Number(r.year || 0);
     if (!y) return;
     if (!byYear[y]) byYear[y] = { gold: 0, silver: 0, bronze: 0 };
-    var medal = getMedalLevel(r.award);
+    var medal = getMedalLevel(r.award, type);
     if (medal === "gold") byYear[y].gold++;
     else if (medal === "silver") byYear[y].silver++;
     else if (medal === "bronze") byYear[y].bronze++;
@@ -1238,13 +1285,16 @@ function buildSchoolChartData(list, allRows, type) {
     if (!globalByYear[y]) return null;
     return (byYear[y] && byYear[y][key]) || 0;
   }
+  // NOI / APIO / WC 用"金/银/铜",其他比赛用"一/二/三等"
+  var useMedal = type === "NOI" || type === "APIO" || type === "WC";
+  var labels = useMedal ? ["铜牌", "银牌", "金牌"] : ["三等奖", "二等奖", "一等奖"];
   return {
     years: years,
-    // z 顺序:数组后面的画在上面 → 把金牌放最后(顶层),铜牌放最前(底层)
+    // z 顺序:数组后面的画在上面 → 把"最高档"放最后(顶层)
     series: [
-      { name: "铜牌", data: years.map(function(y) { return v(y, "bronze"); }), color: "#a0522d", z: 1 },
-      { name: "银牌", data: years.map(function(y) { return v(y, "silver"); }), color: "#9ca3af", z: 2 },
-      { name: "金牌", data: years.map(function(y) { return v(y, "gold"); }),   color: "#d4a017", z: 3 }
+      { name: labels[0], data: years.map(function(y) { return v(y, "bronze"); }), color: "#a0522d", z: 1 },
+      { name: labels[1], data: years.map(function(y) { return v(y, "silver"); }), color: "#9ca3af", z: 2 },
+      { name: labels[2], data: years.map(function(y) { return v(y, "gold"); }),   color: "#d4a017", z: 3 }
     ]
   };
 }
@@ -1471,7 +1521,7 @@ async function init() {
   setActiveNav();
   try {
     var rows, teamRows, profiles;
-    var data = await Promise.all([loadResults(), loadSchoolTeams(), loadAnnouncements(), loadPlayerProfiles(), loadPlayerMerges(), loadPinyin(), loadSchoolAliases()]);
+    var data = await Promise.all([loadResults(), loadSchoolTeams(), loadAnnouncements(), loadPlayerProfiles(), loadPlayerMerges(), loadPinyin(), loadSchoolAliases(), loadPlayerDisambiguates()]);
     rows = data[0];
     teamRows = data[1];
     var announcements = data[2];
@@ -1479,10 +1529,15 @@ async function init() {
     var merges = data[4];
    var pinyin = data[5];
    var aliases = data[6] || {};
+   var disambigs = data[7] || {};
     // 应用学校别名标准化(例:"安徽省合肥市第四十五中学" -> "合肥市第四十五中学")
     if (aliases && Object.keys(aliases).length) {
       applySchoolAliases(rows, aliases);
       if (teamRows && teamRows.length) applySchoolAliases(teamRows, aliases);
+    }
+    // 同名消歧(例:"李启辰" + 五十中东校 -> "李启辰(五十中东)",避免和科大附中那个合并)
+    if (disambigs && Object.keys(disambigs).length) {
+      applyPlayerDisambiguates(rows, disambigs);
     }
    var achievements = await loadPlayerAchievements();
     await loadContestPriority();
