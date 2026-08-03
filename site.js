@@ -1095,7 +1095,6 @@ function renderSchoolDetail(rows, teamRows) {
   list.forEach(function(row) {
     var cname = contestNameOf(row);
     if (!cname) return;
-    if (cname.indexOf("年合肥市赛") < 0) return;
     if (!contestMap.has(cname)) {
       contestMap.set(cname, { contest: cname, teamFirst: 0, teamSecond: 0, teamThird: 0, first: 0, second: 0, third: 0 });
     }
@@ -1124,6 +1123,10 @@ function renderSchoolDetail(rows, teamRows) {
   var contestList = [...contestMap.values()].sort(function(a, b) {
     return a.contest.localeCompare(b.contest, "zh-CN");
   });
+
+  // 整段比赛表 panel:0 数据时隐藏(没意义的"暂无比赛数据"占位去掉)
+  var contestPanel = document.getElementById("schoolDetailContestPanel");
+  if (contestPanel) contestPanel.style.display = contestList.length ? "" : "none";
 
   var currentTab = "all";
 
@@ -1240,14 +1243,10 @@ function renderSchoolChart(list, allRows) {
     return list.some(function(r) { return classifyContestType(r.contest) === t; });
   });
 
-  // 0 数据:整段(chart + tabs)都不画,显示提示
+  // 0 数据:整个 chart panel 隐藏
   if (!availableTypes.length) {
-    tabGroup.innerHTML = "";
-    chartDom.style.display = "none";
-    if (empty) {
-      empty.textContent = "该校暂无可统计的比赛记录";
-      empty.style.display = "";
-    }
+    var chartPanel = document.getElementById("schoolDetailChartPanel");
+    if (chartPanel) chartPanel.style.display = "none";
     return;
   }
 
