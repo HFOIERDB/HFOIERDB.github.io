@@ -163,6 +163,34 @@ async function loadAnnouncements() {
   }
 }
 
+// 学校名别名表:把 data/school_aliases.json 里写的别名都映射到规范名
+// 例:{"安徽省合肥市第四十五中学": "合肥市第四十五中学"}
+async function loadSchoolAliases() {
+  try {
+    const response = await fetch("./data/school_aliases.json");
+    if (!response.ok) return {};
+    const data = await response.json();
+    return (data && typeof data === "object" && !Array.isArray(data)) ? data : {};
+  } catch {
+    return {};
+  }
+}
+
+function applySchoolAliases(rows, aliases) {
+  if (!aliases || !Object.keys(aliases).length) return rows;
+  // 把 alias key 转成 normalize 后的小写,做大小写不敏感匹配
+  var normMap = {};
+  Object.keys(aliases).forEach(function(k) {
+    normMap[normalize(k)] = aliases[k];
+  });
+  rows.forEach(function(r) {
+    if (!r.school) return;
+    var norm = normalize(r.school);
+    if (normMap[norm]) r.school = normMap[norm];
+  });
+  return rows;
+}
+
 function buildPlayerStats(rows, merges, level) {
   var map = new Map();
   var contestCounts = {};
@@ -1373,13 +1401,19 @@ async function init() {
   setActiveNav();
   try {
     var rows, teamRows, profiles;
-    var data = await Promise.all([loadResults(), loadSchoolTeams(), loadAnnouncements(), loadPlayerProfiles(), loadPlayerMerges(), loadPinyin()]);
+    var data = await Promise.all([loadResults(), loadSchoolTeams(), loadAnnouncements(), loadPlayerProfiles(), loadPlayerMerges(), loadPinyin(), loadSchoolAliases()]);
     rows = data[0];
     teamRows = data[1];
     var announcements = data[2];
         profiles = data[3];
     var merges = data[4];
    var pinyin = data[5];
+   var aliases = data[6] || {};
+    // 应用学校别名标准化(例:"安徽省合肥市第四十五中学" -> "合肥市第四十五中学")
+    if (aliases && Object.keys(aliases).length) {
+      applySchoolAliases(rows, aliases);
+      if (teamRows && teamRows.length) applySchoolAliases(teamRows, aliases);
+    }
    var achievements = await loadPlayerAchievements();
     await loadContestPriority();
    var page = document.body.dataset.page;
