@@ -1204,6 +1204,28 @@ function renderSchoolChart(list, allRows) {
   var tabGroup = document.getElementById("schoolChartTabGroup");
   if (!chartDom || !tabGroup) return;
 
+  // 筛选该校 strict 范围内"有数据"的比赛类型
+  var ALL_TYPES = ["市赛小学组", "市赛初中组", "CSP-S", "CSP-J", "NOIP", "NOI", "APIO", "WC", "省选"];
+  var availableTypes = ALL_TYPES.filter(function(t) {
+    return list.some(function(r) { return classifyContestType(r.contest) === t; });
+  });
+
+  // 0 数据:整段(chart + tabs)都不画,显示提示
+  if (!availableTypes.length) {
+    tabGroup.innerHTML = "";
+    chartDom.style.display = "none";
+    if (empty) {
+      empty.textContent = "该校暂无可统计的比赛记录";
+      empty.style.display = "";
+    }
+    return;
+  }
+
+  // 用有数据的类型重写 tab group
+  tabGroup.innerHTML = availableTypes.map(function(t, i) {
+    return '<button class="tab-btn' + (i === 0 ? " active" : "") + '" data-type="' + t + '">' + t + '</button>';
+  }).join("");
+
   var chart = null;
   var echartsWaitTries = 0;
   function tryInit() {
@@ -1220,7 +1242,7 @@ function renderSchoolChart(list, allRows) {
       return;
     }
     chart = echarts.init(chartDom);
-    paintChart("市赛小学组");
+    paintChart(availableTypes[0]);
   }
 
   function paintChart(type) {
