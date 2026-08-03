@@ -19,6 +19,15 @@ function getAwardLevel(award) {
   return 0;
 }
 
+// 把奖项归到"金/银/铜"3 档(NOI/APIO/WC 用金/银/铜,市赛/NOIP/CSP-S 用一/二/三等 → 类比金/银/铜)
+function getMedalLevel(award) {
+  const text = normalize(award);
+  if (/金牌|金奖|gold|first|一等奖|一等/.test(text)) return "gold";
+  if (/银牌|银奖|silver|second|二等奖|二等/.test(text)) return "silver";
+  if (/铜牌|铜奖|bronze|third|三等奖|三等/.test(text)) return "bronze";
+  return null;
+}
+
 function getContestWeight(contest) {
   if (contest.indexOf("省选") >= 0) return 0;
   if (contest.indexOf("APIO") >= 0 || contest.indexOf("WC") >= 0) return 0.8;
@@ -651,11 +660,18 @@ function renderSchools(rows, teamRows) {
     var pageItems = list.slice(start, end);
 
     if (!list.length) {
-      renderEmpty(tbody, 9, "No matched schools");
+      // 高中 tab 时 9 列变 2 列
+      var tableEmpty = document.getElementById("schoolsTable");
+      var colspan = currentLevel === "high" ? 2 : 9;
+      if (tableEmpty) tableEmpty.classList.toggle("hide-awards", currentLevel === "high");
+      renderEmpty(tbody, colspan, "No matched schools");
       summary.textContent = "Total 0 schools";
       if (pagination) pagination.innerHTML = "";
       return;
     }
+    // 高中 tab 时切换 class 隐藏 7 列
+    var table = document.getElementById("schoolsTable");
+    if (table) table.classList.toggle("hide-awards", currentLevel === "high");
     tbody.innerHTML = pageItems.map(function(row, idx) {
       var rank = start + idx + 1;
       return "<tr><td>" + rank + "</td><td><a class=\"table-link\" href=\"./hfoi-school-detail?school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.school) + "</a></td><td>" + row.teamFirst + "</td><td>" + row.teamSecond + "</td><td>" + row.teamThird + "</td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td></tr>";
@@ -1095,6 +1111,7 @@ function renderSchoolDetail(rows, teamRows) {
   list.forEach(function(row) {
     var cname = contestNameOf(row);
     if (!cname) return;
+    if (cname.indexOf("年合肥市赛") < 0) return;  // 只显示合肥市赛
     if (!contestMap.has(cname)) {
       contestMap.set(cname, { contest: cname, teamFirst: 0, teamSecond: 0, teamThird: 0, first: 0, second: 0, third: 0 });
     }
@@ -1202,17 +1219,17 @@ function buildSchoolChartData(list, allRows, type) {
     globalByYear[y] = (globalByYear[y] || 0) + 1;
   });
 
-  // 校内按年聚合
+  // 校内按年聚合(按金/银/铜,而不是一/二/三等,避免 NOI 金/银/铜和市赛一二三等挤同一条线)
   var byYear = {};
   list.forEach(function(r) {
     if (classifyContestType(r.contest) !== type) return;
     var y = Number(r.year || 0);
     if (!y) return;
-    if (!byYear[y]) byYear[y] = { first: 0, second: 0, third: 0 };
-    var lv = getAwardLevel(r.award);
-    if (lv === 1) byYear[y].first++;
-    else if (lv === 2) byYear[y].second++;
-    else if (lv === 3) byYear[y].third++;
+    if (!byYear[y]) byYear[y] = { gold: 0, silver: 0, bronze: 0 };
+    var medal = getMedalLevel(r.award);
+    if (medal === "gold") byYear[y].gold++;
+    else if (medal === "silver") byYear[y].silver++;
+    else if (medal === "bronze") byYear[y].bronze++;
   });
 
   // 某年全市无记录 → null(不画点,折线段断开,语义:"未举办")
@@ -1223,10 +1240,11 @@ function buildSchoolChartData(list, allRows, type) {
   }
   return {
     years: years,
+    // z 顺序:数组后面的画在上面 → 把金牌放最后(顶层),铜牌放最前(底层)
     series: [
-      { name: "一等奖", data: years.map(function(y) { return v(y, "first"); }), color: "#d4a017" },
-      { name: "二等奖", data: years.map(function(y) { return v(y, "second"); }), color: "#9ca3af" },
-      { name: "三等奖", data: years.map(function(y) { return v(y, "third"); }), color: "#a0522d" }
+      { name: "铜牌", data: years.map(function(y) { return v(y, "bronze"); }), color: "#a0522d", z: 1 },
+      { name: "银牌", data: years.map(function(y) { return v(y, "silver"); }), color: "#9ca3af", z: 2 },
+      { name: "金牌", data: years.map(function(y) { return v(y, "gold"); }),   color: "#d4a017", z: 3 }
     ]
   };
 }
@@ -1297,6 +1315,7 @@ function renderSchoolChart(list, allRows) {
           symbol: "circle",
           symbolSize: 9,
           data: s.data,
+          z: s.z || 1,
           itemStyle: { color: s.color, borderColor: "#fff", borderWidth: 2 },
           lineStyle: { color: s.color, width: 3, shadowColor: s.color, shadowBlur: 6, shadowOffsetY: 2 },
           emphasis: { focus: "series", lineStyle: { width: 4 } }

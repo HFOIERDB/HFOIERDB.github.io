@@ -707,6 +707,12 @@ th.sort-desc::after { content: " ▼"; font-size: 0.7em; }
   display: none;
 }
 
+/* ===== School List: hide all award columns on high tab (keep 排名 + 学校名) ===== */
+#schoolsTable.hide-awards th:nth-child(n+3),
+#schoolsTable.hide-awards td:nth-child(n+3) {
+  display: none;
+}
+
 /* ===== School Detail: chart + player list ===== */
 .school-chart {
   width: 100%;
