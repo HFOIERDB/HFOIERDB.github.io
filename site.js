@@ -1177,9 +1177,17 @@ function renderSchoolChart(list, allRows) {
   if (!chartDom || !tabGroup) return;
 
   var chart = null;
+  var echartsWaitTries = 0;
   function tryInit() {
     if (typeof echarts === "undefined") {
-      // 等一下 CDN 加载
+      // 等 echarts 本地脚本加载,最多等 5 秒
+      if (++echartsWaitTries > 50) {
+        if (empty) {
+          empty.textContent = "图表库加载失败,请检查 vendor/echarts.min.js";
+          empty.style.display = "";
+        }
+        return;
+      }
       setTimeout(tryInit, 100);
       return;
     }
