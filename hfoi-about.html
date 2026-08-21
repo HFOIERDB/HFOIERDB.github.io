@@ -54,6 +54,26 @@
   <li>学校排名 — 按团体奖和个人奖数量排序</li>
   <li>比赛纵览 — 查看每场比赛的获奖分布</li>
 </ul></div>
+<div class="about-section panel"><h2>📊 评级规则（0-10 级）</h2>
+<p style="color:hsl(var(--muted-foreground));line-height:1.7;margin:0 0 .8rem">评级取该选手所有比赛中最高的那一档，只看比赛名次和奖项，不分省内外。同一名选手升级到不同学校，记录仍合并算 max。</p>
+<table class="rating-table">
+  <thead><tr><th>级别</th><th>对应成绩（从低到高）</th></tr></thead>
+  <tbody>
+    <tr><td><b>0 级</b></td><td>无记录</td></tr>
+    <tr><td><b>1 级</b></td><td>市赛小学组 三等奖</td></tr>
+    <tr><td><b>2 级</b></td><td>市赛小学组 二等奖 / 初中组 三等奖 / CSP-J 三等奖</td></tr>
+    <tr><td><b>3 级</b></td><td>市赛小学组 一等奖 / 初中组 二等奖 / CSP-J 二等奖 / CSP-S 三等奖</td></tr>
+    <tr><td><b>4 级</b></td><td>市赛小学组 rank≤20 / 初中组 一等奖 / CSP-J 一等奖 / CSP-S 二等奖 / NOIP 三等奖</td></tr>
+    <tr><td><b>5 级</b></td><td>市赛初中组 rank≤20 / CSP-J rank≤20 / CSP-S 一等奖 / NOIP 二等奖</td></tr>
+    <tr><td><b>6 级</b></td><td>CSP-S rank≤20 / NOIP 一等奖</td></tr>
+    <tr><td><b>7 级</b></td><td>NOIP rank≤20 + 一等奖 / APIO 铜牌 / WC 铜牌</td></tr>
+    <tr><td><b>8 级</b></td><td>NOI 铜牌 / 省选 B/E 队 / APIO 银牌 / WC 银牌 / </td></tr>
+    <tr><td><b>9 级</b></td><td>NOI 银牌 / APIO 金牌 / WC 金牌 / 省选 A 队</td></tr>
+    <tr><td><b>10 级</b></td><td>NOI 金牌</td></tr>
+  </tbody>
+</table>
+<p style="color:hsl(var(--muted-foreground));font-size:.85rem;line-height:1.7;margin:.6rem 0 0">特殊：<code>贾治辰</code> 直接 9 级（同人特批）。同一比赛名次越靠前级别越高；rank ≤ 20 算前 20 特档。</p>
+</div>
 <div class="panel visit-info" id="visitInfo"><div>加载中⋯</div></div>
 </main>
 <div class="container footer"><small>Made with 💖 by 北大侯老师信息学团队</small></div>

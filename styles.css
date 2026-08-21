@@ -713,6 +713,37 @@ th.sort-desc::after { content: " ▼"; font-size: 0.7em; }
   display: none;
 }
 
+/* ===== About: rating table ===== */
+.rating-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 0.4rem;
+}
+.rating-table th,
+.rating-table td {
+  text-align: left;
+  padding: 0.55rem 0.5rem;
+  border-bottom: 1px solid hsl(var(--border));
+  vertical-align: top;
+}
+.rating-table th {
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background: transparent;
+}
+.rating-table td:first-child {
+  width: 90px;
+  color: hsl(var(--primary));
+  font-weight: 600;
+}
+.rating-table tr:last-child td {
+  border-bottom: none;
+}
+
 /* ===== School Detail: chart + player list ===== */
 .school-chart {
   width: 100%;
