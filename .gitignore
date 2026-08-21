@@ -4,3 +4,6 @@ Thumbs.db
 
 # Temp / reference
 ref_*
+*.bak
+data/*.bak
+data/*.bak.json

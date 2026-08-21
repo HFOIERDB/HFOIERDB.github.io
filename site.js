@@ -210,44 +210,28 @@ function applySchoolAliases(rows, aliases) {
   return rows;
 }
 
-// 同名不同人消歧:按 (name, school) 对重写 name,避免不同学校的同名选手被合并
-// 数据格式:{ "<原名>": { "disambiguate_by_school": { "<学校>": "<新名>", ... } } }
-async function loadPlayerDisambiguates() {
+// 加载 students.json(每个学生唯一 sid + 三个学校字段),返回 { byId, list } 两个结构
+async function loadStudents() {
   try {
-    const response = await fetch("./data/player_disambiguate.json");
-    if (!response.ok) return {};
-    const data = await response.json();
-    return (data && typeof data === "object") ? data : {};
+    const r = await fetch("./data/students.json?v=" + Date.now());
+    if (!r.ok) return { byId: {}, list: [] };
+    const list = await r.json();
+    if (!Array.isArray(list)) return { byId: {}, list: [] };
+    var byId = {};
+    list.forEach(function(s) { if (s && s.id) byId[s.id] = s; });
+    return { byId: byId, list: list };
   } catch {
-    return {};
+    return { byId: {}, list: [] };
   }
 }
 
-function applyPlayerDisambiguates(rows, disambigs) {
-  if (!disambigs || !Object.keys(disambigs).length) return rows;
-  // 预构建 normName + normSchool 索引
-  var rulesByName = {};
-  Object.keys(disambigs).forEach(function(name) {
-    var rule = disambigs[name] && disambigs[name].disambiguate_by_school;
-    if (!rule) return;
-    var normName = normalize(name);
-    var normMap = {};
-    Object.keys(rule).forEach(function(school) {
-      normMap[normalize(school)] = rule[school];
-    });
-    rulesByName[normName] = normMap;
-  });
-  rows.forEach(function(r) {
-    if (!r.name || !r.school) return;
-    var nn = normalize(r.name);
-    var ns = normalize(r.school);
-    var schoolMap = rulesByName[nn];
-    if (schoolMap && schoolMap[ns]) r.name = schoolMap[ns];
-  });
-  return rows;
+// 给定一个学生对象,挑一个最"代表性"的学校作为选手列表里的显示用(优先 high > middle > primary)
+function pickDisplaySchool(stu) {
+  if (!stu) return "";
+  return stu.high_school || stu.middle_school || stu.primary_school || "";
 }
 
-function buildPlayerStats(rows, merges, level) {
+function buildPlayerStats(rows, studentsById, level) {
   var map = new Map();
   var contestCounts = {};
   rows.forEach(function(row) {
@@ -255,29 +239,32 @@ function buildPlayerStats(rows, merges, level) {
     if (cc) { if (!contestCounts[cc]) contestCounts[cc] = 0; contestCounts[cc]++; }
   });
   rows.forEach(function(row) {
-    var school = String(row.school || "");
-    var keySchool = school;
-    if (merges && merges.length) {
-      merges.forEach(function(m) {
-        var allMs = [];
-        if (m.schools) { if (m.schools.high) allMs.push(m.schools.high); if (m.schools.middle) allMs.push(m.schools.middle); if (m.schools.primary) allMs.push(m.schools.primary); }
-        if (m.merged_schools) allMs = allMs.concat(m.merged_schools);
-        if (!m.schools && m.canonical_school) allMs.push(m.canonical_school);
-        if (row.name === m.name && allMs.indexOf(school) >= 0) {
-          var pref = level === "primary" ? ["primary","middle","high"] : level === "middle" ? ["middle","high","primary"] : ["high","middle","primary"];
-          keySchool = (m.schools && (m.schools[pref[0]] || m.schools[pref[1]] || m.schools[pref[2]])) || m.canonical_school || school;
-        }
+    var sid = String(row.student_id || "");
+    if (!sid) return;
+    var stu = (studentsById && studentsById[sid]) || null;
+    if (!stu) return;
+    // 按 level 过滤
+    if (level && level !== "all") {
+      var c = String(row.contest || "");
+      if (level === "primary" && c.indexOf("小学") < 0) return;
+      if (level === "middle" && c.indexOf("初中") < 0 && c.indexOf("中学") < 0) return;
+    }
+    if (!map.has(sid)) {
+      map.set(sid, {
+        sid: sid,
+        name: stu.name,
+        school: pickDisplaySchool(stu),
+        primary_school: stu.primary_school || "",
+        middle_school: stu.middle_school || "",
+        high_school: stu.high_school || "",
+        first: 0, second: 0, third: 0, total: 0,
+        score: 0, maxScore: 0, rating: 0
       });
     }
-    var key = (row.name || "") + "__" + keySchool;
-    if (!map.has(key)) {
-      map.set(key, { name: String(row.name || ""), school: keySchool, first: 0, second: 0, third: 0, total: 0, score: 0, maxScore: 0, rating: 0 });
-    }
-    const item = map.get(key);
+    const item = map.get(sid);
     // Compute rating from ALL records including CCF
     const rlv = getRatingLevel(row, rows);
     if (rlv > item.rating) item.rating = rlv;
-    
 
     var w = getContestWeight(String(row.contest || '').trim());
     if (w > 0) {
@@ -289,7 +276,7 @@ function buildPlayerStats(rows, merges, level) {
         if (sc > (item.maxScore || 0)) item.maxScore = sc;
       }
     }
-    
+
     // Skip CCF competitions from award counting
     if (row.contest && row.contest.indexOf('年合肥市赛') < 0) return;
     const lv = getAwardLevel(row.award);
@@ -462,12 +449,12 @@ function renderCalendar() {
 }
 
 // ===== Homepage =====
-function renderHome(rows, teamRows, announcements, merges) {
+function renderHome(rows, teamRows, announcements, merges, studentsById) {
   var summary = document.getElementById("homeSummary");
   var rankBody = document.getElementById("homeSchoolRankBody");
   if (!rankBody) return;
 
-  var players = buildPlayerStats(rows, merges);
+  var players = buildPlayerStats(rows, studentsById);
   var contests = buildContestStats(rows);
   var schools = buildSchoolStats(rows, teamRows);
 
@@ -523,7 +510,7 @@ function renderHome(rows, teamRows, announcements, merges) {
 }
 
 // ===== Players Page =====
-function renderPlayers(rows, merges, pinyin) {
+function renderPlayers(rows, studentsById, pinyin) {
   var input = document.getElementById("playerSearchInput");
   var summary = document.getElementById("playersSummary");
   var tbody = document.getElementById("playersBody");
@@ -571,7 +558,7 @@ function renderPlayers(rows, merges, pinyin) {
     tbody.innerHTML = pageItems.map(function(row, idx) {
       var rank = start + idx + 1;
       var rl1 = row.rating >= 4 ? " rl-" + row.rating : " rl-default";
-      return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link" + rl1 + "\" href=\"./hfoi-player-detail?name=" + encodeURIComponent(row.name) + "&school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.name) + "</a></td><td><a class=\"table-link\" href=\"./hfoi-school-detail?school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.school) + "</a></td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td><td>" + String(row.rating || 0) + "</td><td>" + (Math.max(0,row.score)||0) + "</td></tr>";
+      return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link" + rl1 + "\" href=\"./hfoi-player-detail?sid=" + encodeURIComponent(row.sid) + "\">" + escapeHtml(row.name) + "</a></td><td><a class=\"table-link\" href=\"./hfoi-school-detail?school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.school) + "</a></td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td><td>" + String(row.rating || 0) + "</td><td>" + (Math.max(0,row.score)||0) + "</td></tr>";
     }).join("");
     summary.textContent = "第 " + page + " / " + totalPages + " 页 | 共 " + list.length + " 名选手";
     if (pagination) {
@@ -604,10 +591,10 @@ function renderPlayers(rows, merges, pinyin) {
       }
       return false;
     }) : levelRows;
-    var _sr = buildPlayerStats(searchRows.length ? searchRows : levelRows, merges, currentLevel);
-    var _ar = buildPlayerStats(rows, merges, currentLevel);
+    var _sr = buildPlayerStats(searchRows.length ? searchRows : levelRows, studentsById, currentLevel);
+    var _ar = buildPlayerStats(rows, studentsById, currentLevel);
     _sr.forEach(function(_s) {
-      var _f = _ar.find(function(_a) { return _a.name === _s.name && _a.school === _s.school; });
+      var _f = _ar.find(function(_a) { return _a.sid === _s.sid; });
       if (_f !== undefined) { _s.rating = _f.rating; _s.score = _f.score; }
       });
     
@@ -663,7 +650,7 @@ function renderPlayers(rows, merges, pinyin) {
       }
     });
   }
-  paint(buildPlayerStats(currentRows, merges, currentLevel), 1);
+  paint(buildPlayerStats(currentRows, studentsById, currentLevel), 1);
 }
 // ===== Schools Page =====
 function renderSchools(rows, teamRows) {
@@ -823,7 +810,7 @@ function renderContests(rows) {
   applyFilter();
 }
 // ===== Contest Detail Page =====
-function renderContestDetail(rows, teamRows, merges) {
+function renderContestDetail(rows, teamRows, merges, studentsById) {
   var title = document.getElementById("detailTitle");
   var tabGroup = document.getElementById("contestDetailTabGroup");
   var playerPanel = document.getElementById("contestPlayersPanel");
@@ -871,36 +858,20 @@ function renderContestDetail(rows, teamRows, merges) {
   });
 
   // ===== Render Players Tab =====
-  // Pre-compute max rating for each player from all records
-  var maxRatingForName = {};
+  // Pre-compute max rating for each student from ALL records (跨校合并)
+  var maxRatingForSid = {};
   list.forEach(function(p) {
-    if (maxRatingForName[p.name + "__" + p.school] !== undefined) return;
-    var cs2 = p.school;
-    if (merges) { merges.forEach(function(m) {
-      if (m.name === p.name) {
-        var ms = []; if (m.schools) { if (m.schools.high) ms.push(m.schools.high); if (m.schools.middle) ms.push(m.schools.middle); if (m.schools.primary) ms.push(m.schools.primary); }
-        if (m.merged_schools) ms = ms.concat(m.merged_schools);
-        if (ms.indexOf(p.school) >= 0) { cs2 = m.schools["high"] || m.schools["middle"] || m.schools["primary"] || p.school; }
-      }
-    }); }
+    var sid = String(p.student_id || "");
+    if (!sid) return;
+    if (maxRatingForSid[sid] !== undefined) return;
     var mr = 0;
     rows.forEach(function(r) {
-      if (normalize(r.name) === normalize(p.name)) {
-        var rcs = r.school;
-        if (merges) { merges.forEach(function(m) {
-          if (m.name === r.name) {
-            var ms2 = []; if (m.schools) { if (m.schools.high) ms2.push(m.schools.high); if (m.schools.middle) ms2.push(m.schools.middle); if (m.schools.primary) ms2.push(m.schools.primary); }
-            if (m.merged_schools) ms2 = ms2.concat(m.merged_schools);
-            if (ms2.indexOf(r.school) >= 0) { rcs = m.schools["high"] || m.schools["middle"] || m.schools["primary"] || r.school; }
-          }
-        }); }
-        if (normalize(rcs) === normalize(cs2)) {
-          var rlv = getRatingLevel(r, rows);
-          if (rlv > mr) mr = rlv;
-        }
+      if (String(r.student_id || "") === sid) {
+        var rlv = getRatingLevel(r, rows);
+        if (rlv > mr) mr = rlv;
       }
     });
-    maxRatingForName[p.name + "__" + p.school] = mr;
+    maxRatingForSid[sid] = mr;
   });
   function renderPlayers() {
     if (!list.length) {
@@ -936,9 +907,9 @@ function renderContestDetail(rows, teamRows, merges) {
   }
 
   tbody.innerHTML = list.map(function(row) {
-      var rl2 = maxRatingForName[row.name + "__" + row.school] || 0;
+      var rl2 = maxRatingForSid[String(row.student_id || "")] || 0;
       var rlCls = rl2 >= 4 ? " rl-" + rl2 : " rl-default";
-      return '<tr><td>' + escapeHtml(row.rank) + '</td><td>' + '<a class="table-link' + rlCls + '" href="./hfoi-player-detail?name=' + encodeURIComponent(row.name) + '&school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.name) + '</a></td><td>' + '<a class="table-link" href="./hfoi-school-detail?school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.school) + '</a></td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.year) + '</td></tr>';
+      return '<tr><td>' + escapeHtml(row.rank) + '</td><td>' + '<a class="table-link' + rlCls + '" href="./hfoi-player-detail?sid=' + encodeURIComponent(row.student_id || "") + '">' + escapeHtml(row.name) + '</a></td><td>' + '<a class="table-link" href="./hfoi-school-detail?school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.school) + '</a></td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.year) + '</td></tr>';
     }).join("");
     summary.textContent = "共 " + list.length + " 条记录";
   }
@@ -1017,25 +988,45 @@ function renderContestDetail(rows, teamRows, merges) {
   switchTab("players");
 }
 // ===== Player Detail =====
-function renderPlayerDetail(rows, profiles, merges, achievements) {
+function renderPlayerDetail(rows, profiles, merges, achievements, studentsById) {
   var title = document.getElementById("playerDetailTitle");
   var summary = document.getElementById("playerDetailSummary");
   var tbody = document.getElementById("playerDetailBody");
   if (!title || !summary || !tbody) return;
 
   var params = new URLSearchParams(window.location.search);
-  var name = String(params.get("name") || "").trim();
-  var school = String(params.get("school") || "").trim();
+  var sid = String(params.get("sid") || "").trim();
+  var nameParam = String(params.get("name") || "").trim();
+  var schoolParam = String(params.get("school") || "").trim();
 
-  if (!name) {
-    renderEmpty(tbody, 4, "Missing player name");
+  if (!sid && !nameParam) {
+    renderEmpty(tbody, 4, "Missing player id");
     summary.textContent = "请从选手列表进入";
     return;
   }
 
-  var n = function(v) { return String(v || "").trim().toLowerCase(); };
-  // 全局 records:按 name 过滤,不再按 strict school 过滤(避免升学后看不到其他校的战绩)
-  var list = rows.filter(function(row) { return n(row.name) === n(name); });
+  // 如果没传 sid 但传了 name+school,反查 sid
+  if (!sid && nameParam) {
+    for (var ri = 0; ri < rows.length; ri++) {
+      if (rows[ri].name === nameParam && (!schoolParam || rows[ri].school === schoolParam)) {
+        sid = String(rows[ri].student_id || "");
+        if (sid) break;
+      }
+    }
+  }
+
+  if (!sid) {
+    renderEmpty(tbody, 4, "暂无该选手记录");
+    summary.textContent = "共 0 条记录";
+    return;
+  }
+
+  var stu = (studentsById && studentsById[sid]) || null;
+  var displayName = stu ? stu.name : nameParam;
+  title.textContent = displayName;
+
+  // 过滤:按 sid
+  var list = rows.filter(function(row) { return String(row.student_id || "") === sid; });
 
   if (!list.length) {
     renderEmpty(tbody, 4, "暂无该选手记录");
@@ -1043,12 +1034,21 @@ function renderPlayerDetail(rows, profiles, merges, achievements) {
     return;
   }
 
-    title.textContent = list[0].name;
+  // 显示学校信息(从 students.json)
+  var schoolInfo = document.getElementById("playerDetailSchools");
+  if (schoolInfo && stu) {
+    var parts = [];
+    if (stu.primary_school) parts.push("小学: " + stu.primary_school);
+    if (stu.middle_school) parts.push("初中: " + stu.middle_school);
+    if (stu.high_school) parts.push("高中: " + stu.high_school);
+    if (parts.length) schoolInfo.textContent = "毕业学校: " + parts.join(" / ");
+  }
+
 
   // Show player profile if available
   var profilePanel = document.getElementById("playerProfilePanel");
   if (profilePanel && profiles && profiles.length) {
-    var playerId = String(list[0].id || "");
+    var playerId = sid;
     var found = false;
     profiles.forEach(function(p) {
       if (String(p.id || "") === playerId) {
@@ -1079,7 +1079,7 @@ function renderPlayerDetail(rows, profiles, merges, achievements) {
         if (tab === "achievements" && achPanel2 && achievements) {
           var body2 = document.getElementById("playerAchievementBody");
           if (body2) {
-            var playerAch = achievements[name] || [];
+            var playerAch = achievements[displayName] || [];
             body2.innerHTML = playerAch.length ? '<div class="achievement-grid">' + playerAch.map(function(x) { return '<div class="achievement-card">' + escapeHtml(x) + '</div>'; }).join("") + '</div>' : "<p>暂无成就</p>";
           }
         }
@@ -1125,7 +1125,7 @@ function renderPlayerDetail(rows, profiles, merges, achievements) {
   summary.textContent = "共 " + list.length + " 条记录";
 }
 // ===== School Detail =====
-function renderSchoolDetail(rows, teamRows) {
+function renderSchoolDetail(rows, teamRows, studentsById) {
   var title = document.getElementById("schoolDetailTitle");
   var summary = document.getElementById("schoolDetailSummary");
   var tbody = document.getElementById("schoolDetailBody");
@@ -1236,8 +1236,8 @@ function renderSchoolDetail(rows, teamRows) {
   paint();
 
   // 折线图 + 选手列表
-  renderSchoolChart(list, rows);
-  renderSchoolPlayerList(list, rows);
+  renderSchoolChart(list, rows, studentsById);
+  renderSchoolPlayerList(list, rows, studentsById);
 }
 
 // ===== School Detail: Award Trend Chart =====
@@ -1299,7 +1299,7 @@ function buildSchoolChartData(list, allRows, type) {
   };
 }
 
-function renderSchoolChart(list, allRows) {
+function renderSchoolChart(list, allRows, studentsById) {
   var chartDom = document.getElementById("schoolChart");
   var empty = document.getElementById("schoolChartEmpty");
   var tabGroup = document.getElementById("schoolChartTabGroup");
@@ -1389,7 +1389,7 @@ function renderSchoolChart(list, allRows) {
 }
 
 // ===== School Detail: Player List =====
-function renderSchoolPlayerList(list, allRows) {
+function renderSchoolPlayerList(list, allRows, studentsById) {
   var tbody = document.getElementById("schoolPlayersBody");
   var summary = document.getElementById("schoolPlayersSummary");
   var pagination = document.getElementById("schoolPlayersPagination");
@@ -1398,26 +1398,30 @@ function renderSchoolPlayerList(list, allRows) {
   var PAGE_SIZE = 30;
 
   // 选手列表只列出该校的(strict 范围),但评级用全局 allRows 算(跨校合并)
-  var globalByName = {};
+  var maxRatingBySid = {};
   allRows.forEach(function(r) {
-    var key = String(r.name || "");
-    if (!key) return;
-    if (!globalByName[key]) globalByName[key] = { maxRating: 0 };
+    var sid = String(r.student_id || "");
+    if (!sid) return;
+    if (!maxRatingBySid[sid]) maxRatingBySid[sid] = 0;
     var rl = getRatingLevel(r, allRows);
-    if (rl > globalByName[key].maxRating) globalByName[key].maxRating = rl;
+    if (rl > maxRatingBySid[sid]) maxRatingBySid[sid] = rl;
   });
 
-  var byName = {};
-  var currentSchool = String((list[0] && list[0].school) || "");
+  var bySid = {};
   list.forEach(function(r) {
-    var key = String(r.name || "");
-    if (!key) return;
-    if (!byName[key]) {
-      byName[key] = { name: key, maxRating: (globalByName[key] && globalByName[key].maxRating) || 0 };
+    var sid = String(r.student_id || "");
+    if (!sid) return;
+    if (!bySid[sid]) {
+      var stu = (studentsById && studentsById[sid]) || null;
+      bySid[sid] = {
+        sid: sid,
+        name: stu ? stu.name : String(r.name || ""),
+        maxRating: maxRatingBySid[sid] || 0
+      };
     }
   });
 
-  var players = Object.values(byName).sort(function(a, b) {
+  var players = Object.values(bySid).sort(function(a, b) {
     if (b.maxRating !== a.maxRating) return b.maxRating - a.maxRating;
     return a.name.localeCompare(b.name, "zh-CN");
   });
@@ -1440,7 +1444,7 @@ function renderSchoolPlayerList(list, allRows) {
     tbody.innerHTML = pageItems.map(function(p, idx) {
       var rlCls = p.maxRating >= 4 ? " rl-" + p.maxRating : "rl-default";
       var rlText = p.maxRating > 0 ? p.maxRating : "-";
-      return '<tr><td>' + (start + idx + 1) + '</td><td><a class="table-link ' + rlCls + '" href="./hfoi-player-detail?name=' + encodeURIComponent(p.name) + '&school=' + encodeURIComponent(currentSchool) + '">' + escapeHtml(p.name) + '</a></td><td>' + rlText + '</td></tr>';
+      return '<tr><td>' + (start + idx + 1) + '</td><td><a class="table-link ' + rlCls + '" href="./hfoi-player-detail?sid=' + encodeURIComponent(p.sid) + '">' + escapeHtml(p.name) + '</a></td><td>' + rlText + '</td></tr>';
     }).join("");
 
     if (summary) summary.textContent = "第 " + page + " / " + totalPages + " 页 | 共 " + players.length + " 名选手";
@@ -1521,7 +1525,7 @@ async function init() {
   setActiveNav();
   try {
     var rows, teamRows, profiles;
-    var data = await Promise.all([loadResults(), loadSchoolTeams(), loadAnnouncements(), loadPlayerProfiles(), loadPlayerMerges(), loadPinyin(), loadSchoolAliases(), loadPlayerDisambiguates()]);
+    var data = await Promise.all([loadResults(), loadSchoolTeams(), loadAnnouncements(), loadPlayerProfiles(), loadPlayerMerges(), loadPinyin(), loadSchoolAliases(), loadStudents()]);
     rows = data[0];
     teamRows = data[1];
     var announcements = data[2];
@@ -1529,24 +1533,23 @@ async function init() {
     var merges = data[4];
    var pinyin = data[5];
    var aliases = data[6] || {};
-   var disambigs = data[7] || {};
+   var studentsData = data[7] || { byId: {}, list: [] };
+   var studentsById = studentsData.byId || {};
     // 应用学校别名标准化(例:"安徽省合肥市第四十五中学" -> "合肥市第四十五中学")
     if (aliases && Object.keys(aliases).length) {
       applySchoolAliases(rows, aliases);
       if (teamRows && teamRows.length) applySchoolAliases(teamRows, aliases);
     }
-    // 同名消歧(例:"李启辰" + 五十中东校 -> "李启辰(五十中东)",避免和科大附中那个合并)
-    if (disambigs && Object.keys(disambigs).length) {
-      applyPlayerDisambiguates(rows, disambigs);
-    }
    var achievements = await loadPlayerAchievements();
     await loadContestPriority();
    var page = document.body.dataset.page;
-    if (page === "home") renderHome(rows, teamRows, announcements, merges);
-    if (page === "players") renderPlayers(rows, merges, pinyin);
+    if (page === "home") renderHome(rows, teamRows, announcements, merges, studentsById);
+    if (page === "players") renderPlayers(rows, studentsById, pinyin);
     if (page === "schools") renderSchools(rows, teamRows);
     if (page === "contests") renderContests(rows);
-    if (page === "contest-detail") renderContestDetail(rows, teamRows, merges); if (page === "player-detail") renderPlayerDetail(rows, profiles, merges, achievements); if (page === "school-detail") renderSchoolDetail(rows, teamRows);
+    if (page === "contest-detail") renderContestDetail(rows, teamRows, merges, studentsById);
+    if (page === "player-detail") renderPlayerDetail(rows, profiles, merges, achievements, studentsById);
+    if (page === "school-detail") renderSchoolDetail(rows, teamRows, studentsById);
   } catch (error) {
     console.error(error);
     document.querySelectorAll("tbody").forEach(function(tbody) { renderEmpty(tbody, 10, "数据加载失败"); });

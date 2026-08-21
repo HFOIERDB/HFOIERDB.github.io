@@ -83,15 +83,19 @@
   try{
     const r=await fetch("./data/results.json");
     const d=await r.json();
-    const m=await(await fetch("./data/player_merges.json")).json();
-    const ns=new Set,ss=new Set,cs=new Set,ys=new Set;
-    d.forEach(function(e){ns.add(e.name+"__"+e.school);ss.add(e.school);cs.add(e.contest);if(e.year)ys.add(e.year);});
+    const s=await(await fetch("./data/students.json")).json();
+    const ss=new Set,cs=new Set,ys=new Set;
+    d.forEach(function(e){ss.add(e.school);cs.add(e.contest);if(e.year)ys.add(e.year);});
     document.getElementById("sEntries").textContent=d.length;
-    document.getElementById("sPlayers").textContent=ns.size;
+    document.getElementById("sPlayers").textContent=s.length;
     document.getElementById("sSchools").textContent=ss.size;
     document.getElementById("sContests").textContent=cs.size;
     document.getElementById("sYears").textContent=ys.size;
-    document.getElementById("sMerges").textContent=m.length;
+    // 跨校合并组数:按 name 聚合,同一 name 出现多个 student 即为合并组
+    var nameSids = {};
+    s.forEach(function(st){ nameSids[st.name] = (nameSids[st.name] || 0) + 1; });
+    var mergeGroups = Object.values(nameSids).filter(function(n){ return n > 1; }).length;
+    document.getElementById("sMerges").textContent=mergeGroups;
     var v=localStorage.getItem("hfoi_site_visits")||0;
     var f=localStorage.getItem("hfoi_first");
     if(!f){f=new Date().toISOString().slice(0,10);localStorage.setItem("hfoi_first",f);}
