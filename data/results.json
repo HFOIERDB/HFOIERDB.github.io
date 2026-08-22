@@ -62418,5 +62418,75 @@
     "award": "一等奖",
     "student_id": "s3132",
     "name": "许文昊"
+  },
+  {
+    "id": "r6242",
+    "school": "安徽省合肥市第四十五中学",
+    "contest": "CSP-S 2023",
+    "year": 2023,
+    "rank": 135,
+    "award": "二等奖",
+    "student_id": "s945",
+    "name": "曹博扬"
+  },
+  {
+    "id": "r6243",
+    "school": "安徽省合肥市第四十五中学",
+    "contest": "CSP-S 2023",
+    "year": 2023,
+    "rank": 135,
+    "award": "二等奖",
+    "student_id": "s949",
+    "name": "朱天翊"
+  },
+  {
+    "id": "r6244",
+    "school": "安徽省合肥市第四十五中学",
+    "contest": "CSP-S 2023",
+    "year": 2023,
+    "rank": 135,
+    "award": "二等奖",
+    "student_id": "s1337",
+    "name": "黄秋实"
+  },
+  {
+    "id": "r6245",
+    "school": "安徽省合肥市第四十五中学",
+    "contest": "CSP-S 2023",
+    "year": 2023,
+    "rank": 130,
+    "award": "二等奖",
+    "student_id": "s1335",
+    "name": "徐冬辉"
+  },
+  {
+    "id": "r6246",
+    "school": "安徽省合肥市第四十五中学",
+    "contest": "CSP-S 2023",
+    "year": 2023,
+    "rank": 125,
+    "award": "二等奖",
+    "student_id": "s1352",
+    "name": "查博涵"
+  },
+  {
+    "id": "r6247",
+    "school": "安徽省合肥市第四十五中学",
+    "contest": "CSP-S 2023",
+    "year": 2023,
+    "rank": 120,
+    "award": "二等奖",
+    "student_id": "s1445",
+    "name": "张寓恺"
+  },
+  {
+    "id": "r6248",
+    "school": "安徽省合肥市第四十五中学",
+    "contest": "CSP-S 2023",
+    "year": 2023,
+    "rank": 105,
+    "award": "二等奖",
+    "student_id": "s1345",
+    "name": "章珂语"
   }
 ]
