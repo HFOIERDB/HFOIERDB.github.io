@@ -2732,14 +2732,14 @@
 {
 "id": "s391",
 "name": "郭思辰",
-"primary_school": "",
+"primary_school": "中国科学技术大学附属中学",
 "middle_school": "中国科学技术大学附属中学",
 "high_school": ""
 },
 {
 "id": "s392",
 "name": "李佳迪",
-"primary_school": "",
+"primary_school": "合肥一六八玫瑰园学校",
 "middle_school": "合肥一六八玫瑰园学校",
 "high_school": ""
 },
@@ -2921,7 +2921,7 @@
 {
 "id": "s418",
 "name": "沈承骏",
-"primary_school": "",
+"primary_school": "中国科学技术大学附属中学",
 "middle_school": "中国科学技术大学附属中学",
 "high_school": ""
 },
@@ -2970,7 +2970,7 @@
 {
 "id": "s425",
 "name": "赵昕辰",
-"primary_school": "",
+"primary_school": "合肥一六八玫瑰园学校",
 "middle_school": "合肥一六八玫瑰园学校",
 "high_school": ""
 },
@@ -3292,7 +3292,7 @@
 {
 "id": "s471",
 "name": "李昊洋",
-"primary_school": "",
+"primary_school": "合肥工业大学附属中学",
 "middle_school": "合肥工业大学附属中学",
 "high_school": ""
 },
@@ -3460,7 +3460,7 @@
 {
 "id": "s495",
 "name": "曾子墨",
-"primary_school": "",
+"primary_school": "合肥一六八玫瑰园学校",
 "middle_school": "合肥一六八玫瑰园学校",
 "high_school": ""
 },
@@ -7283,7 +7283,7 @@
 "id": "s1041",
 "name": "焦鸿泰",
 "primary_school": "合肥市行知小学",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
@@ -7640,7 +7640,7 @@
 "id": "s1092",
 "name": "林彦谦",
 "primary_school": "合肥实验学校",
-"middle_school": "",
+"middle_school": "合肥实验学校",
 "high_school": "合肥市第一中学"
 },
 {
@@ -8227,7 +8227,7 @@
 {
 "id": "s1176",
 "name": "何泓臻",
-"primary_school": "",
+"primary_school": "中国科学技术大学附属中学",
 "middle_school": "中国科学技术大学附属中学",
 "high_school": ""
 },
@@ -8290,7 +8290,7 @@
 {
 "id": "s1185",
 "name": "梁怡墨",
-"primary_school": "",
+"primary_school": "中国科学技术大学附属中学",
 "middle_school": "中国科学技术大学附属中学",
 "high_school": ""
 },
@@ -8339,7 +8339,7 @@
 {
 "id": "s1192",
 "name": "武星睿",
-"primary_school": "",
+"primary_school": "合肥一六八玫瑰园学校",
 "middle_school": "合肥一六八玫瑰园学校",
 "high_school": ""
 },
@@ -9782,7 +9782,7 @@
 "id": "s1398",
 "name": "乐九然",
 "primary_school": "合肥安生学校",
-"middle_school": "",
+"middle_school": "合肥安生学校",
 "high_school": ""
 },
 {
@@ -9831,7 +9831,7 @@
 "id": "s1405",
 "name": "吴攸",
 "primary_school": "合肥市行知学校",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
@@ -9922,7 +9922,7 @@
 "id": "s1418",
 "name": "陶禹锟",
 "primary_school": "合肥市屯溪路小学",
-"middle_school": "",
+"middle_school": "合肥市海顿学校",
 "high_school": ""
 },
 {
@@ -10230,7 +10230,7 @@
 "id": "s1462",
 "name": "靳志诚",
 "primary_school": "合肥市行知学校",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
@@ -10342,7 +10342,7 @@
 "id": "s1478",
 "name": "蒋思宇",
 "primary_school": "合肥实验学校",
-"middle_school": "",
+"middle_school": "合肥实验学校",
 "high_school": ""
 },
 {
@@ -11014,7 +11014,7 @@
 "id": "s1574",
 "name": "庄塬",
 "primary_school": "合肥市大通路小学",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
@@ -11217,7 +11217,7 @@
 "id": "s1603",
 "name": "张雷靖",
 "primary_school": "合肥市莲花小学",
-"middle_school": "",
+"middle_school": "合肥经开实验学校",
 "high_school": ""
 },
 {
@@ -11483,7 +11483,7 @@
 "id": "s1641",
 "name": "卞子言",
 "primary_school": "合肥市建平实验小学",
-"middle_school": "",
+"middle_school": "合肥经开实验学校",
 "high_school": ""
 },
 {
@@ -12071,7 +12071,7 @@
 "id": "s1725",
 "name": "程亮",
 "primary_school": "清华附中合肥学校",
-"middle_school": "",
+"middle_school": "清华附中合肥学校",
 "high_school": ""
 },
 {
@@ -12190,7 +12190,7 @@
 "id": "s1742",
 "name": "张博明",
 "primary_school": "清华附中合肥学校",
-"middle_school": "",
+"middle_school": "清华附中合肥学校",
 "high_school": ""
 },
 {
@@ -13940,7 +13940,7 @@
 "id": "s1992",
 "name": "张家豪",
 "primary_school": "合肥经开实验学校",
-"middle_school": "",
+"middle_school": "合肥经开实验学校",
 "high_school": ""
 },
 {
@@ -13975,7 +13975,7 @@
 "id": "s1997",
 "name": "张宇涵",
 "primary_school": "合肥市莲花小学",
-"middle_school": "",
+"middle_school": "清华附中合肥学校",
 "high_school": ""
 },
 {
@@ -18315,7 +18315,7 @@
 "id": "s2617",
 "name": "汪礼诺",
 "primary_school": "清华附中合肥学校",
-"middle_school": "",
+"middle_school": "清华附中合肥学校",
 "high_school": ""
 },
 {
@@ -18679,7 +18679,7 @@
 "id": "s2669",
 "name": "张梓健",
 "primary_school": "合肥市行知学校",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
@@ -18784,7 +18784,7 @@
 "id": "s2684",
 "name": "柯金杰",
 "primary_school": "合肥市行知学校",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
@@ -18952,7 +18952,7 @@
 "id": "s2708",
 "name": "王子俊",
 "primary_school": "合肥市行知学校",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
@@ -19015,7 +19015,7 @@
 "id": "s2717",
 "name": "江骆博文",
 "primary_school": "合肥市行知学校",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
@@ -19071,7 +19071,7 @@
 "id": "s2725",
 "name": "远文豪",
 "primary_school": "合肥市行知学校",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
@@ -19113,7 +19113,7 @@
 "id": "s2731",
 "name": "许子晗",
 "primary_school": "合肥实验学校",
-"middle_school": "",
+"middle_school": "合肥实验学校",
 "high_school": ""
 },
 {
@@ -19162,7 +19162,7 @@
 "id": "s2738",
 "name": "戈远皓",
 "primary_school": "合肥市行知学校",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
@@ -19197,7 +19197,7 @@
 "id": "s2743",
 "name": "孙凌冉",
 "primary_school": "合肥市行知学校",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
@@ -20779,7 +20779,7 @@
 "id": "s2970",
 "name": "朱子轩",
 "primary_school": "合肥市行知学校",
-"middle_school": "",
+"middle_school": "合肥市行知学校",
 "high_school": ""
 },
 {
