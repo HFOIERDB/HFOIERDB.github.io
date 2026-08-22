@@ -62928,5 +62928,15 @@
     "award": "二等奖",
     "student_id": "s3219",
     "name": "汤建硕"
+  },
+  {
+    "id": "r6293",
+    "school": "合肥市第四十五中学芙蓉分校（北校区）",
+    "contest": "CSP-J 2023",
+    "year": 2023,
+    "rank": 90,
+    "award": "二等奖",
+    "student_id": "s3220",
+    "name": "徐知新"
   }
 ]
