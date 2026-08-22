@@ -63138,5 +63138,105 @@
     "award": "一等奖",
     "student_id": "s3235",
     "name": "李奕晗"
+  },
+  {
+    "id": "r6314",
+    "school": "合肥市第四十五中学森林城校区",
+    "contest": "CSP-J 2023",
+    "year": 2023,
+    "rank": null,
+    "award": "二等奖",
+    "student_id": "s3098",
+    "name": "陈昱博"
+  },
+  {
+    "id": "r6315",
+    "school": "合肥市第四十五中学森林城校区",
+    "contest": "CSP-J 2023",
+    "year": 2023,
+    "rank": null,
+    "award": "二等奖",
+    "student_id": "s2843",
+    "name": "周子峰"
+  },
+  {
+    "id": "r6316",
+    "school": "合肥五十中东校教育集团（西园校区）",
+    "contest": "CSP-J 2023",
+    "year": 2023,
+    "rank": null,
+    "award": "二等奖",
+    "student_id": "s3138",
+    "name": "杨宸逸"
+  },
+  {
+    "id": "r6317",
+    "school": "合肥市第四十五中学森林城校区",
+    "contest": "CSP-J 2023",
+    "year": 2023,
+    "rank": null,
+    "award": "二等奖",
+    "student_id": "s3186",
+    "name": "杜远泽"
+  },
+  {
+    "id": "r6318",
+    "school": "合肥市五十中学东校教育集团望江路校区",
+    "contest": "CSP-J 2023",
+    "year": 2023,
+    "rank": null,
+    "award": "二等奖",
+    "student_id": "s3093",
+    "name": "张嘉伟"
+  },
+  {
+    "id": "r6319",
+    "school": "合肥市第四十五中学森林城校区",
+    "contest": "CSP-J 2023",
+    "year": 2023,
+    "rank": null,
+    "award": "二等奖",
+    "student_id": "s3118",
+    "name": "张城瑞"
+  },
+  {
+    "id": "r6320",
+    "school": "合肥市第四十五中学森林城校区",
+    "contest": "CSP-J 2023",
+    "year": 2023,
+    "rank": null,
+    "award": "二等奖",
+    "student_id": "s3068",
+    "name": "王子豪"
+  },
+  {
+    "id": "r6321",
+    "school": "合肥市第四十五中学森林城校区",
+    "contest": "CSP-J 2023",
+    "year": 2023,
+    "rank": null,
+    "award": "二等奖",
+    "student_id": "s2827",
+    "name": "吕宣博"
+  },
+  {
+    "id": "r6322",
+    "school": "合肥市第四十五中学森林城校区",
+    "contest": "CSP-J 2023",
+    "year": 2023,
+    "rank": null,
+    "award": "二等奖",
+    "student_id": "s3084",
+    "name": "袁傲然"
+  },
+  {
+    "id": "r6323",
+    "school": "合肥少儿艺术学校当涂路校区",
+    "contest": "CSP-J 2023",
+    "year": 2023,
+    "rank": null,
+    "award": "二等奖",
+    "student_id": "s3123",
+    "name": "王梓钧"
   }
 ]
