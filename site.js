@@ -1034,17 +1034,6 @@ function renderPlayerDetail(rows, profiles, merges, achievements, studentsById) 
     return;
   }
 
-  // 显示学校信息(从 students.json)
-  var schoolInfo = document.getElementById("playerDetailSchools");
-  if (schoolInfo && stu) {
-    var parts = [];
-    if (stu.primary_school) parts.push("小学: " + stu.primary_school);
-    if (stu.middle_school) parts.push("初中: " + stu.middle_school);
-    if (stu.high_school) parts.push("高中: " + stu.high_school);
-    if (parts.length) schoolInfo.textContent = "毕业学校: " + parts.join(" / ");
-  }
-
-
   // Show player profile if available
   var profilePanel = document.getElementById("playerProfilePanel");
   if (profilePanel && profiles && profiles.length) {
