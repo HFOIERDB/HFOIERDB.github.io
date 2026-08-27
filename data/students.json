@@ -19663,17 +19663,10 @@
 "high_school": ""
 },
 {
-"id": "s2810",
-"name": "吴一鸣",
-"primary_school": "",
-"middle_school": "合肥市第四十五中学",
-"high_school": ""
-},
-{
 "id": "s2811",
 "name": "吴一鸣",
 "primary_school": "合肥市安庆路第三小学",
-"middle_school": "",
+"middle_school": "合肥市第四十五中学",
 "high_school": ""
 },
 {
@@ -19681,13 +19674,6 @@
 "name": "吴一鸣",
 "primary_school": "肥西经济开发区中心学校",
 "middle_school": "",
-"high_school": ""
-},
-{
-"id": "s2813",
-"name": "吴一鸣",
-"primary_school": "",
-"middle_school": "合肥市第四十五中学",
 "high_school": ""
 },
 {
