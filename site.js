@@ -1549,15 +1549,20 @@ async function init() {
 init();
 // Site visit counter
 try {
-  var _vc = parseInt(localStorage.getItem("hfoi_site_visits") || "0", 10) + 1;
-  localStorage.setItem("hfoi_site_visits", _vc);
   var _vf = document.querySelector(".container.footer") || document.querySelector(".footer");
   if (_vf && !_vf.querySelector(".visit-counter")) {
     var _vd = document.createElement("div");
     _vd.className = "visit-counter";
     _vd.style.cssText = "font-size:0.75rem;color:hsl(var(--muted-foreground));margin-top:4px;text-align:center";
-    _vd.textContent = "本站累计访问 " + _vc + " 次";
+    _vd.innerHTML = '本站总访问量 <span id="busuanzi_value_site_pv">…</span> 次 · 访客 <span id="busuanzi_value_site_uv">…</span> 人次';
     _vf.appendChild(_vd);
+  }
+  if (!window.__hfoiBusuanziLoaded) {
+    window.__hfoiBusuanziLoaded = true;
+    var _bs = document.createElement("script");
+    _bs.src = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+    _bs.async = true;
+    document.head.appendChild(_bs);
   }
 } catch(e) {}
 

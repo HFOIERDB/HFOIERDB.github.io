@@ -96,11 +96,7 @@
     s.forEach(function(st){ nameSids[st.name] = (nameSids[st.name] || 0) + 1; });
     var mergeGroups = Object.values(nameSids).filter(function(n){ return n > 1; }).length;
     document.getElementById("sMerges").textContent=mergeGroups;
-    var v=localStorage.getItem("hfoi_site_visits")||0;
-    var f=localStorage.getItem("hfoi_first");
-    if(!f){f=new Date().toISOString().slice(0,10);localStorage.setItem("hfoi_first",f);}
-    v=parseInt(v)+1;localStorage.setItem("hfoi_visits",v);
-    document.getElementById("visitInfo").innerHTML='<div>本站累计访问 <strong>'+v+'</strong> 次</div><div style="margin-top:4px">首次访问 '+f+'</div>';
+    document.getElementById("visitInfo").innerHTML='<div>本站总访问量 <strong id="busuanzi_value_site_pv">…</strong> 次</div><div style="margin-top:4px">访客 <span id="busuanzi_value_site_uv">…</span> 人次 · 本页访问量 <span id="busuanzi_value_page_pv">…</span> 次</div>';
   }catch(e){
     document.getElementById("statsGrid").innerHTML='<div class="stat-card" style="grid-column:1/-1;color:hsl(var(--muted-foreground))">加载统计中⋯</div>';
   }
