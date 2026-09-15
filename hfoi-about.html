@@ -39,7 +39,7 @@
   <div class="stat-card"><span class="num" id="sSchools">—</span><span class="label">学校</span></div>
   <div class="stat-card"><span class="num" id="sContests">—</span><span class="label">比赛场次</span></div>
   <div class="stat-card"><span class="num" id="sYears">—</span><span class="label">跨越年份</span></div>
-  <div class="stat-card"><span class="num" id="sMerges">—</span><span class="label">合并规则</span></div>
+  <div class="stat-card"><span class="num" id="sMerges">—</span><span class="label">已核对合并身份</span></div>
 </div></div>
 <div class="about-section panel"><h2>📋 数据来源</h2><ul>
   <li><strong>合肥市赛</strong> — 合肥市教育局公示文件/li>
@@ -61,10 +61,10 @@
   <tbody>
     <tr><td><b>0 级</b></td><td>无记录</td></tr>
     <tr><td><b>1 级</b></td><td>市赛小学组 三等奖</td></tr>
-    <tr><td><b>2 级</b></td><td>市赛小学组 二等奖 / 初中组 三等奖 / CSP-J 三等奖</td></tr>
-    <tr><td><b>3 级</b></td><td>市赛小学组 一等奖 / 初中组 二等奖 / CSP-J 二等奖 / CSP-S 三等奖</td></tr>
-    <tr><td><b>4 级</b></td><td>市赛小学组 rank≤20 / 初中组 一等奖 / CSP-J 一等奖 / CSP-S 二等奖 / NOIP 三等奖</td></tr>
-    <tr><td><b>5 级</b></td><td>市赛初中组 rank≤20 / CSP-J rank≤20 / CSP-S 一等奖 / NOIP 二等奖</td></tr>
+    <tr><td><b>2 级</b></td><td>市赛小学组 二等奖 / 初中组 三等奖 / CSP-J 三级</td></tr>
+    <tr><td><b>3 级</b></td><td>市赛小学组 一等奖 / 初中组 二等奖 / CSP-J 二级 / CSP-S 三级</td></tr>
+    <tr><td><b>4 级</b></td><td>市赛小学组 rank≤20 / 初中组 一等奖 / CSP-J 一级 / CSP-S 二级 / NOIP 三等奖</td></tr>
+    <tr><td><b>5 级</b></td><td>市赛初中组 rank≤20 / CSP-J rank≤20 / CSP-S 一级 / NOIP 二等奖</td></tr>
     <tr><td><b>6 级</b></td><td>CSP-S rank≤20 / NOIP 一等奖</td></tr>
     <tr><td><b>7 级</b></td><td>NOIP rank≤20 + 一等奖 / APIO 铜牌 / WC 铜牌</td></tr>
     <tr><td><b>8 级</b></td><td>NOI 铜牌 / 省选 B/E 队 / APIO 银牌 / WC 银牌 / </td></tr>
@@ -77,25 +77,11 @@
 <div class="panel visit-info" id="visitInfo"><div>加载中⋯</div></div>
 </main>
 <div class="container footer"><small>Made with 💖 by 北大侯老师信息学团队</small></div>
-<script src="./site.js?v=20260711a" defer></script>
+<script src="./js/identity.js?v=20260912a" defer></script>
+<script src="./site.js?v=20260912a" defer></script>
 <script>
 (async function(){
   try{
-    const r=await fetch("./data/results.json");
-    const d=await r.json();
-    const s=await(await fetch("./data/students.json")).json();
-    const ss=new Set,cs=new Set,ys=new Set;
-    d.forEach(function(e){ss.add(e.school);cs.add(e.contest);if(e.year)ys.add(e.year);});
-    document.getElementById("sEntries").textContent=d.length;
-    document.getElementById("sPlayers").textContent=s.length;
-    document.getElementById("sSchools").textContent=ss.size;
-    document.getElementById("sContests").textContent=cs.size;
-    document.getElementById("sYears").textContent=ys.size;
-    // 跨校合并组数:按 name 聚合,同一 name 出现多个 student 即为合并组
-    var nameSids = {};
-    s.forEach(function(st){ nameSids[st.name] = (nameSids[st.name] || 0) + 1; });
-    var mergeGroups = Object.values(nameSids).filter(function(n){ return n > 1; }).length;
-    document.getElementById("sMerges").textContent=mergeGroups;
     document.getElementById("visitInfo").innerHTML='<div>本站总访问量 <strong id="busuanzi_value_site_pv">…</strong> 次</div><div style="margin-top:4px">访客 <span id="busuanzi_value_site_uv">…</span> 人次 · 本页访问量 <span id="busuanzi_value_page_pv">…</span> 次</div>';
   }catch(e){
     document.getElementById("statsGrid").innerHTML='<div class="stat-card" style="grid-column:1/-1;color:hsl(var(--muted-foreground))">加载统计中⋯</div>';

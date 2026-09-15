@@ -1,0 +1,125 @@
+{
+  "generatedAt": "2026-09-12T10:36:42.970Z",
+  "automaticMerges": [
+    {
+      "name": "吴浩天",
+      "from": "s3214",
+      "to": "s504",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "郑堉和",
+      "from": "s3200",
+      "to": "s974",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "汤建硕",
+      "from": "s3219",
+      "to": "s983",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "陈奕玮",
+      "from": "s3211",
+      "to": "s1076",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "唐城泺",
+      "from": "s3222",
+      "to": "s1359",
+      "sharedSchools": [
+        "合肥市第四十八中学"
+      ]
+    },
+    {
+      "name": "乔凯",
+      "from": "s3203",
+      "to": "s1365",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "张添瑜",
+      "from": "s3202",
+      "to": "s1395",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "李悦成",
+      "from": "s3218",
+      "to": "s1400",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "周开洋",
+      "from": "s3205",
+      "to": "s1441",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "黄中阳",
+      "from": "s3213",
+      "to": "s1455",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "杨小希",
+      "from": "s3206",
+      "to": "s1471",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "顾展纶",
+      "from": "s3204",
+      "to": "s1537",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "张东岳",
+      "from": "s3209",
+      "to": "s1538",
+      "sharedSchools": [
+        "合肥市第四十五中学"
+      ]
+    },
+    {
+      "name": "李慕然",
+      "from": "s2899",
+      "to": "s2898",
+      "sharedSchools": [
+        "合肥市五十中学东校"
+      ]
+    },
+    {
+      "name": "范智阳",
+      "from": "s2934",
+      "to": "s2932",
+      "sharedSchools": [
+        "合肥市第四十五中学芙蓉分校南校区"
+      ]
+    }
+  ]
+}

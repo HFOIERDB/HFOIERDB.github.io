@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>身份核对 · HFOI</title><link rel="stylesheet" href="/identity-admin.css"><script src="/identity-admin.js" defer></script></head>
+<body>
+<header><a href="/index.html">HFOI</a><strong>学生身份核对</strong><span>本机维护</span><button id="refresh">刷新数据</button></header>
+<main>
+  <div class="intro"><div><h1>核对同名，保留每一段经历</h1><p>先对照比赛和学校，再决定是否属于同一人。保存后写入本地项目，发布网站后才会对外生效。</p></div><div id="counts"></div></div>
+  <p id="status" role="status" aria-live="polite">正在加载…</p>
+  <div class="workspace">
+    <aside><h2>待核对同名</h2><label for="candidateSearch">搜索候选姓名</label><input id="candidateSearch" placeholder="输入姓名"><div id="candidates"></div></aside>
+    <section class="review">
+      <div class="compare"><section><h2>A · 原学生</h2><label for="searchA">按姓名、学校或 ID 查找</label><input id="searchA" placeholder="查找学生"><label for="personA">选择原学生</label><select id="personA"></select><div id="summaryA"></div></section><section><h2>B · 对照 / 目标学生</h2><label for="searchB">按姓名、学校或 ID 查找</label><input id="searchB" placeholder="查找学生"><label for="personB">选择目标学生</label><select id="personB"></select><div id="summaryB"></div></section></div>
+      <div class="actions"><h2>核对决定</h2><label for="reason">核对依据（必填，随操作历史保存）</label><textarea id="reason" rows="2" placeholder="例如：已核对公示来源及升学年份，确认两条身份属于同一人。"></textarea><div class="buttons"><button id="merge" class="primary">将 A 合并到 B</button><button id="distinct">确认 A、B 是不同人</button></div><p>合并保留 B 的姓名与展示学校；A 的成绩、账号和成就汇入 B，原始参赛学校保持不变。</p><div class="move"><label for="newName">拆分为新学生时填写姓名</label><input id="newName" placeholder="新学生姓名"><div class="buttons"><button id="split">将勾选成绩拆成新学生</button><button id="move">将勾选成绩转给 B</button></div></div><p id="selection">在 A 的时间线中勾选需要调整的成绩。</p></div>
+      <div class="compare timelines"><section><h2>A 的比赛时间线</h2><div id="recordsA"></div></section><section><h2>B 的比赛时间线</h2><div id="recordsB"></div></section></div>
+    </section>
+  </div>
+  <section class="history"><h2>操作历史</h2><p>按最近操作逐步撤销；历史记录会保留。撤销合并会恢复原来的身份和成绩归属。</p><button id="undo">撤销最近一条生效操作</button><div id="history"></div><details><summary>已确认不同人的记录</summary><div id="decisions"></div></details></section>
+</main>
+<dialog id="confirm"><h2>确认本次调整</h2><p id="confirmText"></p><p id="confirmReason"></p><div class="buttons"><button id="cancel">返回核对</button><button id="save" class="primary">确认保存到项目</button></div></dialog>
+</body></html>
