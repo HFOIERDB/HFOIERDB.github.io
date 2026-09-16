@@ -63578,5 +63578,115 @@
     "award": "二级",
     "student_id": "s1055",
     "name": "王明泽"
+  },
+  {
+    "id": "r7299",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-J 2025",
+    "year": 2025,
+    "rank": 156,
+    "award": "一级",
+    "student_id": "s784",
+    "name": "林琬晴"
+  },
+  {
+    "id": "r7300",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-J 2025",
+    "year": 2025,
+    "rank": 157,
+    "award": "一级",
+    "student_id": "s438",
+    "name": "方浩明"
+  },
+  {
+    "id": "r7301",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-J 2025",
+    "year": 2025,
+    "rank": 158,
+    "award": "一级",
+    "student_id": "s478",
+    "name": "琚泽然"
+  },
+  {
+    "id": "r7302",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-J 2025",
+    "year": 2025,
+    "rank": 159,
+    "award": "一级",
+    "student_id": "s1055",
+    "name": "王明泽"
+  },
+  {
+    "id": "r7303",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-J 2025",
+    "year": 2025,
+    "rank": 160,
+    "award": "一级",
+    "student_id": "s766",
+    "name": "郑梓谦"
+  },
+  {
+    "id": "r7304",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-J 2025",
+    "year": 2025,
+    "rank": 161,
+    "award": "一级",
+    "student_id": "s415",
+    "name": "李施嘉辰"
+  },
+  {
+    "id": "r7305",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-J 2025",
+    "year": 2025,
+    "rank": 162,
+    "award": "一级",
+    "student_id": "s508",
+    "name": "程梓侨"
+  },
+  {
+    "id": "r7306",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-J 2025",
+    "year": 2025,
+    "rank": 163,
+    "award": "一级",
+    "student_id": "s773",
+    "name": "张宸汉"
+  },
+  {
+    "id": "r7307",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-J 2025",
+    "year": 2025,
+    "rank": 164,
+    "award": "一级",
+    "student_id": "s452",
+    "name": "刘宸屹"
+  },
+  {
+    "id": "r7308",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-J 2025",
+    "year": 2025,
+    "rank": 165,
+    "award": "一级",
+    "student_id": "s993",
+    "name": "汪逸阳"
+  },
+  {
+    "id": "r7309",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-J 2025",
+    "year": 2025,
+    "rank": 166,
+    "award": "一级",
+    "student_id": "s707",
+    "name": "杜泽宇"
   }
 ]
