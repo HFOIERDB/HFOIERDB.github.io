@@ -985,7 +985,7 @@ function renderContestDetail(rows, teamRows, studentsById) {
   switchTab("players");
 }
 // ===== Player Detail =====
-function renderPlayerDetail(rows, profiles, achievements, studentsById, identityAliases) {
+function renderPlayerDetail(rows, profiles, studentsById, identityAliases) {
   var title = document.getElementById("playerDetailTitle");
   var summary = document.getElementById("playerDetailSummary");
   var tbody = document.getElementById("playerDetailBody");
@@ -1049,33 +1049,6 @@ function renderPlayerDetail(rows, profiles, achievements, studentsById, identity
       if (node) node.innerHTML = accounts.map(function(account) { return '<a class="table-link" href="' + config[2] + encodeURIComponent(account) + '" target="_blank" rel="noopener">' + escapeHtml(account) + '</a>'; }).join(' / ') || '-';
     });
     profilePanel.style.display = matchingProfiles.length ? "" : "none";
-  }
-
-  // Tab switching
-  var tabGroup2 = document.getElementById("playerDetailTabGroup");
-  var recordsPanel = document.getElementById("playerRecordsPanel");
-  var achPanel2 = document.getElementById("playerAchievementPanel");
-  var achievementBody = document.getElementById('playerAchievementBody');
-  var playerAchievements = achievements[sid] || [];
-  if (achievementBody) achievementBody.innerHTML = playerAchievements.map(function(value) { return '<div class="achievement-card">' + escapeHtml(value) + '</div>'; }).join('');
-  if (achPanel2 && !tabGroup2) achPanel2.style.display = playerAchievements.length ? '' : 'none';
-  if (tabGroup2) {
-    tabGroup2.querySelectorAll(".tab-btn").forEach(function(btn) {
-      btn.addEventListener("click", function() {
-        tabGroup2.querySelectorAll(".tab-btn").forEach(function(b) { b.classList.remove("active"); });
-        btn.classList.add("active");
-        var tab = btn.getAttribute("data-tab");
-        if (recordsPanel) recordsPanel.style.display = tab === "records" ? "" : "none";
-        if (achPanel2) achPanel2.style.display = tab === "achievements" ? "" : "none";
-        if (tab === "achievements" && achPanel2 && achievements) {
-          var body2 = document.getElementById("playerAchievementBody");
-          if (body2) {
-            var playerAch = achievements[sid] || [];
-            body2.innerHTML = playerAch.length ? '<div class="achievement-grid">' + playerAch.map(function(x) { return '<div class="achievement-card">' + escapeHtml(x) + '</div>'; }).join("") + '</div>' : "<p>暂无成就</p>";
-          }
-        }
-      });
-    });
   }
 
   list.sort(function(a, b) {
@@ -1495,14 +1468,6 @@ async function loadContestPriority() {
   } catch(e) {}
 }
 
-async function loadPlayerAchievements() {
-  try {
-    const r = await fetch("./data/player_achievements.json?v=" + 1749177600000);
-    if (!r.ok) return {};
-    return await r.json();
-  } catch { return {}; }
-}
-
 async function init() {
   setActiveNav();
   try {
@@ -1525,10 +1490,8 @@ async function init() {
       applySchoolAliases(rows, aliases);
       if (teamRows && teamRows.length) applySchoolAliases(teamRows, aliases);
     }
-   var achievements = await loadPlayerAchievements();
-   var identityMetadata = HFOIIdentity.metadata(identityView, profiles, achievements);
+   var identityMetadata = HFOIIdentity.metadata(identityView, profiles, {});
    profiles = identityMetadata.profiles;
-   achievements = identityMetadata.achievements;
     await loadContestPriority();
    var page = document.body.dataset.page;
     if (page === "home") renderHome(rows, teamRows, announcements, studentsById);
@@ -1536,7 +1499,7 @@ async function init() {
     if (page === "schools") renderSchools(rows, teamRows);
     if (page === "contests") renderContests(rows);
     if (page === "contest-detail") renderContestDetail(rows, teamRows, studentsById);
-    if (page === "player-detail") renderPlayerDetail(rows, profiles, achievements, studentsById, identityView.aliases);
+    if (page === "player-detail") renderPlayerDetail(rows, profiles, studentsById, identityView.aliases);
     if (page === "school-detail") renderSchoolDetail(rows, teamRows, studentsById);
     if (page === "about") {
       var values = { sEntries: rows.length, sPlayers: identityView.students.length, sSchools: new Set(rows.map(function(r) { return r.school; })).size, sContests: new Set(rows.map(contestNameOf)).size, sYears: new Set(rows.map(function(r) { return r.year; }).filter(Boolean)).size, sMerges: identityView.students.filter(function(p) { return p.member_ids.length > 1; }).length };
