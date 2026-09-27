@@ -746,7 +746,7 @@ th.sort-desc::after { content: " ▼"; font-size: 0.7em; }
 }
 .player-chart {
   width: 100%;
-  height: 280px;
+  height: 340px;
   margin-top: 0.25rem;
 }
 .chart-note {
@@ -771,7 +771,7 @@ th.sort-desc::after { content: " ▼"; font-size: 0.7em; }
 }
 @media (max-width: 768px) {
   .school-chart { height: 300px; }
-  .player-chart { height: 240px; }
+  .player-chart { height: 300px; }
   .rank-header { flex-direction: column; align-items: flex-start; }
   .rank-header .tab-group { justify-content: flex-start; }
 }

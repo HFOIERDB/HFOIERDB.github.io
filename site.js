@@ -1096,8 +1096,7 @@ function renderPlayerAwardChart(list) {
   var panel = document.getElementById("playerAwardChartPanel");
   var chartDom = document.getElementById("playerAwardChart");
   var empty = document.getElementById("playerAwardChartEmpty");
-  var tabGroup = document.getElementById("playerAwardChartTabGroup");
-  if (!panel || !chartDom || !tabGroup) return;
+  if (!panel || !chartDom) return;
 
   var allTypes = ["市赛小学组", "市赛初中组", "CSP-S", "CSP-J", "NOIP", "NOI", "APIO", "WC", "省选"];
   var availableTypes = allTypes.filter(function(type) {
@@ -1106,9 +1105,24 @@ function renderPlayerAwardChart(list) {
   if (!availableTypes.length) return;
 
   panel.style.display = "";
-  tabGroup.innerHTML = availableTypes.map(function(type, index) {
-    return '<button class="tab-btn' + (index === 0 ? ' active' : '') + '" data-type="' + type + '">' + type + '</button>';
-  }).join("");
+  var colors = ["#4f46e5", "#0891b2", "#dc2626", "#ea580c", "#16a34a", "#ca8a04", "#9333ea", "#db2777", "#475569"];
+  var byType = {};
+  var yearSet = new Set();
+  availableTypes.forEach(function(type) {
+    var byYear = {};
+    list.forEach(function(row) {
+      if (classifyContestType(row.contest) !== type) return;
+      var year = Number(row.year || 0);
+      var medal = getMedalLevel(row.award, type);
+      var level = medal === "gold" ? 1 : medal === "silver" ? 2 : medal === "bronze" ? 3 : 0;
+      if (!year || !level) return;
+      yearSet.add(year);
+      if (!byYear[year] || level < byYear[year].level) byYear[year] = { level: level, records: [row] };
+      else if (level === byYear[year].level) byYear[year].records.push(row);
+    });
+    byType[type] = byYear;
+  });
+  var years = Array.from(yearSet).sort(function(a, b) { return a - b; });
 
   var tries = 0;
   function start() {
@@ -1122,56 +1136,46 @@ function renderPlayerAwardChart(list) {
     }
     if (empty) empty.style.display = "none";
     var chart = echarts.init(chartDom);
-    function paint(type) {
-      var byYear = {};
-      list.forEach(function(row) {
-        if (classifyContestType(row.contest) !== type) return;
-        var year = Number(row.year || 0);
-        var medal = getMedalLevel(row.award, type);
-        var level = medal === "gold" ? 1 : medal === "silver" ? 2 : medal === "bronze" ? 3 : 0;
-        if (!year || !level) return;
-        if (!byYear[year] || level < byYear[year].level) byYear[year] = { level: level, records: [row] };
-        else if (level === byYear[year].level) byYear[year].records.push(row);
-      });
-      var years = Object.keys(byYear).map(Number).sort(function(a, b) { return a - b; });
-      var labels = type === "NOI" || type === "APIO" || type === "WC"
-        ? { 1: "金牌", 2: "银牌", 3: "铜牌" }
-        : type === "CSP-J" || type === "CSP-S"
-          ? { 1: "一级", 2: "二级", 3: "三级" }
-          : { 1: "一等奖", 2: "二等奖", 3: "三等奖" };
-      chart.setOption({
-        tooltip: {
-          trigger: "axis",
-          formatter: function(params) {
-            var year = params[0].axisValue;
-            var item = byYear[year];
-            var details = item.records.map(function(row) { return escapeHtml(row.contest + " · " + row.award); }).join("<br>");
-            return year + "<br><b>最高奖项：" + labels[item.level] + "</b><br>" + details;
-          }
-        },
-        grid: { left: 70, right: 28, top: 28, bottom: 38 },
-        xAxis: { type: "category", boundaryGap: false, data: years },
-        yAxis: {
-          type: "value", min: 1, max: 3, interval: 1, inverse: true,
-          axisLabel: { formatter: function(value) { return labels[value] || ""; } },
-          splitLine: { lineStyle: { color: "#e5e7eb" } }
-        },
-        series: [{
-          name: "年度最高奖项", type: "line", data: years.map(function(year) { return byYear[year].level; }),
-          symbol: "circle", symbolSize: 10, smooth: false,
-          lineStyle: { color: "#4f46e5", width: 3 },
-          itemStyle: { color: "#4f46e5", borderColor: "#fff", borderWidth: 2 }
-        }]
-      }, true);
-    }
-    tabGroup.querySelectorAll(".tab-btn").forEach(function(button) {
-      button.addEventListener("click", function() {
-        tabGroup.querySelectorAll(".tab-btn").forEach(function(item) { item.classList.remove("active"); });
-        button.classList.add("active");
-        paint(button.getAttribute("data-type"));
-      });
+    var levelLabels = { 1: "一级/一等奖/金牌", 2: "二级/二等奖/银牌", 3: "三级/三等奖/铜牌" };
+    chart.setOption({
+      color: colors,
+      tooltip: {
+        trigger: "axis",
+        formatter: function(params) {
+          var year = params[0].axisValue;
+          var lines = [year];
+          params.forEach(function(param) {
+            var item = byType[param.seriesName][year];
+            if (!item) return;
+            var details = item.records.map(function(row) { return escapeHtml(row.award); }).join("、");
+            lines.push(param.marker + escapeHtml(param.seriesName) + "：" + details);
+          });
+          return lines.join("<br>");
+        }
+      },
+      legend: { type: "scroll", data: availableTypes, top: 0, left: 10, right: 10 },
+      grid: { left: 125, right: 28, top: 55, bottom: 38 },
+      xAxis: { type: "category", boundaryGap: false, data: years },
+      yAxis: {
+        type: "value", min: 1, max: 3, interval: 1, inverse: true,
+        axisLabel: { formatter: function(value) { return levelLabels[value] || ""; } },
+        splitLine: { lineStyle: { color: "#e5e7eb" } }
+      },
+      series: availableTypes.map(function(type, index) {
+        return {
+          name: type,
+          type: "line",
+          data: years.map(function(year) { return byType[type][year] ? byType[type][year].level : null; }),
+          connectNulls: true,
+          symbol: "circle",
+          symbolSize: 9,
+          smooth: false,
+          lineStyle: { color: colors[index], width: 3 },
+          itemStyle: { color: colors[index], borderColor: "#fff", borderWidth: 2 },
+          emphasis: { focus: "series" }
+        };
+      })
     });
-    paint(availableTypes[0]);
     window.addEventListener("resize", function() { chart.resize(); });
   }
   start();
