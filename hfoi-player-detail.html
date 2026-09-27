@@ -43,6 +43,13 @@
         </div>
       </section>
 
+      <section class="panel" id="playerAwardChartPanel" style="display:none">
+        <h2>奖项变化</h2>
+        <p class="chart-note">按每年最高奖项统计</p>
+        <div id="playerAwardChart" class="player-chart"></div>
+        <div class="chart-empty" id="playerAwardChartEmpty" style="display:none">暂无可展示的奖项记录</div>
+      </section>
+
       <section class="panel" id="playerRecordsPanel">
         <div class="summary" id="playerDetailSummary">加载中...</div>
         <div class="table-wrap">
@@ -65,6 +72,7 @@
       <small>Made with 💖 by 侯梦信息学</small>
     </footer>
 
+    <script src="./vendor/echarts.min.js" defer></script>
     <script src="./js/identity.js?v=20260912a" defer></script>
 <script src="./site.js?v=20260912a" defer></script>
   </body>

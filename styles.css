@@ -744,6 +744,16 @@ th.sort-desc::after { content: " ▼"; font-size: 0.7em; }
   height: 420px;
   margin-top: 0.5rem;
 }
+.player-chart {
+  width: 100%;
+  height: 280px;
+  margin-top: 0.25rem;
+}
+.chart-note {
+  margin: -0.25rem 0 0.5rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.85rem;
+}
 .chart-empty {
   text-align: center;
   color: hsl(var(--muted-foreground));
@@ -761,6 +771,7 @@ th.sort-desc::after { content: " ▼"; font-size: 0.7em; }
 }
 @media (max-width: 768px) {
   .school-chart { height: 300px; }
+  .player-chart { height: 240px; }
   .rank-header { flex-direction: column; align-items: flex-start; }
   .rank-header .tab-group { justify-content: flex-start; }
 }

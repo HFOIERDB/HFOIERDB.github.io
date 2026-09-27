@@ -1039,6 +1039,8 @@ function renderPlayerDetail(rows, profiles, studentsById, identityAliases) {
     return;
   }
 
+  renderPlayerAwardChart(list);
+
   // Show player profile if available
   var profilePanel = document.getElementById("playerProfilePanel");
   if (profilePanel && profiles && profiles.length) {
@@ -1087,6 +1089,67 @@ function renderPlayerDetail(rows, profiles, studentsById, identityAliases) {
     return '<tr><td>' + contestLink + '</td><td><a class="table-link" href="./hfoi-school-detail?school=' + encodeURIComponent(row.school) + '">' + escapeHtml(row.school) + '</a></td><td>' + escapeHtml(row.award) + '</td><td>' + escapeHtml(row.rank) + '</td><td>+' + sc + '</td></tr>';
   }).join("");
   summary.textContent = "共 " + list.length + " 条记录";
+}
+
+// ===== Player Detail: Best Award Trend Chart =====
+function renderPlayerAwardChart(list) {
+  var panel = document.getElementById("playerAwardChartPanel");
+  var chartDom = document.getElementById("playerAwardChart");
+  var empty = document.getElementById("playerAwardChartEmpty");
+  if (!panel || !chartDom) return;
+
+  var byYear = {};
+  list.forEach(function(row) {
+    var year = Number(row.year || 0);
+    var level = getAwardLevel(row.award);
+    if (!year || !level) return;
+    if (!byYear[year] || level < byYear[year].level) byYear[year] = { level: level, records: [row] };
+    else if (level === byYear[year].level) byYear[year].records.push(row);
+  });
+  var years = Object.keys(byYear).map(Number).sort(function(a, b) { return a - b; });
+  if (!years.length) return;
+
+  panel.style.display = "";
+  var labels = { 1: "一级", 2: "二级", 3: "三级" };
+  var tries = 0;
+  function start() {
+    if (typeof echarts === "undefined") {
+      if (++tries < 50) return setTimeout(start, 100);
+      if (empty) {
+        empty.textContent = "图表库加载失败";
+        empty.style.display = "";
+      }
+      return;
+    }
+    if (empty) empty.style.display = "none";
+    var chart = echarts.init(chartDom);
+    chart.setOption({
+      tooltip: {
+        trigger: "axis",
+        formatter: function(params) {
+          var year = params[0].axisValue;
+          var item = byYear[year];
+          var details = item.records.map(function(row) { return escapeHtml(row.contest + " · " + row.award); }).join("<br>");
+          return year + "<br><b>最高奖项：" + labels[item.level] + "</b><br>" + details;
+        }
+      },
+      grid: { left: 55, right: 28, top: 28, bottom: 38 },
+      xAxis: { type: "category", boundaryGap: false, data: years },
+      yAxis: {
+        type: "value", min: 1, max: 3, interval: 1, inverse: true,
+        axisLabel: { formatter: function(value) { return labels[value] || ""; } },
+        splitLine: { lineStyle: { color: "#e5e7eb" } }
+      },
+      series: [{
+        name: "年度最高奖项", type: "line", data: years.map(function(year) { return byYear[year].level; }),
+        symbol: "circle", symbolSize: 10, smooth: false,
+        lineStyle: { color: "#4f46e5", width: 3 },
+        itemStyle: { color: "#4f46e5", borderColor: "#fff", borderWidth: 2 }
+      }]
+    });
+    window.addEventListener("resize", function() { chart.resize(); });
+  }
+  start();
 }
 // ===== School Detail =====
 function renderSchoolDetail(rows, teamRows, studentsById) {
