@@ -947,26 +947,48 @@ function renderContestDetail(rows, teamRows, studentsById) {
       else if (level === 3) individualBySchool[school].third.add(studentKey);
     });
 
-    // Build school list directly from filtered team rows (PDF data)
-    var schoolList = [];
+    // Combine schools from team awards and individual results. A school can appear
+    // here even when it did not receive a team award.
+    var schoolsByName = {};
     filteredTeams.forEach(function(tr) {
       var s = String(tr.school || "");
       if (!s) return;
-      var individual = individualBySchool[s] || { first: new Set(), second: new Set(), third: new Set() };
-      schoolList.push({
+      schoolsByName[s] = {
         school: s,
         teamFirst: Number(tr.teamFirst || 0),
         teamSecond: Number(tr.teamSecond || 0),
         teamThird: Number(tr.teamThird || 0),
-        individualFirst: individual.first.size,
-        individualSecond: individual.second.size,
-        individualThird: individual.third.size,
+        individualFirst: 0,
+        individualSecond: 0,
+        individualThird: 0,
         pos: Number(tr.pos || 999)
-      });
+      };
     });
 
+    Object.keys(individualBySchool).forEach(function(s) {
+      var individual = individualBySchool[s];
+      if (!schoolsByName[s]) {
+        schoolsByName[s] = {
+          school: s,
+          teamFirst: 0,
+          teamSecond: 0,
+          teamThird: 0,
+          pos: 999
+        };
+      }
+      schoolsByName[s].individualFirst = individual.first.size;
+      schoolsByName[s].individualSecond = individual.second.size;
+      schoolsByName[s].individualThird = individual.third.size;
+    });
+
+    var schoolList = Object.keys(schoolsByName).map(function(s) { return schoolsByName[s]; });
+
     schoolList.sort(function(a, b) {
-      return (a.pos || 999) - (b.pos || 999);
+      var posDiff = (a.pos || 999) - (b.pos || 999);
+      if (posDiff) return posDiff;
+      var aTotal = a.individualFirst + a.individualSecond + a.individualThird;
+      var bTotal = b.individualFirst + b.individualSecond + b.individualThird;
+      return bTotal - aTotal || a.school.localeCompare(b.school, "zh-CN");
     });
 
     var keyword = normalize(searchInput && searchInput.value);
