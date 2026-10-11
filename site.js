@@ -933,16 +933,34 @@ function renderContestDetail(rows, teamRows, studentsById) {
       });
     }
 
+    // Count distinct individual winners by school and award level.
+    var individualBySchool = {};
+    list.forEach(function(row) {
+      var school = String(row.school || "");
+      var level = getAwardLevel(row.award);
+      if (!school || !level) return;
+      if (!individualBySchool[school]) individualBySchool[school] = { first: new Set(), second: new Set(), third: new Set() };
+      var studentKey = String(row.student_id || row.name || row.id || "");
+      if (!studentKey) return;
+      if (level === 1) individualBySchool[school].first.add(studentKey);
+      else if (level === 2) individualBySchool[school].second.add(studentKey);
+      else if (level === 3) individualBySchool[school].third.add(studentKey);
+    });
+
     // Build school list directly from filtered team rows (PDF data)
     var schoolList = [];
     filteredTeams.forEach(function(tr) {
       var s = String(tr.school || "");
       if (!s) return;
+      var individual = individualBySchool[s] || { first: new Set(), second: new Set(), third: new Set() };
       schoolList.push({
         school: s,
         teamFirst: Number(tr.teamFirst || 0),
         teamSecond: Number(tr.teamSecond || 0),
         teamThird: Number(tr.teamThird || 0),
+        individualFirst: individual.first.size,
+        individualSecond: individual.second.size,
+        individualThird: individual.third.size,
         pos: Number(tr.pos || 999)
       });
     });
@@ -962,13 +980,13 @@ function renderContestDetail(rows, teamRows, studentsById) {
     }) : schoolList;
 
     if (visibleSchools.length === 0) {
-      renderEmpty(schoolTbody, 5, "暂无学校数据");
+      renderEmpty(schoolTbody, 8, "暂无学校数据");
       schoolSummary.textContent = keyword ? "未找到匹配的学生或学校" : "共 0 所学校";
       return;
     }
 
     schoolTbody.innerHTML = visibleSchools.map(function(s, idx) {
-      return '<tr><td>' + (idx + 1) + '</td><td><a class=\"table-link\" href=\"./hfoi-school-detail?school=' + encodeURIComponent(s.school) + '\">' + escapeHtml(s.school) + '</a></td><td>' + s.teamFirst + '</td><td>' + s.teamSecond + '</td><td>' + s.teamThird + '</td></tr>';
+      return '<tr><td>' + (idx + 1) + '</td><td><a class=\"table-link\" href=\"./hfoi-school-detail?school=' + encodeURIComponent(s.school) + '\">' + escapeHtml(s.school) + '</a></td><td>' + s.teamFirst + '</td><td>' + s.teamSecond + '</td><td>' + s.teamThird + '</td><td>' + s.individualFirst + '</td><td>' + s.individualSecond + '</td><td>' + s.individualThird + '</td></tr>';
     }).join("");
     schoolSummary.textContent = keyword ? "找到 " + visibleSchools.length + " 所，共 " + schoolList.length + " 所学校" : "共 " + schoolList.length + " 所学校";
   }  // ===== Tab Switching =====
