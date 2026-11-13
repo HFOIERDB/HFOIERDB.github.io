@@ -583,7 +583,9 @@ function renderPlayers(rows, studentsById, pinyin) {
     }
     tbody.innerHTML = pageItems.map(function(row, idx) {
       var rank = start + idx + 1;
-      var rl1 = row.rating >= 4 ? " rl-" + row.rating : " rl-default";
+      var rl1 = currentLevel === "all"
+        ? (row.rating >= 4 ? " rl-" + row.rating : " rl-default")
+        : " stage-rating-" + Math.max(1, Math.min(5, row.rating || 1));
       return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link" + rl1 + "\" href=\"./hfoi-player-detail?sid=" + encodeURIComponent(row.sid) + "\">" + escapeHtml(row.name) + "</a></td><td><a class=\"table-link\" href=\"./hfoi-school-detail?school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.school) + "</a></td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td><td>" + String(row.rating || 0) + "</td><td>" + (Math.max(0,row.score)||0) + "</td></tr>";
     }).join("");
     summary.textContent = "第 " + page + " / " + totalPages + " 页 | 共 " + list.length + " 名选手";
