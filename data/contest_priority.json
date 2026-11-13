@@ -4,91 +4,95 @@
     "priority": 98
   },
   {
-    "pattern": "NOI 2026（含夏令营）",
+    "pattern": "CSP-J 2026",
     "priority": 99
   },
   {
-    "pattern": "APIO 2026 中国区",
+    "pattern": "NOI 2026（含夏令营）",
     "priority": 100
   },
   {
-    "pattern": "NOI2026安徽省选（前 25 的合肥选手）",
+    "pattern": "APIO 2026 中国区",
     "priority": 101
   },
   {
-    "pattern": "WC2026",
+    "pattern": "NOI2026安徽省选（前 25 的合肥选手）",
     "priority": 102
   },
   {
-    "pattern": "NOIP 2025",
-    "priority": 104
+    "pattern": "WC2026",
+    "priority": 103
   },
   {
-    "pattern": "CSP-S 2025",
+    "pattern": "NOIP 2025",
     "priority": 105
   },
   {
-    "pattern": "CSP-J 2025",
+    "pattern": "CSP-S 2025",
     "priority": 106
   },
   {
-    "pattern": "NOI 2025（含夏令营）",
+    "pattern": "CSP-J 2025",
     "priority": 107
   },
   {
-    "pattern": "APIO 2025",
+    "pattern": "NOI 2025（含夏令营）",
     "priority": 108
   },
   {
-    "pattern": "NOI 2025 安徽省选（前 25 的合肥选手）",
+    "pattern": "APIO 2025",
     "priority": 109
   },
   {
-    "pattern": "WC2025",
+    "pattern": "NOI 2025 安徽省选（前 25 的合肥选手）",
     "priority": 110
   },
   {
-    "pattern": "NOIP 2024",
+    "pattern": "WC2025",
     "priority": 111
   },
   {
-    "pattern": "CSP-S 2024",
+    "pattern": "NOIP 2024",
     "priority": 112
   },
   {
-    "pattern": "CSP-J 2024",
+    "pattern": "CSP-S 2024",
     "priority": 113
   },
   {
-    "pattern": "NOI 2024（含夏令营）",
+    "pattern": "CSP-J 2024",
     "priority": 114
   },
   {
-    "pattern": "APIO 2024",
+    "pattern": "NOI 2024（含夏令营）",
     "priority": 115
   },
   {
-    "pattern": "NOI 2024 安徽省选（前 25 的合肥选手）",
+    "pattern": "APIO 2024",
     "priority": 116
   },
   {
-    "pattern": "WC2024",
+    "pattern": "NOI 2024 安徽省选（前 25 的合肥选手）",
     "priority": 117
   },
   {
-    "pattern": "NOIP 2023",
+    "pattern": "WC2024",
     "priority": 118
   },
   {
-    "pattern": "CSP-S 2023",
+    "pattern": "NOIP 2023",
     "priority": 119
   },
   {
-    "pattern": "CSP-J 2023",
+    "pattern": "CSP-S 2023",
     "priority": 120
   },
   {
-    "pattern": "NOI 2023（含夏令营）",
+    "pattern": "CSP-J 2023",
     "priority": 121
+  },
+  {
+    "pattern": "NOI 2023（含夏令营）",
+    "priority": 122
   }
 ]
