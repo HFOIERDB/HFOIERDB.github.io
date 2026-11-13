@@ -225,9 +225,11 @@ async function loadStudents() {
 }
 
 // 给定一个学生对象,挑一个最"代表性"的学校作为选手列表里的显示用(优先 high > middle > primary)
-function pickDisplaySchool(stu) {
+function pickDisplaySchool(stu, level, fallbackSchool) {
   if (!stu) return "";
-  return stu.high_school || stu.middle_school || stu.primary_school || stu.display_school || "";
+  if (level === "primary") return stu.primary_school || fallbackSchool || "";
+  if (level === "middle") return stu.middle_school || fallbackSchool || "";
+  return stu.high_school || stu.middle_school || stu.primary_school || stu.display_school || fallbackSchool || "";
 }
 
 function buildPlayerStats(rows, studentsById, level) {
@@ -252,7 +254,7 @@ function buildPlayerStats(rows, studentsById, level) {
       map.set(sid, {
         sid: sid,
         name: stu.name,
-        school: pickDisplaySchool(stu),
+        school: pickDisplaySchool(stu, level, row.school),
         primary_school: stu.primary_school || "",
         middle_school: stu.middle_school || "",
         high_school: stu.high_school || "",
@@ -261,7 +263,7 @@ function buildPlayerStats(rows, studentsById, level) {
       });
     }
     const item = map.get(sid);
-    // Compute rating from ALL records including CCF
+    // level=primary/middle 时，前面的过滤保证姓名颜色使用对应学段评级。
     const rlv = getRatingLevel(row, rows);
     if (rlv > item.rating) item.rating = rlv;
 
@@ -549,7 +551,10 @@ function renderPlayers(rows, studentsById, pinyin) {
     stats.forEach(function(item) {
       var stu = (studentsById && studentsById[item.sid]) || {};
       var parts = searchPartsBySid[item.sid] || [];
-      parts.push(item.name, item.school, stu.primary_school || "", stu.middle_school || "", stu.high_school || "");
+      parts.push(item.name, item.school);
+      if (level === "primary") parts.push(stu.primary_school || "");
+      else if (level === "middle") parts.push(stu.middle_school || "");
+      else parts.push(stu.primary_school || "", stu.middle_school || "", stu.high_school || "");
       if (pinyin && pinyin[item.name]) parts.push(pinyin[item.name].full || "", pinyin[item.name].short || "");
       playerSearchCache[level + "|" + item.sid] = normalize(parts.join(" "));
     });
