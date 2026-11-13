@@ -3,14 +3,14 @@
     "id": "s1",
     "name": "孟钰栋",
     "primary_school": "合肥市稻香村小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
     "id": "s2",
     "name": "冯家轩",
     "primary_school": "合肥市六安路小学翠微分校",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -24,7 +24,7 @@
     "id": "s4",
     "name": "朱杍铭",
     "primary_school": "合肥市六安路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
@@ -38,28 +38,28 @@
     "id": "s6",
     "name": "段渡远",
     "primary_school": "合肥市乐农新村小学（蜀麓校区）",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
     "id": "s7",
     "name": "杨梓航",
     "primary_school": "合肥市青年路小学",
-    "middle_school": "",
+    "middle_school": "中科大附中实验学校",
     "high_school": ""
   },
   {
     "id": "s8",
     "name": "郑艾平",
     "primary_school": "合肥市师范附属第四小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
     "id": "s9",
     "name": "张寒祐",
     "primary_school": "合肥市安居苑小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学西校",
     "high_school": ""
   },
   {
@@ -73,14 +73,14 @@
     "id": "s11",
     "name": "程语墨",
     "primary_school": "合肥市奥体小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
     "id": "s12",
     "name": "黄普",
     "primary_school": "合肥市翠庭园小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -94,7 +94,7 @@
     "id": "s14",
     "name": "刘梓谙",
     "primary_school": "合肥市潜山路学校",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学西校",
     "high_school": ""
   },
   {
@@ -108,7 +108,7 @@
     "id": "s16",
     "name": "汪思源",
     "primary_school": "合肥市贵阳路小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -122,70 +122,70 @@
     "id": "s18",
     "name": "丁贝轩",
     "primary_school": "合肥市师范附属第四小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
     "id": "s19",
     "name": "吴越泽",
     "primary_school": "合肥市朝霞小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学新校天鹅湖校区",
     "high_school": ""
   },
   {
     "id": "s20",
     "name": "张义荣",
     "primary_school": "合肥市逍遥津小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十二中学",
     "high_school": ""
   },
   {
     "id": "s21",
     "name": "陈彦哲",
     "primary_school": "合肥市南门小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十二中学",
     "high_school": ""
   },
   {
     "id": "s22",
     "name": "邹圣菡",
     "primary_school": "合肥市大通路小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
     "id": "s23",
     "name": "李天佑",
     "primary_school": "合肥市乐农新村小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
     "id": "s24",
     "name": "沈嘉祺",
     "primary_school": "合肥市梦园小学教育集团天柱路学校",
-    "middle_school": "",
+    "middle_school": "中国科大附中高新中学",
     "high_school": ""
   },
   {
     "id": "s25",
     "name": "李俊錡",
     "primary_school": "合肥市南门小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
     "id": "s26",
     "name": "胡宇陈昊",
     "primary_school": "合肥市稻香村小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
     "id": "s27",
     "name": "王闰嘉",
     "primary_school": "合肥市六安路小学翠微分校",
-    "middle_school": "",
+    "middle_school": "中科大附中实验学校",
     "high_school": ""
   },
   {
@@ -199,42 +199,42 @@
     "id": "s29",
     "name": "崔浩然",
     "primary_school": "合肥市师范附属第三小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学滨湖校区",
     "high_school": ""
   },
   {
     "id": "s30",
     "name": "许羽辰",
     "primary_school": "合肥市青年路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
     "id": "s31",
     "name": "朱羽婕",
     "primary_school": "合肥市六安路小学翠微分校",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
     "id": "s32",
     "name": "王子然",
     "primary_school": "合肥市安居苑小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学西校",
     "high_school": ""
   },
   {
     "id": "s33",
     "name": "隗泓轩",
     "primary_school": "合肥市翠庭园小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学新校天鹅湖校区",
     "high_school": ""
   },
   {
     "id": "s34",
     "name": "王玺智",
     "primary_school": "合肥市琥珀小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -255,14 +255,14 @@
     "id": "s37",
     "name": "李陈馨",
     "primary_school": "合肥市稻香村小学（望江路校区）",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
     "id": "s38",
     "name": "王成铭",
     "primary_school": "合肥市西园新村小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -276,7 +276,7 @@
     "id": "s40",
     "name": "姚俊辰",
     "primary_school": "合肥市长江路第二小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -318,7 +318,7 @@
     "id": "s46",
     "name": "凌夏",
     "primary_school": "合肥市巢湖路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
@@ -339,7 +339,7 @@
     "id": "s49",
     "name": "茆荣新",
     "primary_school": "合肥市阳光小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -367,28 +367,28 @@
     "id": "s53",
     "name": "黄浩晨",
     "primary_school": "合肥市稻香村小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学新校天鹅湖校区",
     "high_school": ""
   },
   {
     "id": "s54",
     "name": "吴月天",
     "primary_school": "合肥市梦园小学教育集团天柱路学校",
-    "middle_school": "",
+    "middle_school": "中国科大附中高新中学",
     "high_school": ""
   },
   {
     "id": "s55",
     "name": "强乐榕",
     "primary_school": "合肥市南门小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学森林城分校",
     "high_school": ""
   },
   {
     "id": "s56",
     "name": "费唐儒",
     "primary_school": "合肥市南门小学森林城分校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学森林城分校",
     "high_school": ""
   },
   {
@@ -416,14 +416,14 @@
     "id": "s60",
     "name": "戴羽翔",
     "primary_school": "合肥市蚌埠路第二小学",
-    "middle_school": "",
+    "middle_school": "合肥市第三十八中学",
     "high_school": ""
   },
   {
     "id": "s61",
     "name": "欧阳睿香",
     "primary_school": "合肥市六安路小学翠微分校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学芙蓉分校",
     "high_school": ""
   },
   {
@@ -437,7 +437,7 @@
     "id": "s63",
     "name": "盛博涵",
     "primary_school": "合肥市习友路小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -451,7 +451,7 @@
     "id": "s65",
     "name": "杨宇轩",
     "primary_school": "合肥市六安路小学中铁国际城校区",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -465,7 +465,7 @@
     "id": "s67",
     "name": "丁一轩",
     "primary_school": "合肥市望湖小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十六中学教育集团中山路中学",
     "high_school": ""
   },
   {
@@ -479,7 +479,7 @@
     "id": "s69",
     "name": "赵罗熙",
     "primary_school": "合肥市师范附属第四小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十六中学南校区",
     "high_school": ""
   },
   {
@@ -493,7 +493,7 @@
     "id": "s71",
     "name": "马泊尧",
     "primary_school": "合肥市华府骏苑小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十二中学",
     "high_school": ""
   },
   {
@@ -507,7 +507,7 @@
     "id": "s73",
     "name": "曹子铮",
     "primary_school": "合肥市南门小学森林城分校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学森林城分校",
     "high_school": ""
   },
   {
@@ -542,21 +542,21 @@
     "id": "s78",
     "name": "周末",
     "primary_school": "合肥市永红路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学森林城分校",
     "high_school": ""
   },
   {
     "id": "s79",
     "name": "周子骞",
     "primary_school": "长丰县双墩北环小学",
-    "middle_school": "",
+    "middle_school": "合肥北城中学",
     "high_school": ""
   },
   {
     "id": "s80",
     "name": "李开诚",
     "primary_school": "合师市师范附属小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -570,28 +570,28 @@
     "id": "s82",
     "name": "华近苏",
     "primary_school": "合肥市六安路小学翠微分校",
-    "middle_school": "",
+    "middle_school": "中国科大附中高新中学",
     "high_school": ""
   },
   {
     "id": "s83",
     "name": "陶俊华",
     "primary_school": "合肥市屯溪路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
     "id": "s84",
     "name": "杨硕溥",
     "primary_school": "合肥市奥体小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学新校天鹅湖校区",
     "high_school": ""
   },
   {
     "id": "s85",
     "name": "刘洲桐",
     "primary_school": "合肥市稻香村小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -605,21 +605,21 @@
     "id": "s87",
     "name": "赵梓琛",
     "primary_school": "合肥市长江路第二小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
     "id": "s88",
     "name": "刘梓翕",
     "primary_school": "合肥市望湖小学",
-    "middle_school": "",
+    "middle_school": "合肥市望湖中学",
     "high_school": ""
   },
   {
     "id": "s89",
     "name": "吴莳昕",
     "primary_school": "合肥市绿怡小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -633,7 +633,7 @@
     "id": "s91",
     "name": "刘思雯",
     "primary_school": "合肥市安居苑小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学西校",
     "high_school": ""
   },
   {
@@ -647,7 +647,7 @@
     "id": "s93",
     "name": "李承佑",
     "primary_school": "合肥市嘉和苑小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学天鹅湖教育集团潜山路校区",
     "high_school": ""
   },
   {
@@ -675,21 +675,21 @@
     "id": "s97",
     "name": "白嘉佑",
     "primary_school": "合肥市瑶海实验小学",
-    "middle_school": "",
+    "middle_school": "合肥市第三十八中学",
     "high_school": ""
   },
   {
     "id": "s98",
     "name": "马轲睿",
     "primary_school": "合肥市潜山路学校",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学西校",
     "high_school": ""
   },
   {
     "id": "s99",
     "name": "舒骏腾",
     "primary_school": "合肥市逍遥津小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十二中学",
     "high_school": ""
   },
   {
@@ -703,7 +703,7 @@
     "id": "s101",
     "name": "高俪劼",
     "primary_school": "合肥市望湖小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -731,7 +731,7 @@
     "id": "s105",
     "name": "汪希文",
     "primary_school": "合肥市稻香村小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -752,7 +752,7 @@
     "id": "s108",
     "name": "罗钰辰",
     "primary_school": "合肥市颐和佳苑小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -780,7 +780,7 @@
     "id": "s112",
     "name": "王钰璠",
     "primary_school": "合肥市胜利路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十二中学",
     "high_school": ""
   },
   {
@@ -815,35 +815,35 @@
     "id": "s117",
     "name": "黄昫州",
     "primary_school": "合肥市屯溪路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
     "id": "s118",
     "name": "李雨轩",
     "primary_school": "合肥市翠庭园小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学新校天鹅湖校区",
     "high_school": ""
   },
   {
     "id": "s119",
     "name": "张修凡",
     "primary_school": "长丰县北城世纪城学校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学长丰路校区",
     "high_school": ""
   },
   {
     "id": "s120",
     "name": "李莀骏",
     "primary_school": "合肥市屯溪路小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
     "id": "s121",
     "name": "袁浩宁",
     "primary_school": "合肥市和平小学",
-    "middle_school": "",
+    "middle_school": "合肥市第三十八中学",
     "high_school": ""
   },
   {
@@ -857,7 +857,7 @@
     "id": "s123",
     "name": "裴俊坤",
     "primary_school": "合肥市南门小学森林城分校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学森林城分校",
     "high_school": ""
   },
   {
@@ -878,7 +878,7 @@
     "id": "s126",
     "name": "陈宗睿",
     "primary_school": "合肥市长江路第二小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十二中学",
     "high_school": ""
   },
   {
@@ -892,35 +892,35 @@
     "id": "s128",
     "name": "杨远曜",
     "primary_school": "合肥市青年路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
     "id": "s129",
     "name": "任浩睿",
     "primary_school": "合肥市师范附属第四小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十六中学南校区",
     "high_school": ""
   },
   {
     "id": "s130",
     "name": "王世博",
     "primary_school": "合肥市师范附属第四小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十六中学南校区",
     "high_school": ""
   },
   {
     "id": "s131",
     "name": "祖沐阳",
     "primary_school": "合肥市大通路小学东校区",
-    "middle_school": "",
+    "middle_school": "合肥市育英中学",
     "high_school": ""
   },
   {
     "id": "s132",
     "name": "何思源",
     "primary_school": "合肥市屯溪路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
@@ -934,7 +934,7 @@
     "id": "s134",
     "name": "陈实",
     "primary_school": "合肥高新创新实验小学",
-    "middle_school": "",
+    "middle_school": "中科大附中实验学校",
     "high_school": ""
   },
   {
@@ -955,14 +955,14 @@
     "id": "s137",
     "name": "陶俊辰",
     "primary_school": "合肥市师范附属第三小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十六中学南校区",
     "high_school": ""
   },
   {
     "id": "s138",
     "name": "姜博涵",
     "primary_school": "合肥市和平小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -983,7 +983,7 @@
     "id": "s141",
     "name": "叶博轩",
     "primary_school": "合肥高新创新实验小学教育集团第三小学",
-    "middle_school": "",
+    "middle_school": "中国科大附中高新中学",
     "high_school": ""
   },
   {
@@ -997,7 +997,7 @@
     "id": "s143",
     "name": "马岱景",
     "primary_school": "中国科学院合肥物质科学研究院附属学校",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学西校",
     "high_school": ""
   },
   {
@@ -1018,14 +1018,14 @@
     "id": "s146",
     "name": "王语骏",
     "primary_school": "合肥市临泉路第二小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
     "id": "s147",
     "name": "倪若言",
     "primary_school": "合肥市南门小学森林城分校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学森林城分校",
     "high_school": ""
   },
   {
@@ -1046,7 +1046,7 @@
     "id": "s150",
     "name": "戴陌衍",
     "primary_school": "合肥市屯溪路小学滨湖校区",
-    "middle_school": "",
+    "middle_school": "合肥市第四十六中学",
     "high_school": ""
   },
   {
@@ -1067,14 +1067,14 @@
     "id": "s153",
     "name": "梁梓越",
     "primary_school": "合肥市马岗实验小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市第三十八中学东校",
     "high_school": ""
   },
   {
     "id": "s154",
     "name": "石峻帆",
     "primary_school": "合肥市师范附属第四小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -1088,7 +1088,7 @@
     "id": "s156",
     "name": "侯宇翔",
     "primary_school": "合肥市青年路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
@@ -1109,42 +1109,42 @@
     "id": "s159",
     "name": "程思诚",
     "primary_school": "合肥市南门小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
     "id": "s160",
     "name": "于行衍",
     "primary_school": "合肥市青年路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
     "id": "s161",
     "name": "齐恭素",
     "primary_school": "合肥市屯溪路小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
     "id": "s162",
     "name": "黄飞轩",
     "primary_school": "合肥市和平小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
     "id": "s163",
     "name": "何宇凡",
     "primary_school": "合肥市和平小学",
-    "middle_school": "",
+    "middle_school": "合肥市第三十八中学",
     "high_school": ""
   },
   {
     "id": "s164",
     "name": "梁宇宸",
     "primary_school": "合肥市琥珀名城小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -1158,7 +1158,7 @@
     "id": "s166",
     "name": "张淏苒",
     "primary_school": "合肥市长淮新村小学",
-    "middle_school": "",
+    "middle_school": "合肥市第三十八中北校",
     "high_school": ""
   },
   {
@@ -1172,7 +1172,7 @@
     "id": "s168",
     "name": "楚宇晗",
     "primary_school": "合肥市黄山路小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -1186,7 +1186,7 @@
     "id": "s170",
     "name": "钟梓潼",
     "primary_school": "合肥市七里塘小学",
-    "middle_school": "",
+    "middle_school": "合肥市第三十中学",
     "high_school": ""
   },
   {
@@ -1200,14 +1200,14 @@
     "id": "s172",
     "name": "王维麟",
     "primary_school": "合肥市屯溪路小学滨湖校区",
-    "middle_school": "",
+    "middle_school": "合肥市第四十六中学",
     "high_school": ""
   },
   {
     "id": "s173",
     "name": "方文彧",
     "primary_school": "合肥市安庆路第三小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -1221,7 +1221,7 @@
     "id": "s175",
     "name": "顾杰鸣",
     "primary_school": "合肥市青年路小学",
-    "middle_school": "",
+    "middle_school": "合肥工业大学附属中学",
     "high_school": ""
   },
   {
@@ -1263,7 +1263,7 @@
     "id": "s181",
     "name": "邹奕宁",
     "primary_school": "合肥市稻香村小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学天鹅湖教育集团望岳校区",
     "high_school": ""
   },
   {
@@ -1277,7 +1277,7 @@
     "id": "s183",
     "name": "丁瑞楷",
     "primary_school": "合肥市六安路小学翠微分校",
-    "middle_school": "",
+    "middle_school": "合肥一六八玫瑰园学校",
     "high_school": ""
   },
   {
@@ -1305,7 +1305,7 @@
     "id": "s187",
     "name": "杨子豪",
     "primary_school": "合肥市长江路第二小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学橡树湾校区",
     "high_school": ""
   },
   {
@@ -1319,7 +1319,7 @@
     "id": "s189",
     "name": "朱光启",
     "primary_school": "清华附中合肥学校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
@@ -1340,7 +1340,7 @@
     "id": "s192",
     "name": "孙瑞琦",
     "primary_school": "合肥市奥体小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学新校天鹅湖校区",
     "high_school": ""
   },
   {
@@ -1354,21 +1354,21 @@
     "id": "s194",
     "name": "许俊逸",
     "primary_school": "合肥市乐农新村小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
     "id": "s195",
     "name": "陈贤佳",
     "primary_school": "合肥市南门小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学森林城分校",
     "high_school": ""
   },
   {
     "id": "s196",
     "name": "樊晨希",
     "primary_school": "合肥市南国花园小学",
-    "middle_school": "",
+    "middle_school": "合肥寿春中学",
     "high_school": ""
   },
   {
@@ -1396,7 +1396,7 @@
     "id": "s200",
     "name": "陈伯骞",
     "primary_school": "合肥市南门小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
@@ -1410,7 +1410,7 @@
     "id": "s202",
     "name": "宣郑翊宸",
     "primary_school": "合肥市南门小学上城国际分校",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -1424,7 +1424,7 @@
     "id": "s204",
     "name": "柏川",
     "primary_school": "合肥市蚌埠路第二小学",
-    "middle_school": "",
+    "middle_school": "合肥市第三十八中学",
     "high_school": ""
   },
   {
@@ -1557,28 +1557,28 @@
     "id": "s223",
     "name": "王祉蕴",
     "primary_school": "合肥市南门小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
     "id": "s224",
     "name": "钱景铭",
     "primary_school": "合肥市四河小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
     "id": "s225",
     "name": "张宇轩",
     "primary_school": "合肥市海顿学校",
-    "middle_school": "",
+    "middle_school": "合肥市海顿学校",
     "high_school": ""
   },
   {
     "id": "s226",
     "name": "汪梓宸",
     "primary_school": "合肥市蚌埠路第二小学",
-    "middle_school": "",
+    "middle_school": "合肥市第三十八中学",
     "high_school": ""
   },
   {
@@ -1592,7 +1592,7 @@
     "id": "s228",
     "name": "王梓萱",
     "primary_school": "合师市师范附属小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -1613,14 +1613,14 @@
     "id": "s231",
     "name": "储嘉澍",
     "primary_school": "合肥市稻香村小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学天鹅湖教育集团望岳校区",
     "high_school": ""
   },
   {
     "id": "s232",
     "name": "赵梦辰",
     "primary_school": "清华附中合肥学校",
-    "middle_school": "",
+    "middle_school": "清华附中合肥学校",
     "high_school": ""
   },
   {
@@ -1648,7 +1648,7 @@
     "id": "s236",
     "name": "叶泽轩",
     "primary_school": "合肥市南门小学森林城分校",
-    "middle_school": "",
+    "middle_school": "合肥寿春中学",
     "high_school": ""
   },
   {
@@ -1711,14 +1711,14 @@
     "id": "s245",
     "name": "张苏杭",
     "primary_school": "合肥市西园新村小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
     "id": "s246",
     "name": "司沐琰",
     "primary_school": "合肥市安庆路第三小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
@@ -1739,7 +1739,7 @@
     "id": "s249",
     "name": "杨睿宁",
     "primary_school": "清华附中合肥学校",
-    "middle_school": "",
+    "middle_school": "合肥一六八玫瑰园学校",
     "high_school": ""
   },
   {
@@ -1830,7 +1830,7 @@
     "id": "s262",
     "name": "许方峻",
     "primary_school": "合肥市黄山路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学芙蓉分校",
     "high_school": ""
   },
   {
@@ -1865,14 +1865,14 @@
     "id": "s267",
     "name": "祝修平",
     "primary_school": "合肥市香樟雅苑小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校望江路校区",
     "high_school": ""
   },
   {
     "id": "s268",
     "name": "李松源",
     "primary_school": "合肥市红星路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
@@ -1907,7 +1907,7 @@
     "id": "s273",
     "name": "万睿坤",
     "primary_school": "合肥市六安路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十二中学",
     "high_school": ""
   },
   {
@@ -1998,7 +1998,7 @@
     "id": "s286",
     "name": "张明朗",
     "primary_school": "合肥市建平实验小学",
-    "middle_school": "",
+    "middle_school": "清华附中合肥学校",
     "high_school": ""
   },
   {
@@ -2047,14 +2047,14 @@
     "id": "s293",
     "name": "陆饮溪",
     "primary_school": "合肥市颐和佳苑小学",
-    "middle_school": "",
+    "middle_school": "中科大附中实验学校",
     "high_school": ""
   },
   {
     "id": "s294",
     "name": "潘伊扬",
     "primary_school": "",
-    "middle_school": "合肥一六八新店花园学校",
+    "middle_school": "合肥市第三十八中学",
     "high_school": ""
   },
   {
@@ -2103,7 +2103,7 @@
     "id": "s301",
     "name": "王铭涵",
     "primary_school": "合肥市屯溪路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
@@ -2152,14 +2152,14 @@
     "id": "s308",
     "name": "张砚知",
     "primary_school": "合肥市屯溪路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
     "id": "s309",
     "name": "朱铭灏",
     "primary_school": "合肥市六安路小学翠微分校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学芙蓉分校",
     "high_school": ""
   },
   {
@@ -2187,7 +2187,7 @@
     "id": "s313",
     "name": "洪启诚",
     "primary_school": "合肥市南门小学森林城分校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学森林城分校",
     "high_school": ""
   },
   {
@@ -2215,7 +2215,7 @@
     "id": "s317",
     "name": "吴宇天",
     "primary_school": "肥西经济开发区中心学校",
-    "middle_school": "",
+    "middle_school": "合肥八中教育集团翡翠湖初级中学",
     "high_school": ""
   },
   {
@@ -2229,14 +2229,14 @@
     "id": "s319",
     "name": "余锦辰",
     "primary_school": "合肥市六安路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
     "id": "s320",
     "name": "宋言睿",
     "primary_school": "合肥市和平小学",
-    "middle_school": "",
+    "middle_school": "合肥市第三十八中学",
     "high_school": ""
   },
   {
@@ -2313,7 +2313,7 @@
     "id": "s331",
     "name": "李皓辰",
     "primary_school": "合肥市师范附属第四小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十六中学南校区",
     "high_school": ""
   },
   {
@@ -2355,7 +2355,7 @@
     "id": "s337",
     "name": "万满轩",
     "primary_school": "合肥市六安路小学翠微分校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学芙蓉分校南校区",
     "high_school": ""
   },
   {
@@ -2390,14 +2390,14 @@
     "id": "s342",
     "name": "徐筱珺",
     "primary_school": "合肥市屯溪路小学滨湖校区",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
     "id": "s343",
     "name": "唐艺博",
     "primary_school": "肥西县上派镇菁菁小学",
-    "middle_school": "",
+    "middle_school": "安徽师范大学附属肥西第二中学",
     "high_school": ""
   },
   {
@@ -2565,7 +2565,7 @@
     "id": "s367",
     "name": "郑蕴奇",
     "primary_school": "合肥市六安路小学中铁国际城校区",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
@@ -2593,7 +2593,7 @@
     "id": "s371",
     "name": "杨欣恩",
     "primary_school": "合肥市南门小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
@@ -2649,7 +2649,7 @@
     "id": "s379",
     "name": "常彦博",
     "primary_school": "合肥市屯溪路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
@@ -2663,7 +2663,7 @@
     "id": "s381",
     "name": "陈逸骁",
     "primary_school": "合肥市望湖小学",
-    "middle_school": "",
+    "middle_school": "合肥市望湖中学",
     "high_school": ""
   },
   {
@@ -2720,14 +2720,14 @@
     "name": "魏子约",
     "primary_school": "合肥市和平小学",
     "middle_school": "合肥市第四十五中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s390",
     "name": "朱欣然",
     "primary_school": "合肥市南门小学",
     "middle_school": "合肥市第四十五中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s391",
@@ -2804,14 +2804,14 @@
     "name": "高乐彤",
     "primary_school": "合肥市师范附属第二小学",
     "middle_school": "合肥市第四十六中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s402",
     "name": "李必成",
     "primary_school": "合肥市蜀山小学",
     "middle_school": "合肥市金湖中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s403",
@@ -2958,7 +2958,7 @@
     "name": "郑妥度",
     "primary_school": "",
     "middle_school": "合肥市第四十五中学森林城分校",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s424",
@@ -2992,7 +2992,7 @@
     "id": "s428",
     "name": "刘宸宇",
     "primary_school": "合肥市青年路小学",
-    "middle_school": "合肥市第四十八中学",
+    "middle_school": "合肥市第四十六中学",
     "high_school": ""
   },
   {
@@ -3007,7 +3007,7 @@
     "name": "方钲泓",
     "primary_school": "",
     "middle_school": "中国科学技术大学附属中学",
-    "high_school": ""
+    "high_school": "中国科学技术大学附属中学"
   },
   {
     "id": "s431",
@@ -3140,7 +3140,7 @@
     "name": "武奕楷",
     "primary_school": "合肥市师范附属小学",
     "middle_school": "合肥市第四十六中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s450",
@@ -3168,13 +3168,13 @@
     "name": "顾运哲",
     "primary_school": "合肥市长江路第二小学",
     "middle_school": "合肥市第四十五中学橡树湾校区",
-    "high_school": ""
+    "high_school": "合肥市第八中学"
   },
   {
     "id": "s454",
     "name": "于轩责",
     "primary_school": "",
-    "middle_school": "合肥工业大学附属中学",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -3252,7 +3252,7 @@
     "name": "李梓硕",
     "primary_school": "",
     "middle_school": "合肥市第四十五中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s466",
@@ -3322,7 +3322,7 @@
     "name": "王显奇",
     "primary_school": "",
     "middle_school": "合肥市第四十八中学滨湖校区",
-    "high_school": ""
+    "high_school": "合肥市第六中学"
   },
   {
     "id": "s476",
@@ -3441,7 +3441,7 @@
     "name": "李浩松",
     "primary_school": "合肥市和平小学",
     "middle_school": "合肥市第三十八中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s493",
@@ -3553,7 +3553,7 @@
     "name": "程梓侨",
     "primary_school": "合肥市和平小学",
     "middle_school": "合肥市第四十五中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s509",
@@ -3650,7 +3650,7 @@
     "id": "s522",
     "name": "顾浩哲",
     "primary_school": "合肥市望湖小学洞庭湖路校区",
-    "middle_school": "合肥市第四十六中学",
+    "middle_school": "合肥市第四十六中学教育集团中山路中学",
     "high_school": ""
   },
   {
@@ -3665,7 +3665,7 @@
     "name": "姚段瑞",
     "primary_school": "合肥市师范附属小学",
     "middle_school": "合肥市第四十六中学",
-    "high_school": ""
+    "high_school": "合肥一六八中学"
   },
   {
     "id": "s525",
@@ -3769,7 +3769,7 @@
     "id": "s539",
     "name": "刘自忠",
     "primary_school": "合肥市行知学校学苑校区",
-    "middle_school": "",
+    "middle_school": "合肥市行知学校",
     "high_school": ""
   },
   {
@@ -3860,7 +3860,7 @@
     "id": "s552",
     "name": "邓楚豪",
     "primary_school": "合肥市南门小学",
-    "middle_school": "合肥市第四十五中学森林城分校",
+    "middle_school": "合肥安生学校",
     "high_school": ""
   },
   {
@@ -4057,7 +4057,7 @@
     "name": "唐苏旸",
     "primary_school": "",
     "middle_school": "合肥市五十中学东校",
-    "high_school": ""
+    "high_school": "合肥市第四中学"
   },
   {
     "id": "s581",
@@ -4113,7 +4113,7 @@
     "name": "崔茗皓",
     "primary_school": "",
     "middle_school": "合肥市五十中学新校天鹅湖校区",
-    "high_school": ""
+    "high_school": "合肥市第八中学运河校区"
   },
   {
     "id": "s589",
@@ -4126,7 +4126,7 @@
     "id": "s590",
     "name": "赵子越",
     "primary_school": "",
-    "middle_school": "合肥北城中学东校区",
+    "middle_school": "合肥北城中学",
     "high_school": ""
   },
   {
@@ -4161,7 +4161,7 @@
     "id": "s595",
     "name": "王年乐",
     "primary_school": "中科大附中实验学校",
-    "middle_school": "",
+    "middle_school": "中科大附中实验学校",
     "high_school": ""
   },
   {
@@ -4217,7 +4217,7 @@
     "id": "s603",
     "name": "李铭哲",
     "primary_school": "肥西县上派镇珍珠路小学",
-    "middle_school": "合肥市五十中学东校",
+    "middle_school": "合肥八中教育集团翡翠湖初级中学",
     "high_school": ""
   },
   {
@@ -4372,7 +4372,7 @@
     "name": "崔锦荣",
     "primary_school": "合肥市颐和佳苑小学",
     "middle_school": "合肥市颐和中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s626",
@@ -4554,7 +4554,7 @@
     "name": "黄贤旭",
     "primary_school": "",
     "middle_school": "合肥一六八陶冲湖中学",
-    "high_school": ""
+    "high_school": "合肥市第八中学运河校区"
   },
   {
     "id": "s652",
@@ -4623,7 +4623,7 @@
     "id": "s661",
     "name": "王克臻",
     "primary_school": "中国科学院合肥物质科学研究院附属学校",
-    "middle_school": "",
+    "middle_school": "中国科学院合肥物质科学研究院附属学校",
     "high_school": ""
   },
   {
@@ -4637,7 +4637,7 @@
     "id": "s663",
     "name": "邓烨彬",
     "primary_school": "清华附中合肥学校",
-    "middle_school": "",
+    "middle_school": "清华附中合肥学校",
     "high_school": ""
   },
   {
@@ -4679,7 +4679,7 @@
     "id": "s669",
     "name": "朱祖耀",
     "primary_school": "",
-    "middle_school": "肥西县上派初级中学",
+    "middle_school": "合肥八中教育集团翡翠湖初级中学",
     "high_school": ""
   },
   {
@@ -4715,7 +4715,7 @@
     "name": "陈鸿翔",
     "primary_school": "",
     "middle_school": "合肥市第四十五中学芙蓉分校南校区",
-    "high_school": ""
+    "high_school": "合肥市第六中学"
   },
   {
     "id": "s675",
@@ -4952,14 +4952,14 @@
     "id": "s708",
     "name": "师跃焜",
     "primary_school": "",
-    "middle_school": "安徽省肥西第二中学",
+    "middle_school": "安徽师范大学附属肥西第二中学",
     "high_school": ""
   },
   {
     "id": "s709",
     "name": "张梓菡",
     "primary_school": "",
-    "middle_school": "安徽师范大学附属肥西外国语学校（初中部）",
+    "middle_school": "合肥八中教育集团翡翠湖初级中学",
     "high_school": ""
   },
   {
@@ -5435,7 +5435,7 @@
     "id": "s777",
     "name": "曹睿",
     "primary_school": "合肥市马岗实验小学教育集团",
-    "middle_school": "",
+    "middle_school": "合肥市第三十八中学新校",
     "high_school": ""
   },
   {
@@ -5757,7 +5757,7 @@
     "id": "s823",
     "name": "李知安",
     "primary_school": "合肥市习友路小学",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学新校天鹅湖校区",
     "high_school": ""
   },
   {
@@ -5848,14 +5848,14 @@
     "id": "s836",
     "name": "吴婧旖",
     "primary_school": "包河区外国语第一实验小学",
-    "middle_school": "",
+    "middle_school": "合肥市包河区外国语实验中学",
     "high_school": ""
   },
   {
     "id": "s837",
     "name": "张梓苏",
     "primary_school": "合肥市颐和佳苑小学",
-    "middle_school": "",
+    "middle_school": "中国科学技术大学附属中学",
     "high_school": ""
   },
   {
@@ -5995,7 +5995,7 @@
     "id": "s857",
     "name": "赵景天",
     "primary_school": "合肥市青年路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
@@ -6065,7 +6065,7 @@
     "id": "s867",
     "name": "郑书航",
     "primary_school": "合肥市桂花园学校教育集团慧园校区",
-    "middle_school": "",
+    "middle_school": "合肥市五十中学东校",
     "high_school": ""
   },
   {
@@ -6247,7 +6247,7 @@
     "id": "s893",
     "name": "胡正泽",
     "primary_school": "合肥市师范附属第三小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学滨湖校区",
     "high_school": ""
   },
   {
@@ -6331,7 +6331,7 @@
     "id": "s905",
     "name": "程俊尧",
     "primary_school": "合肥市师范附属第四小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十六中学南校区",
     "high_school": ""
   },
   {
@@ -6394,7 +6394,7 @@
     "id": "s914",
     "name": "王云栋",
     "primary_school": "合肥市南门小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学森林城分校",
     "high_school": ""
   },
   {
@@ -6408,7 +6408,7 @@
     "id": "s916",
     "name": "张渝晨",
     "primary_school": "合师市师范附属小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十六中学",
     "high_school": ""
   },
   {
@@ -6528,7 +6528,7 @@
     "name": "王凤池",
     "primary_school": "合肥市屯溪路小学",
     "middle_school": "中国科学技术大学附属中学",
-    "high_school": ""
+    "high_school": "合肥一六八中学"
   },
   {
     "id": "s934",
@@ -6584,7 +6584,7 @@
     "name": "申士",
     "primary_school": "",
     "middle_school": "合肥市第三十八中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s942",
@@ -6647,14 +6647,14 @@
     "name": "王博元",
     "primary_school": "合肥市师范附属小学",
     "middle_school": "合肥市第四十六中学",
-    "high_school": ""
+    "high_school": "合肥市第八中学运河校区"
   },
   {
     "id": "s951",
     "name": "岳梓航",
     "primary_school": "合肥市师范附属第四小学",
     "middle_school": "中国科学技术大学附属中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s952",
@@ -6682,7 +6682,7 @@
     "name": "李凯迪",
     "primary_school": "",
     "middle_school": "合肥市第四十五中学橡树湾校区",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s956",
@@ -6724,7 +6724,7 @@
     "name": "汪振言",
     "primary_school": "",
     "middle_school": "合肥市琥珀中学琥珀山庄校区",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s962",
@@ -6815,7 +6815,7 @@
     "name": "郑堉和",
     "primary_school": "合肥市安居苑小学教育集团",
     "middle_school": "合肥市第四十五中学",
-    "high_school": ""
+    "high_school": "合肥市第八中学"
   },
   {
     "id": "s975",
@@ -6864,7 +6864,7 @@
     "name": "吴秋阳",
     "primary_school": "合肥市乐农新村小学教育集团",
     "middle_school": "合肥市五十中学西校",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s982",
@@ -6885,7 +6885,7 @@
     "name": "承郅淏",
     "primary_school": "合肥市西园新村小学",
     "middle_school": "合肥市第四十五中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s985",
@@ -6969,14 +6969,14 @@
     "name": "王翌轩",
     "primary_school": "合肥市六安路小学",
     "middle_school": "合肥市第四十五中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s997",
     "name": "赵秋铭",
     "primary_school": "合肥市屯溪路小学",
     "middle_school": "合肥市第四十八中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s998",
@@ -7018,7 +7018,7 @@
     "name": "孟祥云",
     "primary_school": "合肥市安居苑小学教育集团",
     "middle_school": "合肥市五十中学西校",
-    "high_school": ""
+    "high_school": "合肥市第六中学"
   },
   {
     "id": "s1004",
@@ -7144,14 +7144,14 @@
     "name": "汪瀚博",
     "primary_school": "合肥市稻香村小学教育集团",
     "middle_school": "合肥市五十中学东校",
-    "high_school": ""
+    "high_school": "合肥一六八中学"
   },
   {
     "id": "s1022",
     "name": "王楷泽",
     "primary_school": "合肥市蜀山小学",
     "middle_school": "合肥高新创新实验中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s1023",
@@ -7200,7 +7200,7 @@
     "name": "丁梓豪",
     "primary_school": "合肥市六安路小学翠微分校",
     "middle_school": "合肥市五十中学东校",
-    "high_school": ""
+    "high_school": "合肥一六八中学"
   },
   {
     "id": "s1030",
@@ -7214,7 +7214,7 @@
     "name": "胡陈阳",
     "primary_school": "",
     "middle_school": "合肥市五十中学西校",
-    "high_school": ""
+    "high_school": "合肥市第八中学"
   },
   {
     "id": "s1032",
@@ -7284,7 +7284,7 @@
     "name": "焦鸿泰",
     "primary_school": "合肥市行知小学",
     "middle_school": "合肥市行知学校",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s1042",
@@ -7333,7 +7333,7 @@
     "name": "吴天一",
     "primary_school": "合肥市黄山路小学",
     "middle_school": "合肥市五十中学天鹅湖教育集团蜀外校区",
-    "high_school": ""
+    "high_school": "合肥市第八中学运河校区"
   },
   {
     "id": "s1049",
@@ -7368,7 +7368,7 @@
     "name": "王择",
     "primary_school": "合肥市习友路小学",
     "middle_school": "合肥市五十中学新校天鹅湖校区",
-    "high_school": ""
+    "high_school": "合肥市第八中学运河校区"
   },
   {
     "id": "s1054",
@@ -7564,14 +7564,14 @@
     "name": "黄海博",
     "primary_school": "",
     "middle_school": "合肥一六八新店花园学校",
-    "high_school": ""
+    "high_school": "合肥市第六中学"
   },
   {
     "id": "s1082",
     "name": "孙书航",
     "primary_school": "",
     "middle_school": "合肥市阳光中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s1083",
@@ -7613,7 +7613,7 @@
     "name": "熊尚宾",
     "primary_school": "合肥市梦园小学教育集团天柱路学校",
     "middle_school": "中国科大附中高新中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s1089",
@@ -7669,7 +7669,7 @@
     "name": "范蓓蓓",
     "primary_school": "",
     "middle_school": "合肥市第四十六中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s1097",
@@ -7984,7 +7984,7 @@
     "name": "何博超",
     "primary_school": "合肥市行知学校",
     "middle_school": "",
-    "high_school": ""
+    "high_school": "合肥市第六中学"
   },
   {
     "id": "s1142",
@@ -8019,7 +8019,7 @@
     "name": "李锦昊",
     "primary_school": "合肥市师范附属小学",
     "middle_school": "合肥市第四十六中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s1147",
@@ -8068,7 +8068,7 @@
     "name": "王祎诚",
     "primary_school": "",
     "middle_school": "合肥市五十中学新校天鹅湖校区",
-    "high_school": ""
+    "high_school": "合肥市第八中学"
   },
   {
     "id": "s1154",
@@ -8095,7 +8095,7 @@
     "id": "s1157",
     "name": "宋宇航",
     "primary_school": "合肥大地学校",
-    "middle_school": "",
+    "middle_school": "合肥大地学校",
     "high_school": ""
   },
   {
@@ -8103,7 +8103,7 @@
     "name": "江雨泽",
     "primary_school": "",
     "middle_school": "合肥市第四十五中学森林城分校",
-    "high_school": ""
+    "high_school": "合肥市第六中学"
   },
   {
     "id": "s1159",
@@ -8179,7 +8179,7 @@
     "id": "s1169",
     "name": "汪旭尧",
     "primary_school": "",
-    "middle_school": "翡翠湖初级中学",
+    "middle_school": "合肥八中教育集团翡翠湖初级中学",
     "high_school": ""
   },
   {
@@ -8438,7 +8438,7 @@
     "id": "s1206",
     "name": "杨骐宇",
     "primary_school": "合肥市屯溪路小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
@@ -8452,7 +8452,7 @@
     "id": "s1208",
     "name": "王元辰",
     "primary_school": "合肥市南门小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学",
     "high_school": ""
   },
   {
@@ -8704,7 +8704,7 @@
     "id": "s1244",
     "name": "罗逸海",
     "primary_school": "巢湖市团结路小学",
-    "middle_school": "",
+    "middle_school": "巢湖市第二中学",
     "high_school": ""
   },
   {
@@ -9187,7 +9187,7 @@
     "id": "s1313",
     "name": "杨清雅",
     "primary_school": "合肥市滁州路小学",
-    "middle_school": "",
+    "middle_school": "合肥市阳光中学",
     "high_school": ""
   },
   {
@@ -9391,7 +9391,7 @@
     "name": "窦容川",
     "primary_school": "合肥市西园新村小学南校",
     "middle_school": "合肥市五十中学新校天鹅湖校区",
-    "high_school": ""
+    "high_school": "合肥市第八中学"
   },
   {
     "id": "s1343",
@@ -9412,7 +9412,7 @@
     "name": "章珂语",
     "primary_school": "合肥市宁溪小学",
     "middle_school": "合肥市第四十五中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s1346",
@@ -9440,7 +9440,7 @@
     "name": "李承耀",
     "primary_school": "",
     "middle_school": "合肥市第四十六中学",
-    "high_school": ""
+    "high_school": "合肥市第八中学"
   },
   {
     "id": "s1350",
@@ -9531,7 +9531,7 @@
     "name": "李庭然",
     "primary_school": "合肥市巢湖路小学",
     "middle_school": "合肥市第四十八中学",
-    "high_school": ""
+    "high_school": "合肥市第六中学"
   },
   {
     "id": "s1363",
@@ -9804,7 +9804,7 @@
     "name": "李子轩",
     "primary_school": "合肥市临泉路第一小学",
     "middle_school": "合肥市第四十八中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s1402",
@@ -10042,7 +10042,7 @@
     "name": "宋峻熙",
     "primary_school": "",
     "middle_school": "合肥市第四十五中学橡树湾校区",
-    "high_school": ""
+    "high_school": "合肥市第八中学运河校区"
   },
   {
     "id": "s1436",
@@ -10056,7 +10056,7 @@
     "name": "杨袁翔",
     "primary_school": "合肥市青年路小学",
     "middle_school": "合肥市第四十八中学",
-    "high_school": ""
+    "high_school": "合肥市第八中学运河校区"
   },
   {
     "id": "s1438",
@@ -10189,7 +10189,7 @@
     "name": "李靖劼",
     "primary_school": "合肥市六安路小学翠微分校",
     "middle_school": "合肥市第四十五中学",
-    "high_school": ""
+    "high_school": "合肥市第八中学"
   },
   {
     "id": "s1457",
@@ -10420,7 +10420,7 @@
     "name": "洪煜阳",
     "primary_school": "",
     "middle_school": "合肥市育英中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s1490",
@@ -10630,7 +10630,7 @@
     "name": "王泽轩",
     "primary_school": "合肥市南门小学",
     "middle_school": "合肥市第四十二中学",
-    "high_school": ""
+    "high_school": "合肥市第八中学运河校区"
   },
   {
     "id": "s1520",
@@ -10924,7 +10924,7 @@
     "name": "张宏涛",
     "primary_school": "合肥市稻香村小学教育集团",
     "middle_school": "合肥市五十中新校望岳校区",
-    "high_school": ""
+    "high_school": "合肥市第八中学"
   },
   {
     "id": "s1562",
@@ -10973,7 +10973,7 @@
     "name": "崔凯旋",
     "primary_school": "合肥市翠庭园小学",
     "middle_school": "合肥市五十中学新校天鹅湖校区",
-    "high_school": ""
+    "high_school": "合肥市第八中学"
   },
   {
     "id": "s1569",
@@ -15985,7 +15985,7 @@
     "name": "张远航",
     "primary_school": "",
     "middle_school": "中国科学技术大学附属中学",
-    "high_school": ""
+    "high_school": "中国科学技术大学附属中学"
   },
   {
     "id": "s2285",
@@ -16005,7 +16005,7 @@
     "id": "s2287",
     "name": "钟杉",
     "primary_school": "合肥实验学校西宁路校区",
-    "middle_school": "",
+    "middle_school": "合肥实验学校",
     "high_school": ""
   },
   {
@@ -16103,7 +16103,7 @@
     "id": "s2301",
     "name": "汝盛琪",
     "primary_school": "合肥市行知学校",
-    "middle_school": "",
+    "middle_school": "合肥市行知学校",
     "high_school": ""
   },
   {
@@ -16264,7 +16264,7 @@
     "id": "s2324",
     "name": "张煜",
     "primary_school": "合肥市行知学校",
-    "middle_school": "",
+    "middle_school": "合肥市行知学校",
     "high_school": ""
   },
   {
@@ -16510,7 +16510,7 @@
     "name": "花奕宸",
     "primary_school": "",
     "middle_school": "合肥工业大学附属中学",
-    "high_school": ""
+    "high_school": "合肥市第四中学"
   },
   {
     "id": "s2360",
@@ -16523,7 +16523,7 @@
     "id": "s2361",
     "name": "胡梓阳",
     "primary_school": "",
-    "middle_school": "合肥市第四十五中学芙蓉分校北校区",
+    "middle_school": "合肥市第四十五中学芙蓉分校",
     "high_school": ""
   },
   {
@@ -16635,7 +16635,7 @@
     "id": "s2377",
     "name": "李子琛",
     "primary_school": "",
-    "middle_school": "合肥市第三十八中学北校",
+    "middle_school": "合肥市第三十八中北校",
     "high_school": ""
   },
   {
@@ -16916,7 +16916,7 @@
     "name": "李宗桂",
     "primary_school": "",
     "middle_school": "合肥市第四十八中学滨湖校区",
-    "high_school": ""
+    "high_school": "合肥市第四中学"
   },
   {
     "id": "s2418",
@@ -17742,7 +17742,7 @@
     "name": "张惠然",
     "primary_school": "",
     "middle_school": "合肥市五十中学新校天鹅湖校区",
-    "high_school": ""
+    "high_school": "合肥市第八中学"
   },
   {
     "id": "s2536",
@@ -17945,7 +17945,7 @@
     "name": "吴金政",
     "primary_school": "",
     "middle_school": "合肥市五十中学西校",
-    "high_school": ""
+    "high_school": "合肥市第六中学"
   },
   {
     "id": "s2565",
@@ -18462,7 +18462,7 @@
     "id": "s2638",
     "name": "钟文谦",
     "primary_school": "合肥市南国花园小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学长丰路校区",
     "high_school": ""
   },
   {
@@ -19029,7 +19029,7 @@
     "id": "s2719",
     "name": "林炜曦",
     "primary_school": "合肥市曙光小学",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
@@ -19261,7 +19261,7 @@
     "name": "沈安皓",
     "primary_school": "合肥经开实验学校",
     "middle_school": "",
-    "high_school": ""
+    "high_school": "合肥一六八中学"
   },
   {
     "id": "s2753",
@@ -19380,7 +19380,7 @@
     "name": "张清岩",
     "primary_school": "",
     "middle_school": "合肥市第四十六中学南校区",
-    "high_school": ""
+    "high_school": "合肥一六八中学"
   },
   {
     "id": "s2770",
@@ -19415,7 +19415,7 @@
     "name": "杨子轩",
     "primary_school": "",
     "middle_school": "",
-    "high_school": "合肥市第八中学"
+    "high_school": "合肥市第八中学运河校区"
   },
   {
     "id": "s2775",
@@ -19456,7 +19456,7 @@
     "id": "s2780",
     "name": "谈睿",
     "primary_school": "合肥市南门小学森林城分校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十五中学森林城分校",
     "high_school": ""
   },
   {
@@ -19904,7 +19904,7 @@
     "id": "s2846",
     "name": "蒋一凡",
     "primary_school": "合肥市星火小学",
-    "middle_school": "",
+    "middle_school": "合肥市第三十中学",
     "high_school": ""
   },
   {
@@ -20142,7 +20142,7 @@
     "id": "s2880",
     "name": "余子涵",
     "primary_school": "",
-    "middle_school": "合肥市第四十五中芙蓉分校南区",
+    "middle_school": "合肥市第四十五中学芙蓉分校南校区",
     "high_school": ""
   },
   {
@@ -20339,7 +20339,7 @@
     "name": "朱俊杰",
     "primary_school": "合肥市行知学校",
     "middle_school": "",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s2909",
@@ -20703,7 +20703,7 @@
     "name": "陈一帆",
     "primary_school": "",
     "middle_school": "合肥市第四十五中学",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s2962",
@@ -21039,7 +21039,7 @@
     "name": "陈则睿",
     "primary_school": "",
     "middle_school": "合肥市五十中学天鹅湖教育集团蜀外校区",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s3010",
@@ -21095,7 +21095,7 @@
     "name": "汪宇航",
     "primary_school": "",
     "middle_school": "合肥市五十中学东校",
-    "high_school": ""
+    "high_school": "合肥市第一中学"
   },
   {
     "id": "s3018",
@@ -21199,7 +21199,7 @@
     "id": "s3032",
     "name": "周润凡",
     "primary_school": "",
-    "middle_school": "合肥市第三十八中学北校",
+    "middle_school": "合肥市第三十八中北校",
     "high_school": ""
   },
   {
@@ -21606,7 +21606,7 @@
     "name": "陈宇豪",
     "primary_school": "",
     "middle_school": "合肥市第四十六中学南校区",
-    "high_school": ""
+    "high_school": "合肥一六八中学"
   },
   {
     "id": "s3091",
@@ -21843,7 +21843,7 @@
     "id": "s3124",
     "name": "王梓钧",
     "primary_school": "合肥少儿艺术学校",
-    "middle_school": "",
+    "middle_school": "合肥市第四十八中学",
     "high_school": ""
   },
   {
@@ -22299,13 +22299,13 @@
     "name": "万洪武",
     "primary_school": "",
     "middle_school": "合肥市第四十五中学森林城分校",
-    "high_school": ""
+    "high_school": "合肥市第六中学"
   },
   {
     "id": "s3194",
     "name": "王梓轩",
     "primary_school": "",
-    "middle_school": "合肥一六八玫瑰园学校东校",
+    "middle_school": "合肥一六八玫瑰园学校",
     "high_school": ""
   },
   {
