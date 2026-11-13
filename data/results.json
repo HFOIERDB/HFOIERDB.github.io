@@ -63858,5 +63858,905 @@
     "award": "二级",
     "student_id": "s2817",
     "name": "彭笑语"
+  },
+  {
+    "id": "r7327",
+    "school": "合肥市第三十八中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 1,
+    "award": "一级",
+    "student_id": "s394",
+    "name": "方志宇"
+  },
+  {
+    "id": "r7328",
+    "school": "合肥市第四十五中学森林城分校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 2,
+    "award": "一级",
+    "student_id": "s3023",
+    "name": "姜锦明"
+  },
+  {
+    "id": "r7329",
+    "school": "中国科学技术大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 3,
+    "award": "一级",
+    "student_id": "s391",
+    "name": "郭思辰"
+  },
+  {
+    "id": "r7330",
+    "school": "合肥市五十中学东校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 4,
+    "award": "一级",
+    "student_id": "s395",
+    "name": "朱皓辰"
+  },
+  {
+    "id": "r7331",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 5,
+    "award": "一级",
+    "student_id": "s423",
+    "name": "郑妥度"
+  },
+  {
+    "id": "r7332",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 6,
+    "award": "一级",
+    "student_id": "s2811",
+    "name": "吴一鸣"
+  },
+  {
+    "id": "r7333",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 7,
+    "award": "一级",
+    "student_id": "s3039",
+    "name": "陈俊霖"
+  },
+  {
+    "id": "r7334",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 8,
+    "award": "一级",
+    "student_id": "s1353",
+    "name": "岳夏景晨"
+  },
+  {
+    "id": "r7335",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 9,
+    "award": "一级",
+    "student_id": "s401",
+    "name": "高乐彤"
+  },
+  {
+    "id": "r7336",
+    "school": "中国科学技术大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 10,
+    "award": "一级",
+    "student_id": "s418",
+    "name": "沈承骏"
+  },
+  {
+    "id": "r7337",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 11,
+    "award": "一级",
+    "student_id": "s390",
+    "name": "朱欣然"
+  },
+  {
+    "id": "r7338",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 12,
+    "award": "一级",
+    "student_id": "s951",
+    "name": "岳梓航"
+  },
+  {
+    "id": "r7339",
+    "school": "中国科学技术大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 13,
+    "award": "一级",
+    "student_id": "s25",
+    "name": "李俊錡"
+  },
+  {
+    "id": "r7340",
+    "school": "合肥一六八玫瑰园学校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 14,
+    "award": "一级",
+    "student_id": "s392",
+    "name": "李佳迪"
+  },
+  {
+    "id": "r7341",
+    "school": "合肥市五十中学东校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 15,
+    "award": "一级",
+    "student_id": "s414",
+    "name": "张百川"
+  },
+  {
+    "id": "r7342",
+    "school": "合肥市第四十八中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 16,
+    "award": "一级",
+    "student_id": "s3179",
+    "name": "查皓瑀"
+  },
+  {
+    "id": "r7343",
+    "school": "合肥一六八中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 17,
+    "award": "一级",
+    "student_id": "s933",
+    "name": "王凤池"
+  },
+  {
+    "id": "r7344",
+    "school": "合肥一六八中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 18,
+    "award": "一级",
+    "student_id": "s944",
+    "name": "廖一帆"
+  },
+  {
+    "id": "r7345",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 19,
+    "award": "一级",
+    "student_id": "s1337",
+    "name": "黄秋实"
+  },
+  {
+    "id": "r7346",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 20,
+    "award": "一级",
+    "student_id": "s1396",
+    "name": "杜忠熠"
+  },
+  {
+    "id": "r7347",
+    "school": "合肥包河大地中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 21,
+    "award": "一级",
+    "student_id": "s644",
+    "name": "吴奕凡"
+  },
+  {
+    "id": "r7348",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 22,
+    "award": "一级",
+    "student_id": "s389",
+    "name": "魏子约"
+  },
+  {
+    "id": "r7349",
+    "school": "合肥市五十中学东校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 23,
+    "award": "一级",
+    "student_id": "s413",
+    "name": "胡佳祺"
+  },
+  {
+    "id": "r7350",
+    "school": "合肥一六八中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 24,
+    "award": "一级",
+    "student_id": "s3090",
+    "name": "陈宇豪"
+  },
+  {
+    "id": "r7351",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 25,
+    "award": "一级",
+    "student_id": "s1699",
+    "name": "张帆"
+  },
+  {
+    "id": "r7352",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 26,
+    "award": "一级",
+    "student_id": "s939",
+    "name": "李羿航"
+  },
+  {
+    "id": "r7353",
+    "school": "合肥市第八中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 27,
+    "award": "一级",
+    "student_id": "s2267",
+    "name": "牧元科"
+  },
+  {
+    "id": "r7354",
+    "school": "合肥市五十中学天鹅湖教育集团蜀外校区",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 28,
+    "award": "一级",
+    "student_id": "s404",
+    "name": "丁祥呈"
+  },
+  {
+    "id": "r7355",
+    "school": "合肥一六八玫瑰园学校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 29,
+    "award": "一级",
+    "student_id": "s425",
+    "name": "赵昕辰"
+  },
+  {
+    "id": "r7356",
+    "school": "合肥一六八玫瑰园学校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 30,
+    "award": "一级",
+    "student_id": "s2281",
+    "name": "谢佳辰"
+  },
+  {
+    "id": "r7357",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 31,
+    "award": "一级",
+    "student_id": "s941",
+    "name": "申士"
+  },
+  {
+    "id": "r7358",
+    "school": "合肥市稻香村小学教育集团",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 32,
+    "award": "一级",
+    "student_id": "s2798",
+    "name": "陶怡然"
+  },
+  {
+    "id": "r7359",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 33,
+    "award": "一级",
+    "student_id": "s402",
+    "name": "李必成"
+  },
+  {
+    "id": "r7360",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 34,
+    "award": "一级",
+    "student_id": "s996",
+    "name": "王翌轩"
+  },
+  {
+    "id": "r7361",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 35,
+    "award": "一级",
+    "student_id": "s1731",
+    "name": "刘皓宇"
+  },
+  {
+    "id": "r7362",
+    "school": "中国科学技术大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 36,
+    "award": "一级",
+    "student_id": "s454",
+    "name": "于轩责"
+  },
+  {
+    "id": "r7363",
+    "school": "合肥市第八中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 37,
+    "award": "一级",
+    "student_id": "s3244",
+    "name": "李博文"
+  },
+  {
+    "id": "r7364",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 38,
+    "award": "一级",
+    "student_id": "s997",
+    "name": "赵秋铭"
+  },
+  {
+    "id": "r7365",
+    "school": "中国科学技术大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 39,
+    "award": "一级",
+    "student_id": "s138",
+    "name": "姜博涵"
+  },
+  {
+    "id": "r7366",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 40,
+    "award": "一级",
+    "student_id": "s2806",
+    "name": "张济罡"
+  },
+  {
+    "id": "r7367",
+    "school": "中国科学技术大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 41,
+    "award": "一级",
+    "student_id": "s3139",
+    "name": "李启辰"
+  },
+  {
+    "id": "r7368",
+    "school": "合肥市第四十五中学森林城分校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 42,
+    "award": "一级",
+    "student_id": "s2282",
+    "name": "宋宗道"
+  },
+  {
+    "id": "r7369",
+    "school": "合肥市五十中学东校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 43,
+    "award": "一级",
+    "student_id": "s529",
+    "name": "涂曌熙"
+  },
+  {
+    "id": "r7370",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 44,
+    "award": "一级",
+    "student_id": "s3017",
+    "name": "汪宇航"
+  },
+  {
+    "id": "r7371",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 45,
+    "award": "一级",
+    "student_id": "s1336",
+    "name": "王继成"
+  },
+  {
+    "id": "r7372",
+    "school": "合肥市第四十二中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 46,
+    "award": "一级",
+    "student_id": "s440",
+    "name": "汪星辰"
+  },
+  {
+    "id": "r7373",
+    "school": "合肥市五十中学西校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 47,
+    "award": "一级",
+    "student_id": "s32",
+    "name": "王子然"
+  },
+  {
+    "id": "r7374",
+    "school": "合肥市五十中学东校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 48,
+    "award": "一级",
+    "student_id": "s11",
+    "name": "程语墨"
+  },
+  {
+    "id": "r7375",
+    "school": "中国科学技术大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 49,
+    "award": "一级",
+    "student_id": "s8",
+    "name": "郑艾平"
+  },
+  {
+    "id": "r7376",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 50,
+    "award": "一级",
+    "student_id": "s492",
+    "name": "李浩松"
+  },
+  {
+    "id": "r7377",
+    "school": "合肥市第六中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 51,
+    "award": "一级",
+    "student_id": "s2279",
+    "name": "吴承泽"
+  },
+  {
+    "id": "r7378",
+    "school": "合肥市第八中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 52,
+    "award": "一级",
+    "student_id": "s1456",
+    "name": "李靖劼"
+  },
+  {
+    "id": "r7379",
+    "school": "合肥市第四十五中学森林城分校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 53,
+    "award": "一级",
+    "student_id": "s2780",
+    "name": "谈睿"
+  },
+  {
+    "id": "r7380",
+    "school": "合肥市五十中学东校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 54,
+    "award": "一级",
+    "student_id": "s408",
+    "name": "刘子诺"
+  },
+  {
+    "id": "r7381",
+    "school": "合肥市五十中学西校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 55,
+    "award": "一级",
+    "student_id": "s9",
+    "name": "张寒祐"
+  },
+  {
+    "id": "r7382",
+    "school": "合肥市第八中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 56,
+    "award": "一级",
+    "student_id": "s1561",
+    "name": "张宏涛"
+  },
+  {
+    "id": "r7383",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 57,
+    "award": "一级",
+    "student_id": "s6",
+    "name": "段渡远"
+  },
+  {
+    "id": "r7384",
+    "school": "合肥市五十中学东校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 58,
+    "award": "一级",
+    "student_id": "s23",
+    "name": "李天佑"
+  },
+  {
+    "id": "r7385",
+    "school": "合肥市五十中学西校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 59,
+    "award": "一级",
+    "student_id": "s410",
+    "name": "史城熙"
+  },
+  {
+    "id": "r7386",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 60,
+    "award": "一级",
+    "student_id": "s1092",
+    "name": "林彦谦"
+  },
+  {
+    "id": "r7387",
+    "school": "中国科学技术大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 61,
+    "award": "一级",
+    "student_id": "s2",
+    "name": "冯家轩"
+  },
+  {
+    "id": "r7388",
+    "school": "合肥市第八中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 62,
+    "award": "一级",
+    "student_id": "s1342",
+    "name": "窦容川"
+  },
+  {
+    "id": "r7389",
+    "school": "合肥市五十中学新校天鹅湖校区",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 63,
+    "award": "一级",
+    "student_id": "s1019",
+    "name": "孙少宸"
+  },
+  {
+    "id": "r7390",
+    "school": "合肥市第八中学运河校区",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 64,
+    "award": "一级",
+    "student_id": "s3245",
+    "name": "谢知谦"
+  },
+  {
+    "id": "r7391",
+    "school": "合肥市第八中学运河校区",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 65,
+    "award": "一级",
+    "student_id": "s2774",
+    "name": "杨子轩"
+  },
+  {
+    "id": "r7392",
+    "school": "合肥市五十中学东校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 66,
+    "award": "一级",
+    "student_id": "s12",
+    "name": "黄普"
+  },
+  {
+    "id": "r7393",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 67,
+    "award": "一级",
+    "student_id": "s1340",
+    "name": "汪羿帆"
+  },
+  {
+    "id": "r7394",
+    "school": "合肥工业大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 68,
+    "award": "一级",
+    "student_id": "s692",
+    "name": "郭百川"
+  },
+  {
+    "id": "r7395",
+    "school": "合肥市五十中学天鹅湖教育集团望岳校区",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 69,
+    "award": "一级",
+    "student_id": "s2848",
+    "name": "姜宇翔"
+  },
+  {
+    "id": "r7396",
+    "school": "合肥市第四十五中学森林城分校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 70,
+    "award": "一级",
+    "student_id": "s2835",
+    "name": "却平伯"
+  },
+  {
+    "id": "r7397",
+    "school": "中国科学技术大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 71,
+    "award": "一级",
+    "student_id": "s430",
+    "name": "方钲泓"
+  },
+  {
+    "id": "r7398",
+    "school": "合肥市五十中学天鹅湖教育集团望岳校区",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 72,
+    "award": "一级",
+    "student_id": "s472",
+    "name": "袁尊昱"
+  },
+  {
+    "id": "r7399",
+    "school": "合肥市第四十八中学滨湖校区",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 73,
+    "award": "一级",
+    "student_id": "s411",
+    "name": "谢晋宇"
+  },
+  {
+    "id": "r7400",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 74,
+    "award": "一级",
+    "student_id": "s2859",
+    "name": "贾玉晓"
+  },
+  {
+    "id": "r7401",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 75,
+    "award": "一级",
+    "student_id": "s4",
+    "name": "朱杍铭"
+  },
+  {
+    "id": "r7402",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 76,
+    "award": "一级",
+    "student_id": "s1041",
+    "name": "焦鸿泰"
+  },
+  {
+    "id": "r7403",
+    "school": "合肥市第六中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 77,
+    "award": "一级",
+    "student_id": "s936",
+    "name": "张栎岩"
+  },
+  {
+    "id": "r7404",
+    "school": "合肥市第四十六中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 78,
+    "award": "一级",
+    "student_id": "s462",
+    "name": "朱逸辰"
+  },
+  {
+    "id": "r7405",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 79,
+    "award": "一级",
+    "student_id": "s1473",
+    "name": "李奕晗"
+  },
+  {
+    "id": "r7406",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 80,
+    "award": "一级",
+    "student_id": "s1339",
+    "name": "张皓轩"
+  },
+  {
+    "id": "r7407",
+    "school": "合肥北城中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 81,
+    "award": "一级",
+    "student_id": "s590",
+    "name": "赵子越"
+  },
+  {
+    "id": "r7408",
+    "school": "合肥市第四十五中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 82,
+    "award": "一级",
+    "student_id": "s452",
+    "name": "刘宸屹"
+  },
+  {
+    "id": "r7409",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 83,
+    "award": "一级",
+    "student_id": "s955",
+    "name": "李凯迪"
+  },
+  {
+    "id": "r7410",
+    "school": "合肥一六八中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 84,
+    "award": "一级",
+    "student_id": "s956",
+    "name": "纪孝炎"
+  },
+  {
+    "id": "r7411",
+    "school": "合肥市五十中学西校",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 85,
+    "award": "一级",
+    "student_id": "s14",
+    "name": "刘梓谙"
+  },
+  {
+    "id": "r7412",
+    "school": "合肥市第一中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 86,
+    "award": "一级",
+    "student_id": "s1345",
+    "name": "章珂语"
+  },
+  {
+    "id": "r7413",
+    "school": "中国科学技术大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 87,
+    "award": "一级",
+    "student_id": "s2284",
+    "name": "张远航"
+  },
+  {
+    "id": "r7414",
+    "school": "合肥八中教育集团翡翠湖初级中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 88,
+    "award": "一级",
+    "student_id": "s2883",
+    "name": "李博伟"
+  },
+  {
+    "id": "r7415",
+    "school": "合肥市第四十六中学南校区",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 89,
+    "award": "一级",
+    "student_id": "s396",
+    "name": "武哲以"
+  },
+  {
+    "id": "r7416",
+    "school": "中国科学技术大学附属中学",
+    "contest": "CSP-S 2026",
+    "year": 2026,
+    "rank": 90,
+    "award": "一级",
+    "student_id": "s1181",
+    "name": "马一骞"
   }
 ]

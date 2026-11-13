@@ -16,75 +16,79 @@
     "priority": 102
   },
   {
-    "pattern": "NOIP 2025",
+    "pattern": "CSP-S 2026",
     "priority": 103
   },
   {
-    "pattern": "CSP-S 2025",
+    "pattern": "NOIP 2025",
     "priority": 104
   },
   {
-    "pattern": "CSP-J 2025",
+    "pattern": "CSP-S 2025",
     "priority": 105
   },
   {
-    "pattern": "NOI 2025（含夏令营）",
+    "pattern": "CSP-J 2025",
     "priority": 106
   },
   {
-    "pattern": "APIO 2025",
+    "pattern": "NOI 2025（含夏令营）",
     "priority": 107
   },
   {
-    "pattern": "NOI 2025 安徽省选（前 25 的合肥选手）",
+    "pattern": "APIO 2025",
     "priority": 108
   },
   {
-    "pattern": "WC2025",
+    "pattern": "NOI 2025 安徽省选（前 25 的合肥选手）",
     "priority": 109
   },
   {
-    "pattern": "NOIP 2024",
+    "pattern": "WC2025",
     "priority": 110
   },
   {
-    "pattern": "CSP-S 2024",
+    "pattern": "NOIP 2024",
     "priority": 111
   },
   {
-    "pattern": "CSP-J 2024",
+    "pattern": "CSP-S 2024",
     "priority": 112
   },
   {
-    "pattern": "NOI 2024（含夏令营）",
+    "pattern": "CSP-J 2024",
     "priority": 113
   },
   {
-    "pattern": "APIO 2024",
+    "pattern": "NOI 2024（含夏令营）",
     "priority": 114
   },
   {
-    "pattern": "NOI 2024 安徽省选（前 25 的合肥选手）",
+    "pattern": "APIO 2024",
     "priority": 115
   },
   {
-    "pattern": "WC2024",
+    "pattern": "NOI 2024 安徽省选（前 25 的合肥选手）",
     "priority": 116
   },
   {
-    "pattern": "NOIP 2023",
+    "pattern": "WC2024",
     "priority": 117
   },
   {
-    "pattern": "CSP-S 2023",
+    "pattern": "NOIP 2023",
     "priority": 118
   },
   {
-    "pattern": "CSP-J 2023",
+    "pattern": "CSP-S 2023",
     "priority": 119
   },
   {
-    "pattern": "NOI 2023（含夏令营）",
+    "pattern": "CSP-J 2023",
     "priority": 120
+  },
+  {
+    "pattern": "NOI 2023（含夏令营）",
+    "priority": 121
   }
 ]
