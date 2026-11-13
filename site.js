@@ -524,6 +524,8 @@ function renderPlayers(rows, studentsById, pinyin) {
   var sortField = "rating";
   var sortDir = -1;
   var sortFieldMap = {"一等奖":"first","二等奖":"second","三等奖":"third","总计":"total","评级":"rating","评分":"score"};
+  var playerStatsCache = {};
+  var playerSearchCache = {};
 
   function filterByLevel(level, data) {
     if (level === "all") return data;
@@ -532,6 +534,27 @@ function renderPlayers(rows, studentsById, pinyin) {
       var c = String(r.contest || "").trim();
       return isPrimary ? c.indexOf("小学") >= 0 : c.indexOf("初中") >= 0;
     });
+  }
+
+  function getCachedPlayers(level) {
+    if (playerStatsCache[level]) return playerStatsCache[level];
+    var stats = buildPlayerStats(rows, studentsById, level);
+    var searchPartsBySid = {};
+    filterByLevel(level, rows).forEach(function(row) {
+      var sid = String(row.student_id || "");
+      if (!sid) return;
+      if (!searchPartsBySid[sid]) searchPartsBySid[sid] = [];
+      searchPartsBySid[sid].push(row.name, row.original_name || "", row.school);
+    });
+    stats.forEach(function(item) {
+      var stu = (studentsById && studentsById[item.sid]) || {};
+      var parts = searchPartsBySid[item.sid] || [];
+      parts.push(item.name, item.school, stu.primary_school || "", stu.middle_school || "", stu.high_school || "");
+      if (pinyin && pinyin[item.name]) parts.push(pinyin[item.name].full || "", pinyin[item.name].short || "");
+      playerSearchCache[level + "|" + item.sid] = normalize(parts.join(" "));
+    });
+    playerStatsCache[level] = stats;
+    return stats;
   }
 
   function paint(list, page) {
@@ -578,23 +601,10 @@ function renderPlayers(rows, studentsById, pinyin) {
 
   function refresh() {
     var keyword = normalize(input.value);
-    currentRows = filterByLevel(currentLevel, rows);
-    var levelRows = currentRows;
-    var searchRows = keyword ? levelRows.filter(function(r) {
-      var normalMatch = normalize(r.name + " " + (r.original_name || '') + " " + r.school).indexOf(keyword) !== -1;
-      if (normalMatch) return true;
-      if (pinyin && pinyin[r.name]) {
-        var py = pinyin[r.name];
-        if (normalize(py.full).indexOf(keyword) >= 0 || normalize(py.short).indexOf(keyword) >= 0) return true;
-      }
-      return false;
-    }) : levelRows;
-    var _sr = buildPlayerStats(searchRows, studentsById, currentLevel);
-    var _ar = buildPlayerStats(rows, studentsById, currentLevel);
-    _sr.forEach(function(_s) {
-      var _f = _ar.find(function(_a) { return _a.sid === _s.sid; });
-      if (_f !== undefined) { _s.rating = _f.rating; _s.score = _f.score; }
-      });
+    var baseList = getCachedPlayers(currentLevel);
+    var _sr = keyword ? baseList.filter(function(item) {
+      return (playerSearchCache[currentLevel + "|" + item.sid] || "").indexOf(keyword) !== -1;
+    }) : baseList.slice();
     
     if (sortField && _sr && _sr.length) {
       _sr.sort(function(a, b) {
@@ -618,7 +628,14 @@ function renderPlayers(rows, studentsById, pinyin) {
     });
   }
 
-  input.addEventListener("input", function() { refresh(); });
+  var pendingSearchFrame = 0;
+  input.addEventListener("input", function() {
+    if (pendingSearchFrame) cancelAnimationFrame(pendingSearchFrame);
+    pendingSearchFrame = requestAnimationFrame(function() {
+      pendingSearchFrame = 0;
+      refresh();
+    });
+  });
   
 
   // Add sort click handlers
@@ -648,7 +665,7 @@ function renderPlayers(rows, studentsById, pinyin) {
       }
     });
   }
-  paint(buildPlayerStats(currentRows, studentsById, currentLevel), 1);
+  refresh();
 }
 // ===== Schools Page =====
 function renderSchools(rows, teamRows) {
