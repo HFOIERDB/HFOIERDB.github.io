@@ -828,9 +828,22 @@ function renderContestDetail(rows, teamRows, studentsById) {
   if (!contestName && uniqueContests.length === 1) contestName = uniqueContests[0];
 
   title.textContent = contestName ? "比赛详情: " + contestName : "比赛详情";
-  var isCCF = contestName.indexOf("年合肥市赛") < 0;
+  var isMunicipalContest = contestName.indexOf("年合肥市赛") >= 0;
+  var isCspContest = /CSP-[JS]/.test(contestName);
+  var showSchoolAwards = isMunicipalContest || isCspContest;
   var schoolTabBtn = tabGroup && tabGroup.querySelector('[data-tab="schools"]');
-  if (isCCF && schoolTabBtn) { schoolTabBtn.style.display = "none"; if (schoolPanel) schoolPanel.style.display = "none"; }
+  if (!showSchoolAwards && schoolTabBtn) { schoolTabBtn.style.display = "none"; if (schoolPanel) schoolPanel.style.display = "none"; }
+  if (schoolPanel) {
+    var schoolHeaders = schoolPanel.querySelectorAll("thead th");
+    for (var headerIndex = 2; headerIndex <= 4; headerIndex++) {
+      if (schoolHeaders[headerIndex]) schoolHeaders[headerIndex].style.display = isCspContest ? "none" : "";
+    }
+    if (isCspContest && schoolHeaders.length >= 8) {
+      schoolHeaders[5].textContent = "一级人数";
+      schoolHeaders[6].textContent = "二级人数";
+      schoolHeaders[7].textContent = "三级人数";
+    }
+  }
 
   if (!contestName) {
     renderEmpty(tbody, 5, "Missing contest name");
@@ -984,6 +997,12 @@ function renderContestDetail(rows, teamRows, studentsById) {
     var schoolList = Object.keys(schoolsByName).map(function(s) { return schoolsByName[s]; });
 
     schoolList.sort(function(a, b) {
+      if (isCspContest) {
+        if (b.individualFirst !== a.individualFirst) return b.individualFirst - a.individualFirst;
+        if (b.individualSecond !== a.individualSecond) return b.individualSecond - a.individualSecond;
+        if (b.individualThird !== a.individualThird) return b.individualThird - a.individualThird;
+        return a.school.localeCompare(b.school, "zh-CN");
+      }
       var posDiff = (a.pos || 999) - (b.pos || 999);
       if (posDiff) return posDiff;
       var aTotal = a.individualFirst + a.individualSecond + a.individualThird;
@@ -1002,13 +1021,17 @@ function renderContestDetail(rows, teamRows, studentsById) {
     }) : schoolList;
 
     if (visibleSchools.length === 0) {
-      renderEmpty(schoolTbody, 8, "暂无学校数据");
+      renderEmpty(schoolTbody, isCspContest ? 5 : 8, "暂无学校数据");
       schoolSummary.textContent = keyword ? "未找到匹配的学生或学校" : "共 0 所学校";
       return;
     }
 
     schoolTbody.innerHTML = visibleSchools.map(function(s, idx) {
-      return '<tr><td>' + (idx + 1) + '</td><td><a class=\"table-link\" href=\"./hfoi-school-detail?school=' + encodeURIComponent(s.school) + '\">' + escapeHtml(s.school) + '</a></td><td>' + s.teamFirst + '</td><td>' + s.teamSecond + '</td><td>' + s.teamThird + '</td><td>' + s.individualFirst + '</td><td>' + s.individualSecond + '</td><td>' + s.individualThird + '</td></tr>';
+      var schoolLink = '<a class="table-link" href="./hfoi-school-detail?school=' + encodeURIComponent(s.school) + '">' + escapeHtml(s.school) + '</a>';
+      if (isCspContest) {
+        return '<tr><td>' + (idx + 1) + '</td><td>' + schoolLink + '</td><td>' + s.individualFirst + '</td><td>' + s.individualSecond + '</td><td>' + s.individualThird + '</td></tr>';
+      }
+      return '<tr><td>' + (idx + 1) + '</td><td>' + schoolLink + '</td><td>' + s.teamFirst + '</td><td>' + s.teamSecond + '</td><td>' + s.teamThird + '</td><td>' + s.individualFirst + '</td><td>' + s.individualSecond + '</td><td>' + s.individualThird + '</td></tr>';
     }).join("");
     schoolSummary.textContent = keyword ? "找到 " + visibleSchools.length + " 所，共 " + schoolList.length + " 所学校" : "共 " + schoolList.length + " 所学校";
   }  // ===== Tab Switching =====
