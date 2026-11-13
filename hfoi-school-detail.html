@@ -33,8 +33,11 @@
       </section>
 
       <section class="panel" id="schoolDetailContestPanel">
-        <div class="summary" id="schoolDetailSummary">加载中...</div>
-        <div class="table-wrap">
+        <div class="contest-history-header">
+          <div class="summary" id="schoolDetailSummary">加载中...</div>
+          <button class="tab-btn" id="schoolDetailContestToggle" type="button" aria-expanded="false" aria-controls="schoolDetailContestContent">展开</button>
+        </div>
+        <div class="table-wrap" id="schoolDetailContestContent" hidden>
           <table id="schoolDetailTable">
             <thead>
               <tr>
@@ -96,6 +99,6 @@
 
     <script src="./vendor/echarts.min.js" defer></script>
     <script src="./js/identity.js?v=20260912a" defer></script>
-<script src="./site.js?v=20260912a" defer></script>
+<script src="./site.js?v=20261113c" defer></script>
   </body>
 </html>

@@ -1279,7 +1279,18 @@ function renderSchoolDetail(rows, teamRows, studentsById) {
   var summary = document.getElementById("schoolDetailSummary");
   var tbody = document.getElementById("schoolDetailBody");
   var tabGroup = document.getElementById("schoolDetailTabGroup");
+  var contestToggle = document.getElementById("schoolDetailContestToggle");
+  var contestContent = document.getElementById("schoolDetailContestContent");
   if (!title || !summary || !tbody) return;
+
+  if (contestToggle && contestContent) {
+    contestToggle.addEventListener("click", function() {
+      var willExpand = contestContent.hidden;
+      contestContent.hidden = !willExpand;
+      contestToggle.setAttribute("aria-expanded", willExpand ? "true" : "false");
+      contestToggle.textContent = willExpand ? "收起" : "展开";
+    });
+  }
 
   var params = new URLSearchParams(window.location.search);
   var school = String(params.get("school") || "").trim();

@@ -701,6 +701,21 @@ th.sort-desc::after { content: " ▼"; font-size: 0.7em; }
   display: none;
 }
 
+.contest-history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.contest-history-header .summary {
+  margin: 0;
+}
+
+#schoolDetailContestContent[hidden] {
+  display: none;
+}
+
 /* ===== School List: hide all award columns on high tab (keep 排名 + 学校名) ===== */
 #schoolsTable.hide-awards th:nth-child(n+3),
 #schoolsTable.hide-awards td:nth-child(n+3) {
