@@ -541,6 +541,8 @@ function renderPlayers(rows, studentsById, pinyin) {
 
   function getCachedPlayers(level) {
     if (playerStatsCache[level]) return playerStatsCache[level];
+    // 小学、初中列表的评级及姓名颜色都使用选手全部历史中的最高评级。
+    if (level !== "all") getCachedPlayers("all");
     var stats = buildPlayerStats(rows, studentsById, level);
     var searchPartsBySid = {};
     filterByLevel(level, rows).forEach(function(row) {
@@ -559,6 +561,7 @@ function renderPlayers(rows, studentsById, pinyin) {
       if (pinyin && pinyin[item.name]) parts.push(pinyin[item.name].full || "", pinyin[item.name].short || "");
       playerSearchCache[level + "|" + item.sid] = normalize(parts.join(" "));
       if (level === "all") historicalRatingBySid[item.sid] = item.rating || 0;
+      else if (historicalRatingBySid[item.sid] != null) item.rating = historicalRatingBySid[item.sid];
     });
     playerStatsCache[level] = stats;
     return stats;
@@ -585,9 +588,7 @@ function renderPlayers(rows, studentsById, pinyin) {
     }
     tbody.innerHTML = pageItems.map(function(row, idx) {
       var rank = start + idx + 1;
-      if (currentLevel !== "all" && historicalRatingBySid[row.sid] == null) getCachedPlayers("all");
-      var historicalRating = historicalRatingBySid[row.sid] == null ? row.rating : historicalRatingBySid[row.sid];
-      var rl1 = historicalRating >= 4 ? " rl-" + historicalRating : " rl-default";
+      var rl1 = row.rating >= 4 ? " rl-" + row.rating : " rl-default";
       return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link" + rl1 + "\" href=\"./hfoi-player-detail?sid=" + encodeURIComponent(row.sid) + "\">" + escapeHtml(row.name) + "</a></td><td><a class=\"table-link\" href=\"./hfoi-school-detail?school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.school) + "</a></td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td><td>" + String(row.rating || 0) + "</td><td>" + (Math.max(0,row.score)||0) + "</td></tr>";
     }).join("");
     summary.textContent = "第 " + page + " / " + totalPages + " 页 | 共 " + list.length + " 名选手";
