@@ -263,7 +263,7 @@ function buildPlayerStats(rows, studentsById, level) {
       });
     }
     const item = map.get(sid);
-    // level=primary/middle 时，前面的过滤保证姓名颜色使用对应学段评级。
+    // 这里保留当前列表学段的评级；姓名颜色在渲染时统一读取全部历史最高评级。
     const rlv = getRatingLevel(row, rows);
     if (rlv > item.rating) item.rating = rlv;
 
@@ -528,6 +528,7 @@ function renderPlayers(rows, studentsById, pinyin) {
   var sortFieldMap = {"一等奖":"first","二等奖":"second","三等奖":"third","总计":"total","评级":"rating","评分":"score"};
   var playerStatsCache = {};
   var playerSearchCache = {};
+  var historicalRatingBySid = {};
 
   function filterByLevel(level, data) {
     if (level === "all") return data;
@@ -557,6 +558,7 @@ function renderPlayers(rows, studentsById, pinyin) {
       else parts.push(stu.primary_school || "", stu.middle_school || "", stu.high_school || "");
       if (pinyin && pinyin[item.name]) parts.push(pinyin[item.name].full || "", pinyin[item.name].short || "");
       playerSearchCache[level + "|" + item.sid] = normalize(parts.join(" "));
+      if (level === "all") historicalRatingBySid[item.sid] = item.rating || 0;
     });
     playerStatsCache[level] = stats;
     return stats;
@@ -583,9 +585,9 @@ function renderPlayers(rows, studentsById, pinyin) {
     }
     tbody.innerHTML = pageItems.map(function(row, idx) {
       var rank = start + idx + 1;
-      var rl1 = currentLevel === "all"
-        ? (row.rating >= 4 ? " rl-" + row.rating : " rl-default")
-        : " stage-rating-" + Math.max(1, Math.min(5, row.rating || 1));
+      if (currentLevel !== "all" && historicalRatingBySid[row.sid] == null) getCachedPlayers("all");
+      var historicalRating = historicalRatingBySid[row.sid] == null ? row.rating : historicalRatingBySid[row.sid];
+      var rl1 = historicalRating >= 4 ? " rl-" + historicalRating : " rl-default";
       return "<tr><td>" + rank + "</td><td>" + "<a class=\"table-link" + rl1 + "\" href=\"./hfoi-player-detail?sid=" + encodeURIComponent(row.sid) + "\">" + escapeHtml(row.name) + "</a></td><td><a class=\"table-link\" href=\"./hfoi-school-detail?school=" + encodeURIComponent(row.school) + "\">" + escapeHtml(row.school) + "</a></td><td>" + row.first + "</td><td>" + row.second + "</td><td>" + row.third + "</td><td>" + row.total + "</td><td>" + String(row.rating || 0) + "</td><td>" + (Math.max(0,row.score)||0) + "</td></tr>";
     }).join("");
     summary.textContent = "第 " + page + " / " + totalPages + " 页 | 共 " + list.length + " 名选手";
